@@ -5,7 +5,7 @@
       <span class="material-icons">search</span>
       <span id="add" class="material-icons">add</span>
     </div>
-    <category-lane category="Category_I"/>
+    <category-lane v-for="lane in lanes" :key="lane" :lane_info="lane" />
     <!-- <category-lane category="Category_II"/> -->
   </div>
 </template>
@@ -14,10 +14,20 @@
 // @ is an alias to /src
 import CategoryLane from '@/components/CategoryLane.vue'
 
+let lanes = [
+  {id: '1', title: 'Category 1'},
+  {id: '2', title: 'Category 2'}
+]
+
 export default {
   name: 'Home',
   components: {
     CategoryLane
+  },
+  data () {
+    return{
+      lanes: lanes
+    }
   }
 }
 </script>

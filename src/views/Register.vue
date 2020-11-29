@@ -1,8 +1,16 @@
 <template>
   <div class="register">
-     <router-link to="/login"><span class="material-icons" style="color:black;">arrow_back_ios</span></router-link>
-    <h1>Create account</h1>
-    
+    <div class="container">
+      <div class="row">
+        <div class="col-4">
+          <router-link to="/login"><span class="material-icons" style="color:black;">arrow_back_ios</span></router-link>
+        </div>
+        <div class="col-4">
+          <h1>Create account</h1>
+        </div>
+        <div class="col-4"></div>
+      </div>
+    </div>
     <form>
       <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>

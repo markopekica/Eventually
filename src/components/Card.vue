@@ -1,11 +1,11 @@
 <template>
     <div class="card" style="width: 18rem;">
-        <img src="https://picsum.photos/400/300" class="card-img-top" alt="...">
+        <img :src="card_info.url" class="card-img-top" alt="pic">
         <div class="card-body">
-            <h5 class="card-title">Event title</h5>
-            <p>Location</p>
-            <p>Date-time</p>
-            <a href="#" class="btn btn-primary">Full info</a>
+            <h5 class="card-title">{{ card_info.title }}</h5>
+            <p>{{ card_info.location }}</p>
+            <p>{{card_info.date}} - {{ card_info.time }}</p>
+            <a id="card-button" href="#" class="btn btn-primary">Full info</a>
         </div>
     </div>
 </template>
@@ -13,8 +13,7 @@
 <script>
 export default {
   name: 'Card',
-  props: {
-  }
+  props: ["card_info"]
 }
 </script>
 
@@ -23,5 +22,13 @@ export default {
 .card{
     margin: 1em 2em;
     display: inline-block;
+}
+#card-button {
+  background-color: #111;
+  color: skyblue;
+  border: none;
+  border-radius: 16px;
+  /* padding: 0.5em 1em; */
+  margin: 1em 0;
 }
 </style>

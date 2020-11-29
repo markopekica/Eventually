@@ -1,7 +1,16 @@
 <template>
   <div class="info">
-    <!-- <router-link to="/"><span class="material-icons" style="color:black;">arrow_back_ios</span></router-link> -->
-    <h1>Info Page</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col-4">
+          <router-link to="/"><span class="material-icons" style="color:black;">arrow_back_ios</span></router-link>
+        </div>
+        <div class="col-4">
+          <h1>Info Page</h1>
+        </div>
+        <div class="col-4"></div>
+      </div>
+    </div>
     <hr style="width:42%; margin-bottom:2em;">
     <div class="app-info">
       <h2>App Info</h2>

@@ -1,13 +1,10 @@
 <template>
   <div class="category-lane">
     <div id="category">
-      <h3>{{ category }}</h3>
+      <h3>{{ lane_info.title }}</h3>
     </div>
     <div id="lane">
-      <card />
-      <card />
-      <card />
-      <card />
+      <card  v-for="card in cards" :key="card" :card_info="card"/>
     </div>
   </div>
 </template>
@@ -15,13 +12,23 @@
 <script>
 import Card from './Card.vue'
 
+let cards = [
+  {id: '1', title: "event 1", url: 'https://picsum.photos/id/1042/300/200', location:"location_1", date: "date", time: "time"},
+  {id: '2', title: "event 2", url: 'https://picsum.photos/id/88/300/200', location:"location_2", date: "date", time: "time"},
+  {id: '3', title: "event 3", url: 'https://picsum.photos/id/100/300/200', location:"location_3", date: "date", time: "time"},
+  {id: '4', title: "event 4", url: 'https://picsum.photos/id/1000/300/200', location:"location_4", date: "date", time: "time"},
+]
+
 export default {
   name: 'CategoryLane',
+  props: ["lane_info"],
   components: {
     Card
   },
-  props: {
-    category: String
+  data() {
+    return {
+      cards: cards
+    }
   }
 }
 </script>
@@ -30,18 +37,13 @@ export default {
 <style scoped lang="scss">
 .category-lane{
   margin: 4em 25px;
-  /* border: 1px solid pink; */
 }
 #category{
   display: flex;
   border-bottom: 1px solid grey;
 }
 #lane{
-  /* display: flex; */
   overflow: auto;
   white-space: nowrap;
-}
-a {
-  color: #42b983;
 }
 </style>
