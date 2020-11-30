@@ -4,7 +4,7 @@
       <h3>{{ lane_info.title }}</h3>
     </div>
     <div id="lane">
-      <card v-for="card in cards" :key="card" :card_info="card" />
+      <card v-for="Card in cards" :key="Card" :card_info="Card" />
     </div>
   </div>
 </template>

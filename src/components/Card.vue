@@ -29,6 +29,6 @@ export default {
   color: #2c3e50;
   border-radius: 16px;
   margin: .5em 0;
-  box-shadow: 1px 2px 4px skyblue;
+  /* box-shadow: 1px 2px 4px skyblue; */
 }
 </style>
