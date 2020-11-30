@@ -53,7 +53,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .login {
   margin-top: 2em;
 }
