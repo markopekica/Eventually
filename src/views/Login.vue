@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="login-page">
     <div class="container">
       <div class="row">
         <div class="col-4">
@@ -11,7 +11,7 @@
         </div>
         <div class="col-4">
           <h1>Login</h1>
-          <p>Allows You to use all features.</p>
+          <p>and gain access to all features</p>
         </div>
         <div class="col-4"></div>
       </div>
@@ -34,10 +34,10 @@
           id="exampleInputPassword1"
         />
       </div>
-      <div class="form-group form-check">
+      <!-- <div class="form-group form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-      </div>
+        <label class="form-check-label" for="exampleCheck1">Remember me</label>
+      </div> -->
       <button id="login-button" type="submit" class="btn btn-primary">
         Login
       </button>
@@ -54,20 +54,24 @@
 </template>
 
 <style lang="scss" scoped>
-.login {
-  margin-top: 2em;
+.login-page {
+  margin-top: 1em;
 }
 form {
+  margin-top: 1em;
+}
+.form-group {
   max-width: 400px;
-  padding: 1em;
+  padding: .5em;
   margin: auto;
 }
 #login-button {
-  background-color: #111;
-  color: skyblue;
-  border: none;
+  background-color: snow;
+  border: 1px solid skyblue;
   padding: 0.5em 1em;
   margin: 1em 0;
+  color: #2c3e50;
+  border-radius: 16px;
 }
 #register-link {
   margin-top: 4em;
