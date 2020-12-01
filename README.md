@@ -26,7 +26,7 @@
 
 ## Plan projekta (kratki opis funkcionalnosti)
 
-Aplikacija "Eventualno" namijenjena je za sve one koji žele pronaći događaje u skladu sa svojim interesima, neoviseći o društvenim aplikacijama koje inače koriste u te svrhe.
+Aplikacija "Eventually" namijenjena je za sve one koji žele pronaći događaje u skladu sa svojim interesima, neoviseći o društvenim aplikacijama koje inače koriste u te svrhe.
 Cilj aplikacije je brzo i jednostavno kreirati i podijeliti organizirane događaje sa što većim brojem ljudi; pružiti im uvid u mjesto, vrijeme i vrstu događaja te pregled svih ostalih bitnih informacija (npr. cijena ulaznice, dress code, ljubimac welcome zona).
 Korisnici koji izrade račun moći će objavljivati događaje te pisati komentare, pitanja i recenzije za pojedini događaj, dok će korisnici bez računa moći samo pregledavati aktivne događaje.
 Događaje će biti moguće pretraživati uz pomoć raznih filtera. Primjerice, po svojoj prirodi (koncert, sport, umjetnost itd.), lokaciji, datumu...
@@ -44,3 +44,8 @@ https://xd.adobe.com/view/0781cbd4-0183-42fe-a0c9-9705c7827615-52d2/
 Marko:
 - src/views/Home.vue
 - src/views/Login.vue
+
+Darin: 
+- dorada na README.md
+- src/views/Info.vue 
+ 
