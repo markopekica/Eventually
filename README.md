@@ -45,12 +45,9 @@ Marko:
 - src/views/Home.vue
 - src/views/Login.vue
 
-<<<<<<< HEAD
 Darin: 
 - dorada na README.md
 - src/views/Info.vue 
  
-=======
 Karlo:
 - src/views/Register.vue
->>>>>>> 03ed5ff866973b6e1525d17f5951a0d5fc856f61
