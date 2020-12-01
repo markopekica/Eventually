@@ -46,4 +46,4 @@ Marko:
 - src/views/Login.vue
 
 Karlo:
--src/views/Register.vue
+- src/views/Register.vue
