@@ -4,13 +4,13 @@
       <h3>{{ lane_info.title }}</h3>
     </div>
     <div id="lane">
-      <card v-for="Card in cards" :key="Card" :card_info="Card" />
+      <event-card v-for="eventCard in cards" :key="eventCard.id" :card_info="eventCard" />
     </div>
   </div>
 </template>
 
 <script>
-import Card from "./Card.vue";
+import EventCard from "./EventCard.vue";
 
 let cards = [
   {
@@ -53,7 +53,7 @@ export default {
     lane_info: Object,
   },
   components: {
-    Card,
+    EventCard,
   },
   data() {
     return {

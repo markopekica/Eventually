@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <tool-bar />
-    <category-lane v-for="lane in lanes" :key="lane" :lane_info="lane" />
+    <category-lane v-for="lane in lanes" :key="lane.id" :lane_info="lane" />
   </div>
 </template>
 
