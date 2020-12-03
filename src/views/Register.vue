@@ -53,7 +53,7 @@
 
 <style lang="scss" scoped>
 .register {
-  margin-top: 2em;
+  margin-top: 1em;
 }
 form {
   max-width: 450px;
