@@ -1,18 +1,18 @@
 <template>
-  <div class="register">
+  <div class="register-page">
     <div class="container">
       <div class="row">
-        <div class="col-4">
+        <div class="col-2">
           <router-link to="/login"
             ><span class="material-icons" style="color: black"
               >arrow_back_ios</span
             ></router-link
           >
         </div>
-        <div class="col-4">
+        <div class="col-8">
           <h1>Create account</h1>
         </div>
-        <div class="col-4"></div>
+        <div class="col-2"></div>
       </div>
     </div>
     <form>
@@ -52,19 +52,25 @@
 </template>
 
 <style lang="scss" scoped>
-.register {
-  margin-top: 1em;
+.container{
+  margin: 1em auto;
+}
+.col-2, .col-8{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 form {
-  max-width: 450px;
+  max-width: 440px;
   padding: 1em;
   margin: auto;
 }
 #register-button {
-  background-color: #111;
-  color: skyblue;
-  border: none;
+  background-color: snow;
+  border: 1px solid skyblue;
   padding: 0.5em 1em;
   margin: 1em 0;
+  color: #2c3e50;
+  border-radius: 16px;
 }
 </style>

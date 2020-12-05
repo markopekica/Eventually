@@ -2,18 +2,17 @@
   <div class="login-page">
     <div class="container">
       <div class="row">
-        <div class="col-4">
+        <div class="col-2">
           <router-link to="/">
             <span class="material-icons" style="color: black"
               >arrow_back_ios</span
             >
           </router-link>
         </div>
-        <div class="col-4">
+        <div class="col-8">
           <h1>Login</h1>
-          <p>and gain access to all features</p>
         </div>
-        <div class="col-4"></div>
+        <div class="col-2"></div>
       </div>
     </div>
     <form>
@@ -54,15 +53,17 @@
 </template>
 
 <style lang="scss" scoped>
-.login-page {
-  margin-top: 1em;
+.container{
+  margin: 1em auto;
+}
+.col-2, .col-8{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 form {
-  margin-top: 1em;
-}
-.form-group {
-  max-width: 400px;
-  padding: .5em;
+  max-width: 440px;
+  padding: 1em;
   margin: auto;
 }
 #login-button {

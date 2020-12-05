@@ -3,7 +3,7 @@
       <div class="container">
         <div class="row">
           <div class="col-sm">
-            <router-link to="/info" style="color:#2c3e50;">INFO</router-link>
+            <router-link to="/about" style="color:#2c3e50;">About</router-link>
           </div>
           <div class="col-sm">
             <img src="../assets/logo.png" id="home-logo" alt="">

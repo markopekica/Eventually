@@ -45,6 +45,9 @@ https://xd.adobe.com/view/0781cbd4-0183-42fe-a0c9-9705c7827615-52d2/
 Marko:
 - src/views/Home.vue
 - src/views/Login.vue
+- 5.12. sub
+  - botun stil na register
+  - login container - row - col - stil; sve na centar, veci col za txt
 
 Darin: 
 - dorada na README.md
@@ -52,3 +55,15 @@ Darin:
  
 Karlo:
 - src/views/Register.vue
+
+
+## TODO
+
+- [ ] UI
+  - [ ] EventInfo
+  - [ ] Info (za nas app; dovrsit)
+  - [ ] Kad je user (korisnik ulogiran) - prilagodit UI
+    - [ ] Nav
+    - [ ] UserProfile
+    - [ ] EventInfo
+    - [ ] CommentSection
