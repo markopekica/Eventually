@@ -11,41 +11,7 @@
 
 <script>
 import EventCard from "./EventCard.vue";
-
-let cards = [
-  {
-    id: "1",
-    title: "event 1",
-    url: "https://picsum.photos/id/1042/300/200",
-    location: "location_1",
-    date: "date",
-    time: "time",
-  },
-  {
-    id: "2",
-    title: "event 2",
-    url: "https://picsum.photos/id/88/300/200",
-    location: "location_2",
-    date: "date",
-    time: "time",
-  },
-  {
-    id: "3",
-    title: "event 3",
-    url: "https://picsum.photos/id/100/300/200",
-    location: "location_3",
-    date: "date",
-    time: "time",
-  },
-  {
-    id: "4",
-    title: "event 4",
-    url: "https://picsum.photos/id/1000/300/200",
-    location: "location_4",
-    date: "date",
-    time: "time",
-  },
-];
+import cards from "@/store.js";
 
 export default {
   name: "CategoryLane",
@@ -56,9 +22,7 @@ export default {
     EventCard,
   },
   data() {
-    return {
-      cards: cards,
-    };
+    return cards
   },
 };
 </script>

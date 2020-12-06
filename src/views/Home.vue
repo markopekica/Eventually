@@ -9,11 +9,7 @@
 // @ is an alias to /src
 import CategoryLane from "@/components/CategoryLane.vue";
 import ToolBar from "@/components/ToolBar.vue";
-
-let lanes = [
-  { id: "1", title: "Category 1" },
-  { id: "2", title: "Category 2" },
-];
+import store from "@/store.js"
 
 export default {
   name: "Home",
@@ -22,9 +18,7 @@ export default {
     ToolBar,
   },
   data() {
-    return {
-      lanes: lanes,
-    };
+    return store
   },
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="toolbar">
     <span class="material-icons">date_range</span>
-    <span class="material-icons">search</span>
+    <span class="material-icons">filter_list</span>
     <span id="add" class="material-icons">add</span>
   </div>
 </template>

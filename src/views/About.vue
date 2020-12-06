@@ -22,7 +22,6 @@
     </div>
     <div class="team-info">
       <h2>Team Info</h2>
-      <p>treba smislit nesto za ovo</p>
       <div class="container">
         <div class="row">
           <div class="col-4">
@@ -72,9 +71,9 @@
   justify-content: center;
 }
 .app-info, .team-info {
-  margin: 2em auto;
+  margin: 4em auto;
   max-width: 65vw;
-  min-height: 32vh;
+  /* min-height: 32vh; */
   text-align: left;
 }
 .col-4{

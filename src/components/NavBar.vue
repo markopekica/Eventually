@@ -1,8 +1,17 @@
 <template>
-<div id="nav">
-      <router-link to="/"><img src="../assets/logo.png" id="home-logo" alt=""></router-link>
-      <router-link to="/login"><span id="login" class="material-icons">login</span></router-link>
-</div>    
+  <div id="nav">
+    <router-link to="/"
+      ><img src="../assets/logo.png" id="home-logo" alt=""
+    /></router-link>
+    <router-link to="/login"
+      ><span id="login" class="material-icons">login</span></router-link
+    >
+    <!-- <router-link to="#" v-if="false"
+      ><span id="login" class="material-icons"
+        >account_circle</span
+      ></router-link
+    > -->
+  </div>
 </template>
 
 <script>
@@ -22,10 +31,10 @@ export default {
   background-color: #111;
 }
 .material-icons {
-  font-family: 'Material Icons';
+  font-family: "Material Icons";
   font-weight: normal;
   font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
+  font-size: 24px; /* Preferred icon size */
   display: inline-block;
   line-height: 1;
   text-transform: none;
@@ -39,12 +48,12 @@ export default {
   /* Support for Firefox. */
   -moz-osx-font-smoothing: grayscale;
   /* Support for IE. */
-  font-feature-settings: 'liga';
+  font-feature-settings: "liga";
 }
-#home-logo{
+#home-logo {
   height: 28px;
 }
-#login{
+#login {
   color: skyblue;
 }
 </style>
