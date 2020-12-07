@@ -18,7 +18,11 @@
     <hr style="width: 42%; margin-bottom: 4em" />
     <div class="app-info">
       <h2>App Info</h2>
-      <p>tribe napisat nesto</p>
+      <p>Eventually is an app designed to be a go to place to find upcoming events in your area that fit your interests, without depending on other social media platforms. Our goal 
+is to create a fast and user friendly platform for both users and promotors that will enable you to quickly discover and filter through ongoing events and provide you with all
+the necessary details such as the location, starting times and dates, prices and any other important information. While unauthenticated user may only explore the site,
+authenticated users can create new events as well as favorite events and leave questions and reviews in the comment section of the event. Furthermore all favorited events
+will be visible in the user's profile </p>
     </div>
     <div class="team-info">
       <h2>Team Info</h2>
@@ -26,7 +30,8 @@
         <div class="row">
           <div class="col-4">
             <span class="material-icons">masks<!-- elderly --></span>
-            <p>marko</p>
+            <p>Marko Pekica</p>
+            <p>Student at Faculty of Informatics Pula<p>
             <div>
               <a href="#" class="fa fa-github"></a>
               <a href="#" class="fa fa-linkedin"></a>
@@ -34,7 +39,8 @@
           </div>
           <div class="col-4">
             <span class="material-icons">masks<!-- support_agent --></span>
-            <p>darin</p>
+            <p>Darin Kusačić</p>
+            <p>Student at Faculty of Informatics Pula<p>
             <div>
               <a href="#" class="fa fa-github"></a>
               <a href="#" class="fa fa-linkedin"></a>
@@ -42,7 +48,8 @@
           </div>
           <div class="col-4">
             <span class="material-icons">masks<!-- child_care --></span>
-            <p>karlo</p>
+            <p>Karlo Prodan</p>
+            <p>Student at Faculty of Informatics Pula<p>
             <div>
               <a href="#" class="fa fa-facebook"></a>
               <a href="#" class="fa fa-twitter"></a>
