@@ -33,7 +33,8 @@ export default{
           url: "https://picsum.photos/id/1000/300/200",
           location: "location_4",
           date: "date",
-          time: "time"
+          time: "time",
+          category: "Music"
         },
     ],
     lanes: [

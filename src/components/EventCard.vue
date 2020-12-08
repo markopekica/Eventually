@@ -1,16 +1,15 @@
 <template>
-  <div class="card" style="width: 18rem">
+  <div v-if="this.card_info.category == this.lane_info.title" class="card" style="width: 18rem">
     <img :src="card_info.url" class="card-img-top" alt="pic" />
     <div class="card-body">
       <h5 class="card-title">{{ card_info.title }}</h5>
       <p>{{ card_info.location }}</p>
       <p>{{ card_info.date }} - {{ card_info.time }}</p>
       <router-link to="/EventInfo"
-        ><a id="card-button" href="#" type="button"
+        ><a id="card-button" href="#" class="btn btn-primary"
           >Full info</a
         ></router-link
       >
-      <!-- <event-info :parentmessage="msg" /> -->
     </div>
   </div>
 </template>
@@ -19,8 +18,14 @@
 export default {
   name: "EventCard",
   props: {
-    card_info: Object
+    card_info: Object,
+    lane_info: Object
   },
+  computed: {
+    check() {
+      return this.card_info
+    }
+  }
 };
 </script>
 

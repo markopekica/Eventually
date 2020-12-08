@@ -4,27 +4,31 @@
       <h3>{{ lane_info.title }}</h3>
     </div>
     <div id="lane">
-      <!-- <event-card v-for="eventCard in cards" :key="eventCard.id" :card_info="eventCard" /> -->
-
+      <event-card
+        v-for="eventCard in cards"
+        :key="eventCard.id"
+        :card_info="eventCard"
+        :lane_info="lane_info"
+      />
     </div>
   </div>
 </template>
 
 <script>
-/* import EventCard from "./EventCard.vue"; */
+import EventCard from "./EventCard.vue";
 import store from "@/store.js";
 
 export default {
   name: "CategoryLane",
   props: {
-    lane_info: Object,
+    lane_info: Object
   },
-  /* components: {
-    EventCard,
-  }, */
+  components: {
+    EventCard
+  },
   data() {
     return store
-  },
+  }
 };
 </script>
 
@@ -32,7 +36,7 @@ export default {
 <style scoped lang="scss">
 .category-lane {
   margin: 4em 25px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 #category {
   display: flex;
