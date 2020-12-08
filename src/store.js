@@ -35,7 +35,8 @@ export default{
         },
     ],
     lanes: [
-        { id: "1", title: "Healing" },
+        { id: "1", title: "Music" },
         { id: "2", title: "Sport" },
+        { id: "3", title: "Film" }
     ]
 }
