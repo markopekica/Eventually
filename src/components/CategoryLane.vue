@@ -4,13 +4,14 @@
       <h3>{{ lane_info.title }}</h3>
     </div>
     <div id="lane">
-      <event-card v-for="eventCard in cards" :key="eventCard.id" :card_info="eventCard" />
+      <!-- <event-card v-for="eventCard in cards" :key="eventCard.id" :card_info="eventCard" /> -->
+
     </div>
   </div>
 </template>
 
 <script>
-import EventCard from "./EventCard.vue";
+/* import EventCard from "./EventCard.vue"; */
 import store from "@/store.js";
 
 export default {
@@ -18,9 +19,9 @@ export default {
   props: {
     lane_info: Object,
   },
-  components: {
+  /* components: {
     EventCard,
-  },
+  }, */
   data() {
     return store
   },

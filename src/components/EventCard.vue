@@ -6,7 +6,7 @@
       <p>{{ card_info.location }}</p>
       <p>{{ card_info.date }} - {{ card_info.time }}</p>
       <router-link to="/EventInfo"
-        ><a id="card-button" href="#" class="btn btn-primary"
+        ><a id="card-button" href="#" type="button"
           >Full info</a
         ></router-link
       >
@@ -18,7 +18,9 @@
 <script>
 export default {
   name: "EventCard",
-  props: ["card_info"],
+  props: {
+    card_info: Object
+  },
 };
 </script>
 
