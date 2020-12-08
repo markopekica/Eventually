@@ -7,7 +7,7 @@ export default{
           location: "location_1",
           date: "date",
           time: "time",
-          category: "healing"
+          category: "Music"
         },
         {
           id: "2",
@@ -15,7 +15,8 @@ export default{
           url: "https://picsum.photos/id/88/300/200",
           location: "location_2",
           date: "date",
-          time: "time"
+          time: "time",
+          category: "Music"
         },
         {
           id: "3",
@@ -23,7 +24,8 @@ export default{
           url: "https://picsum.photos/id/100/300/200",
           location: "location_3",
           date: "date",
-          time: "time"
+          time: "time",
+          category: "Sport"
         },
         {
           id: "4",

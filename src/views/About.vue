@@ -26,12 +26,13 @@ will be visible in the user's profile </p>
     </div>
     <div class="team-info">
       <h2>Team Info</h2>
+      <p>Students @ Faculty of Informatics in Pula <br>Juraj Dobrila University of Pula<p>
       <div class="container">
         <div class="row">
           <div class="col-4">
             <span class="material-icons">masks<!-- elderly --></span>
             <p>Marko Pekica</p>
-            <p>Student at Faculty of Informatics Pula<p>
+            <!-- <p>Student at Faculty of Informatics Pula<p> -->
             <div>
               <a href="#" class="fa fa-github"></a>
               <a href="#" class="fa fa-linkedin"></a>
@@ -40,7 +41,7 @@ will be visible in the user's profile </p>
           <div class="col-4">
             <span class="material-icons">masks<!-- support_agent --></span>
             <p>Darin Kusačić</p>
-            <p>Student at Faculty of Informatics Pula<p>
+            <!-- <p>Student at Faculty of Informatics Pula<p> -->
             <div>
               <a href="#" class="fa fa-github"></a>
               <a href="#" class="fa fa-linkedin"></a>
@@ -49,7 +50,7 @@ will be visible in the user's profile </p>
           <div class="col-4">
             <span class="material-icons">masks<!-- child_care --></span>
             <p>Karlo Prodan</p>
-            <p>Student at Faculty of Informatics Pula<p>
+            <!-- <p>Student at Faculty of Informatics Pula<p> -->
             <div>
               <a href="#" class="fa fa-facebook"></a>
               <a href="#" class="fa fa-twitter"></a>

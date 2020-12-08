@@ -11,7 +11,7 @@
 
 <script>
 import EventCard from "./EventCard.vue";
-import cards from "@/store.js";
+import store from "@/store.js";
 
 export default {
   name: "CategoryLane",
@@ -22,7 +22,7 @@ export default {
     EventCard,
   },
   data() {
-    return cards
+    return store
   },
 };
 </script>
@@ -31,6 +31,7 @@ export default {
 <style scoped lang="scss">
 .category-lane {
   margin: 4em 25px;
+  border: 1px solid red;
 }
 #category {
   display: flex;
