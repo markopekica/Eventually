@@ -10,7 +10,7 @@
         class="rutlink" 
         tag="button"
         :to="{path: '/EventInfo', query:{card: this.card_info}}">
-        Full info
+        More
       </router-link>
     </div>
   </div>
@@ -22,12 +22,7 @@ export default {
   props: {
     card_info: Object,
     lane_info: Object
-  },
-  /* computed: {
-    check() {
-      return this.card_info
-    }
-  } */
+  }
 };
 </script>
 
