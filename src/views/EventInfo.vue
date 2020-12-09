@@ -10,21 +10,26 @@
           </router-link>
         </div>
         <div class="col-8">
-          <h1>Title</h1>
+          <h1>{{$route.query.card.title}}</h1>
         </div>
         <div class="col-2"></div>
       </div>
     </div>  <!-- /container -->
-    <div>
+    <div class="main-content">
+      <div>
+        <img :src="$route.query.card.url" class="" alt="pic" />
+      </div>
+        category: {{$route.query.card.category}}
     </div>
   </div>
 </template>
 
 <script>
 export default{
-  name: "EventInfo",
-  props: {}
-}
+  data() {
+    return this.$route.query
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -36,5 +41,15 @@ export default{
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+/* .row{
+  border: 1px solid red;
+} */
+.main-content{
+  display: flex;
+  flex-direction: column;
+  max-width: 88vw;
+  margin: auto;
+  /* border: 1px solid red; */
 }
 </style>

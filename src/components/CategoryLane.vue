@@ -17,7 +17,6 @@
 <script>
 import EventCard from "./EventCard.vue";
 import store from "@/store.js";
-
 export default {
   name: "CategoryLane",
   props: {
@@ -36,7 +35,6 @@ export default {
 <style scoped lang="scss">
 .category-lane {
   margin: 4em 25px;
-  /* border: 1px solid red; */
 }
 #category {
   display: flex;

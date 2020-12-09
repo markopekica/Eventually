@@ -3,13 +3,15 @@
     <img :src="card_info.url" class="card-img-top" alt="pic" />
     <div class="card-body">
       <h5 class="card-title">{{ card_info.title }}</h5>
-      <p>{{ card_info.location }}</p>
-      <p>{{ card_info.date }} - {{ card_info.time }}</p>
-      <router-link to="/EventInfo"
-        ><a id="card-button" href="#" class="btn btn-primary"
-          >Full info</a
-        ></router-link
-      >
+      <p class="on-card-info"><span class="material-icons">place</span> {{ card_info.location }}</p>
+      <p class="on-card-info"><span class="material-icons">event</span> {{ card_info.date }}</p>
+      <p class="on-card-info"><span class="material-icons">schedule</span> {{ card_info.time }}</p>
+      <router-link 
+        class="rutlink" 
+        tag="button"
+        :to="{path: '/EventInfo', query:{card: this.card_info}}">
+        Full info
+      </router-link>
     </div>
   </div>
 </template>
@@ -21,11 +23,11 @@ export default {
     card_info: Object,
     lane_info: Object
   },
-  computed: {
+  /* computed: {
     check() {
       return this.card_info
     }
-  }
+  } */
 };
 </script>
 
@@ -34,12 +36,21 @@ export default {
   margin: 1em 2em;
   display: inline-block;
 }
-#card-button {
-  background-color: snow;
+.rutlink{
+  margin: .25em auto;
   border: 1px solid skyblue;
-  color: #2c3e50;
   border-radius: 16px;
-  margin: 0.5em 0;
-  /* box-shadow: 1px 2px 4px skyblue; */
+  background-color: white;
+  padding: .25em .5em;
+}
+.card-title{
+  text-align: left;
+}
+.on-card-info{  //paragraphs: location, time, date
+  margin: 0 auto .5em auto;
+  display: flex;
+}
+.material-icons{
+  margin-right: .25em;
 }
 </style>

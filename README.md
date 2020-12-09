@@ -58,9 +58,16 @@ Karlo:
 
 - [ ] UI
   - [ ] EventInfo
+    - [ ] pogledat prototip i stavit sve podatke
+    - [ ] style
   - [ ] Info (za nas app; dovrsit)
   - [ ] Kad je user (korisnik ulogiran) - prilagodit UI
-    - [ ] Nav
-    - [ ] UserProfile
-    - [ ] EventInfo
-    - [ ] CommentSection
+    - [ ] UserProfile (novi view)
+    - [ ] Nav - umjesto login neka se prikaze user_icon
+    - [ ] ToolBar - (onaj na home) da + bude plav
+      - [ ] CreateEvent - novi view
+    - [ ] CommentSection - kako ce to izgledat?
+
+- [ ] nije UI
+  - [ ] toolobar
+    - [ ] dugmad da radi: kalendar, filtri

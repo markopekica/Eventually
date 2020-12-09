@@ -26,7 +26,7 @@ will be visible in the user's profile </p>
     </div>
     <div class="team-info">
       <h2>Team Info</h2>
-      <p>Students @ Faculty of Informatics in Pula <br>Juraj Dobrila University of Pula<p>
+      <p>Students @ <a href="https://fipu.unipu.hr/">Faculty of Informatics in Pula</a></p>
       <div class="container">
         <div class="row">
           <div class="col-4">
