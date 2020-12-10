@@ -15,31 +15,52 @@
         <div class="col-2"></div>
       </div>
     </div>
+          <div>
+            {{ usr }}
+          </div>
+          <div v-if="eror" id="error-message-div">
+            Error: {{ eror }}
+          </div>
+          <div v-if="success" id="success-message-div">
+            {{ success }}
+          </div>
     <form>
       <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
         <input
-          type="email"
-          class="form-control"
           id="exampleInputEmail1"
+          class="form-control"
+          type="email"
+          v-model="email"
           aria-describedby="emailHelp"
         />
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Password</label>
         <input
-          type="password"
-          class="form-control"
           id="exampleInputPassword1"
+          class="form-control"
+          type="password"
+          v-model="password"
         />
       </div>
       <!-- <div class="form-group form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1" />
         <label class="form-check-label" for="exampleCheck1">Remember me</label>
       </div> -->
-      <button id="login-button" type="submit" class="btn btn-primary">
+      <!-- <button id="login-button" type="button" @click="checkData" class="btn btn-primary">
         Login
-      </button>
+      </button> -->
+      <div @click="checkData">
+      <router-link
+        id="login-button"
+        class="rutlink"
+        tag="button"
+        :to="path"
+      >
+        Login
+      </router-link>
+    </div>
     </form>
     <div id="register-link">
       <hr />
@@ -51,7 +72,44 @@
     </div>
   </div>
 </template>
-
+<script>
+import firebase from "@/firebase";
+export default {
+  name: "LogIn",
+  data() {
+    return {
+      email: "",
+      password: "",
+      eror: '',
+      success: '',
+      usr: '',
+      path: '',
+    };
+  },
+  methods: {
+    checkData() {
+      // refresh values after every click; to hide previous message
+      this.eror = ''
+      this.success = ''
+      firebase
+      .auth()
+      .signInWithEmailAndPassword(this.email, this.password)
+      .then ( (user) => {
+          if( user ){
+            this.usr = "true"
+            this.path = "/"
+          } else {
+            this.usr = 'false'
+          }
+        })
+      .catch( (error) => {
+        this.eror = error.message
+        /* alert(this.eror) */
+      })
+    },
+  },
+};
+</script>
 <style lang="scss" scoped>
 .container{
   margin: 1em auto;
@@ -76,5 +134,10 @@ form {
 }
 #register-link {
   margin-top: 4em;
+}
+#error-message-div{
+  padding: .5em;
+  margin-top: 1em;
+  color: crimson;
 }
 </style>

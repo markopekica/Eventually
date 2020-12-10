@@ -14,7 +14,6 @@
 import CategoryLane from "@/components/CategoryLane.vue";
 import ToolBar from "@/components/ToolBar.vue";
 import store from "@/store.js";
-
 export default {
   name: "Home",
   components: {

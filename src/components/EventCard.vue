@@ -36,11 +36,11 @@ export default {
   border: 1px solid skyblue;
   border-radius: 16px;
   background-color: white;
-  padding: .25em .5em;
+  padding: .25em 1em;
 }
-.card-title{
+/* .card-title{
   text-align: left;
-}
+} */
 .on-card-info{  //paragraphs: location, time, date
   margin: 0 auto .5em auto;
   display: flex;

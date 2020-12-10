@@ -3,21 +3,27 @@
     <router-link to="/"
       ><img src="../assets/logo.png" id="home-logo" alt=""
     /></router-link>
-    <router-link to="/login"
+    <div style="color: crimson;" v-if="user_status">
+      {{ usr.email }}
+    </div>
+    <router-link to="/login" v-if="!user_status"
       ><span id="login" class="material-icons">login</span></router-link
     >
-    <!-- <router-link to="#" v-if="false"
+    <router-link to="/userProfile" v-if="user_status"
       ><span id="login" class="material-icons"
         >account_circle</span
       ></router-link
-    > -->
+    >
   </div>
 </template>
 
 <script>
 export default {
   name: "NavBar",
-  props: [],
+  props: {
+    user_status: Boolean,
+    usr: {}
+  },
 };
 </script>
 

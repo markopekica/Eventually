@@ -5,7 +5,7 @@ export default{
           title: "Snuff",
           url: "https://picsum.photos/id/1042/300/200",
           location: "Luzhniki – Moscow",
-          date: "Wednesday 14 July 2021 – Sunday 18 July 2021",
+          date: "Wednesday 14 July 2021",
           time: "time",
           category: "Music"
         },
