@@ -57,17 +57,18 @@ Karlo:
 ## TODO
 
 - [ ] UI
-  - [ ] EventInfo
+  - [ ] EventInfo - M
     - [ ] pogledat prototip i stavit sve podatke
     - [ ] style
-  - [ ] Info (za nas app; dovrsit)
+  - [ ] Info (za nas app; dovrsit)  - D
   - [ ] Kad je user (korisnik ulogiran) - prilagodit UI
-    - [ ] UserProfile (novi view)
-    - [ ] Nav - umjesto login neka se prikaze user_icon
-    - [ ] ToolBar - (onaj na home) da + bude plav
-      - [ ] CreateEvent - novi view
+    - [ ] UserProfile (novi view) - (D, ko ces)
+    - [ ] Nav - umjesto login neka se prikaze user_icon - K
+    - [ ] ToolBar - (onaj na home) da + bude plav - K
+      - [ ] CreateEvent - novi view - K
     - [ ] CommentSection - kako ce to izgledat?
 
 - [ ] nije UI
+  - [ ] auth (login/register) - M
   - [ ] toolobar
     - [ ] dugmad da radi: kalendar, filtri
