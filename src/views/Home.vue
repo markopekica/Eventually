@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <tool-bar />
+    <tool-bar :user_status="$attrs.user_status" />
+    <!-- <div>
+      {{ $attrs.user_status }}
+    </div> -->
     <category-lane
       v-for="lane in lanes"
       :key="lane.id"

@@ -2,7 +2,7 @@ export default{
     cards: [
         {
           id: "1",
-          title: "Snuff",
+          title: "Real Horrorshow",
           url: "https://picsum.photos/id/1042/300/200",
           location: "Luzhniki – Moscow",
           date: "Wednesday 14 July 2021",

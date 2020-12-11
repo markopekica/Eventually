@@ -1,22 +1,80 @@
 <template>
-  <div class="toolbar">
-    <span class="material-icons">date_range</span>
-    <span class="material-icons">filter_list</span>
-    <span id="add" class="material-icons">add</span>
+  <div class="toolbar-wrap">
+    <div class="toolbar">
+      <span class="material-icons tool-icon" @click="showCalendar"
+        >date_range</span
+      >
+      <span class="material-icons tool-icon">filter_list</span>
+      <!-- <span
+        id="add"
+        class="material-icons tool-icon"
+        v-bind:style="[user_status ? { color: 'skyblue' } : { color: 'grey' }]"
+        >add</span
+      > -->
+      <span
+        id="add-placeholder"
+        class="material-icons tool-icon"
+        style="color: grey"
+        v-if="!user_status"
+        @click="addEvent"
+        >add</span
+      >
+      <router-link
+        id="add-loggedIn"
+        class="material-icons tool-icon"
+        style="color: skyblue"
+        v-if="user_status"
+        to="/addEvent"
+        >add</router-link
+      >
+    </div>
+    <!--  DROPDOWNS  -->
+    <div class="tools">
+      <div class="calendar-div" v-if="calendarOpen">
+        calendar <br />
+        authenticated: {{ user_status }}
+        <button
+          id="apply-button"
+          type="button"
+          @click="hideCalendar"
+          class="btn btn-primary"
+        >
+          ok
+        </button>
+      </div> <!--  calendar  -->
+    </div>
   </div>
 </template>
-
 <script>
 export default {
   name: "ToolBar",
-  props: [],
+  props: {
+    user_status: Boolean,
+  },
+  data() {
+    return {
+      calendarOpen: false,
+    };
+  },
+  methods: {
+    showCalendar() {
+      this.calendarOpen = true;
+    },
+    hideCalendar() {
+      this.calendarOpen = false;
+    },
+    addEvent() {
+      if (this.user_status == true) {
+        // move to CreateEvent.vue view
+      } else {
+        alert("LogIn to use this feature");
+      }
+    },
+  },
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .toolbar {
-  /* border: 1px solid black; */
   max-width: 300px;
   margin: auto;
   display: flex;
@@ -31,7 +89,23 @@ export default {
 .toolbar * {
   margin: 0 1em;
 }
-#add {
-  color: grey;
+.tool-icon {
+  cursor: pointer;
+}
+.calendar-div {
+  margin: auto;
+  border: 1px dotted #111;
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  margin-top: -2em;
+}
+#apply-button {
+  background-color: snow;
+  border: 1px solid skyblue;
+  padding: 0.2em 1em;
+  margin: 1em auto;
+  color: #2c3e50;
+  border-radius: 16px;
 }
 </style>

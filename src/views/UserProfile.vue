@@ -1,6 +1,6 @@
 <template>
   <div class="user-profile-page">
-    <div @click="logout">
+    <span class="logout-link-wrapper" @click="logout">
       <router-link
         id="logout-button"
         class="rutlink"
@@ -9,7 +9,7 @@
       >
         Log Out
       </router-link>
-    </div>
+    </span>
   </div>
 </template>
 
@@ -37,7 +37,7 @@ export default {
 <style lang="scss" scoped>
 #logout-button {
   background-color: snow;
-  border: 1px solid skyblue;
+  border: 1px solid darkorange;
   padding: 0.5em 1em;
   margin: 1em 0;
   color: #2c3e50;

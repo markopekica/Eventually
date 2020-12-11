@@ -20,7 +20,7 @@
    - pregled svih objavljenih događaja
    - selekcija događaja pomoću ponuđenih filtera za pretraživanje
    - pregled informacija za pojedini događaj
-   - prijava/registracija
+   <!-- - prijava/registracija -->
 2. ...
 
 
@@ -53,22 +53,33 @@ Darin:
 Karlo:
 - src/views/Register.vue
 
+<br>
 
 ## TODO
 
-- [ ] UI
-  - [ ] EventInfo - M
-    - [ ] pogledat prototip i stavit sve podatke
-    - [ ] style
-  - [ ] Info (za nas app; dovrsit)  - D
-  - [ ] Kad je user (korisnik ulogiran) - prilagodit UI
-    - [ ] UserProfile (novi view) - (D, ko ces)
-    - [ ] Nav - umjesto login neka se prikaze user_icon - K
-    - [ ] ToolBar - (onaj na home) da + bude plav - K
-      - [ ] CreateEvent - novi view - K
-    - [ ] CommentSection - kako ce to izgledat?
+- [ ] App v_1.0
+  - Home **(view)**
+    - ToolBar *(component)*
+      - calendar
+        - [ ] Calendar design
+        - [ ] Calendar functionality
+      - filters
+        - [ ] Design
+        - [ ] Functionality
+      - AddEvent **(view))**
+        - [ ] Design the view
+        - [ ] Make it work
+    - Lane *(component)*
+      - [ ] Hide lane if no cards on display
+  - UserProfile **(view)**
+    - [ ] Design
+    - [ ] Add functionality
+      - [ ] Edit profile
+      - [ ] Delete profile
+  - LogIn, Register **(view)**
+    - [ ] Make a transition to Home/UserProfile once loggedIn/registered successfully
+    - [ ] color input field in red according to error
 
-- [ ] nije UI
-  - [ ] auth (login/register) - M
-  - [ ] toolobar
-    - [ ] dugmad da radi: kalendar, filtri
+<br>
+
+<!-- - App v_2.0 -->

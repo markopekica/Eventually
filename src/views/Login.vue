@@ -15,14 +15,11 @@
         <div class="col-2"></div>
       </div>
     </div>
-          <div>
+          <!-- <div>
             {{ usr }}
-          </div>
+          </div> -->
           <div v-if="eror" id="error-message-div">
             Error: {{ eror }}
-          </div>
-          <div v-if="success" id="success-message-div">
-            {{ success }}
           </div>
     <form>
       <div class="form-group">
@@ -56,9 +53,9 @@
         id="login-button"
         class="rutlink"
         tag="button"
-        :to="path"
+        :to="trebaSkuzit"
       >
-        Login
+        {{ loginButtonText }}
       </router-link>
     </div>
     </form>
@@ -81,9 +78,9 @@ export default {
       email: "",
       password: "",
       eror: '',
-      success: '',
       usr: '',
-      path: '',
+      trebaSkuzit: '',
+      loginButtonText: 'Login'
     };
   },
   methods: {
@@ -97,7 +94,8 @@ export default {
       .then ( (user) => {
           if( user ){
             this.usr = "true"
-            this.path = "/"
+            this.trebaSkuzit = "/"
+            this.loginButtonText = 'Home - shold be automatic'
           } else {
             this.usr = 'false'
           }

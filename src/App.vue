@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav-bar :user_status="isLoggedIn" :usr="usr" />
-    <router-view />
+    <router-view :user_status="isLoggedIn" />
     <footer-w/>
   </div>
 </template>
@@ -29,11 +29,11 @@ export default {
         if(user){
           this.isLoggedIn = true
           this.usr = user
-          console.log(user)
+          /* console.log(user) */
         } else{
           this.isLoggedIn = false
           this.usr = user
-          console.log('No user')
+          /* console.log('No user') */
         }
       });
     }

@@ -18,15 +18,28 @@
     <hr style="width: 42%; margin-bottom: 4em" />
     <div class="app-info">
       <h2>App Info</h2>
-      <p>Eventually is an app designed to be a go to place to find upcoming events in your area that fit your interests, without depending on other social media platforms. Our goal 
-is to create a fast and user friendly platform for both users and promotors that will enable you to quickly discover and filter through ongoing events and provide you with all
-the necessary details such as the location, starting times and dates, prices and any other important information. While unauthenticated user may only explore the site,
-authenticated users can create new events as well as favorite events and leave questions and reviews in the comment section of the event. Furthermore all favorited events
-will be visible in the user's profile </p>
+      <p>
+        Eventually is an app designed to be a go to place to find upcoming
+        events in your area that fit your interests, without depending on other
+        social media platforms. Our goal is to create a fast and user friendly
+        platform for both users and promotors that will enable you to quickly
+        discover and filter through ongoing events and provide you with all the
+        necessary details such as the location, starting times and dates, prices
+        and any other important information. While unauthenticated user may only
+        explore the site, authenticated users can create new events as well as
+        favorite events and leave questions and reviews in the comment section
+        of the event. Furthermore all favorited events will be visible in the
+        user's profile
+      </p>
     </div>
     <div class="team-info">
       <h2>Team Info</h2>
-      <p>Students @ <a href="https://fipu.unipu.hr/">Faculty of Informatics in Pula</a></p>
+      <p>
+        Students @
+        <a href="https://fipu.unipu.hr/" target="_blank"
+          >Faculty of Informatics in Pula</a
+        >
+      </p>
       <div class="container">
         <div class="row">
           <div class="col-4">
@@ -67,32 +80,29 @@ will be visible in the user's profile </p>
 
 
 <style lang="scss" scoped>
-.container{
+.container {
   margin: 1em auto;
 }
-/* h2{
-  margin-bottom: 1em;
-} */
-.col-2, .col-8{
+.col-2,
+.col-8 {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.app-info, .team-info {
+.app-info,
+.team-info {
   margin: 4em auto;
   max-width: 65vw;
-  /* min-height: 32vh; */
   text-align: left;
 }
-.col-4{
+.col-4 {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 1em;
-  padding: .5em;
-  /* border: 1px dotted #111; */
+  padding: 0.5em;
 }
-.fa{
+.fa {
   margin: 1em;
   color: #111;
 }
