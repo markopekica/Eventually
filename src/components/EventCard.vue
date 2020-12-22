@@ -30,6 +30,11 @@ export default {
 .card {
   margin: 1em 2em;
   display: inline-block;
+  min-width: fit-content;
+}
+.card-img-top{
+  width:300px;
+  height: 200px;
 }
 .rutlink{
   margin: .25em auto;

@@ -77,7 +77,7 @@ Karlo:
       - [ ] Edit profile
       - [ ] Delete profile
   - LogIn, Register **(view)**
-    - [ ] Make a transition to Home/UserProfile once loggedIn/registered successfully
+    - [X] Make a transition to Home/UserProfile once loggedIn/registered successfully
     - [ ] color input field in red according to error
 
 <br>

@@ -1,14 +1,21 @@
 export default{
     cards: [
-        {
-          id: "1",
-          title: "Real Horrorshow",
-          url: "https://picsum.photos/id/1042/300/200",
-          location: "Luzhniki – Moscow",
-          date: "Wednesday 14 July 2021",
-          time: "time",
-          category: "Music"
-        },
+      {
+        id: "1",
+        title: "Real Horrorshow",
+        url: "https://picsum.photos/id/1042/1920/1080",
+        category: "Music",
+        description: "kad cemo napravit bazu na firebase za ovo dafsa  fsaf saf sfa fsa fsa fsa i fasojf aojsa fojsa fo asofj osafj aso sdasd dasd sfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffafsffffffffffffffffffffffffffffffffffffffffffffffffffa dasd wi f wajof afhasifoha fhsia of ha sifo f wofaf owanf san foasnf onsaf anfo saf",
+        location: "Luzhniki – Moscow",
+        date: "Wednesday 14 July 2021",
+        time: "time",
+        price: "0",
+        /*
+        ovo možda nije spremljeno nego se izvlači
+        host: "this host",
+        company_website: "link na njihov sajt",
+        */
+      },
         {
           id: "2",
           title: "event 2",

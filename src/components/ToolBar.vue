@@ -31,17 +31,19 @@
     <!--  DROPDOWNS  -->
     <div class="tools">
       <div class="calendar-div" v-if="calendarOpen">
-        calendar <br />
-        authenticated: {{ user_status }}
+        pick when u go
+        <input type="date" id="calendar" name="calendar" /> <br />
+        <!-- authenticated: {{ user_status }} -->
         <button
           id="apply-button"
           type="button"
-          @click="hideCalendar"
+          @click="applyDateFilter"
           class="btn btn-primary"
         >
           ok
         </button>
-      </div> <!--  calendar  -->
+      </div>
+      <!--  calendar  -->
     </div>
   </div>
 </template>
@@ -58,9 +60,11 @@ export default {
   },
   methods: {
     showCalendar() {
-      this.calendarOpen = true;
+      this.calendarOpen == false
+        ? (this.calendarOpen = true)
+        : (this.calendarOpen = false);
     },
-    hideCalendar() {
+    applyDateFilter() {
       this.calendarOpen = false;
     },
     addEvent() {
@@ -99,6 +103,10 @@ export default {
   flex-direction: column;
   width: 350px;
   margin-top: -2em;
+}
+#calendar {
+  margin: 0.2em auto 0;
+  max-width: 42%;
 }
 #apply-button {
   background-color: snow;
