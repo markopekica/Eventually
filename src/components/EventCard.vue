@@ -4,8 +4,8 @@
     <div class="card-body">
       <h5 class="card-title">{{ card_info.title }}</h5>
       <p class="on-card-info"><span class="material-icons">place</span> {{ card_info.location }}</p>
-      <p class="on-card-info"><span class="material-icons">event</span> {{ card_info.date }}</p>
-      <p class="on-card-info"><span class="material-icons">schedule</span> {{ card_info.time }}</p>
+      <p class="on-card-info"><span class="material-icons">event</span> {{ card_info.dateFrom }}</p>
+      <p class="on-card-info"><span class="material-icons">schedule</span> {{ card_info.timeFrom }}</p>
       <router-link 
         class="rutlink" 
         tag="button"
