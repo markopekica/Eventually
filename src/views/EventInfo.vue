@@ -24,25 +24,15 @@
         </div>
 
         <div class="interactive">
-          <div class="host-icon-div">
-            <span class="material-icons host-icon">account_circle</span>
-          </div>
           <div class="interactive-icons-div">
-            <span class="material-icons icon-right"> favorite </span>
-            <span class="material-icons icon-right"> share </span>
-          </div>
-        </div>
-        <hr />
-        <span class="material-icons description-icon"> description </span>
-        <div class="item icon-field description">
-          <div class="card-description">
-            {{ $route.query.card.description }}
+            <span class="material-icons host-icon">account_circle</span>
+            <span id="heart-icon" class="material-icons" @click="like">
+              favorite
+            </span>
+            <span class="material-icons"> share </span>
           </div>
         </div>
 
-        <div class="event-website-link-div">
-          <span class="material-icons"> link </span>
-        </div>
         <!-- /left-side -->
       </div>
 
@@ -77,13 +67,26 @@
             {{ $route.query.card.price }}
           </span>
         </div>
-        <div class="comment-section">
-          <span class="material-icons"> comment </span>
-        </div>
         <!-- /right side -->
       </div>
 
       <!-- /main content -->
+    </div>
+    <hr />
+    <div class="item icon-field description-div">
+      <div class="previse-divova">
+        <span class="material-icons description-icon"> description </span>
+
+        <span class="material-icons"> language </span>
+      </div>
+      <!-- <div class="event-website-link-div">
+        </div> -->
+      <div class="card-description">
+        {{ $route.query.card.description }}
+      </div>
+    </div>
+    <div class="comment-section-div">
+      <span class="material-icons"> comment </span>
     </div>
   </div>
 </template>
@@ -92,6 +95,16 @@
 export default {
   data() {
     return this.$route.query;
+  },
+  methods: {
+    like() {
+      let heartColor = document.getElementById("heart-icon").style.color;
+      if (heartColor != "black") {
+        document.getElementById("heart-icon").style.color = "black";
+      } else {
+        document.getElementById("heart-icon").style.color = "#e0115f";
+      }
+    },
   },
 };
 </script>
@@ -122,7 +135,10 @@ export default {
 /*  LEFT  pic  */
 .left-side {
   /* width:fit-content; */
-  width: 60%;
+  width: 55%;
+  /* hr {
+    background-color: darkslategray;
+  } */
 }
 .picture-div {
   display: flex;
@@ -130,50 +146,77 @@ export default {
 }
 .cover-picture {
   margin: auto;
-  width: 98%;
-}
-.description {
-  margin: auto;
-}
-.card-description {
-  padding: 0 0.2em;
-  line-break: anywhere;
+  width: 100%;
 }
 .interactive {
-  margin: -0.2em 0.5em 1em 0;
+  margin: -0.5em 1em 0.5em 1em;
   display: flex;
-  .material-icons {
-    margin-left: 1em;
-  }
-}
-.host-icon-div {
-  width: 50%;
-  display: flex;
-  justify-content: flex-start;
 }
 .interactive-icons-div {
-  width: 50%;
+  width: 100%;
   display: flex;
-  justify-content: flex-end;
-  float: right;
+  justify-content: space-between;
+}
+#heart-icon{color:black;}
+#heart-icon:hover {
+  cursor: pointer;
+}
+.description-div {
+  max-width: 80vw;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+hr {
+  max-width: 80vw;
+  margin: 0 auto;
+}
+.previse-divova {
+  /* description dio - ikone i tekst; ispod crte iznad komentara */
+  display: flex;
+  margin: 0.75em 1em 0.2em 1em;
+  /* justify-content: space-between; */
+  *{
+    margin-right: 1em;
+  }
+}
+.card-description {
+  margin: 0.2em 1em 0.2em 1em;
+  line-break: anywhere;
+
 }
 .event-website-link-div {
-  margin-top: 4em;
+  margin: 0.2em 0.5em;
+  text-align: left;
+  margin-top: 2em;
 }
 /*  RIGHT  */
 .right-side {
-  width: 40%;
+  width: 45%;
   text-align: left;
-  padding-left: 0.25em;
+  padding: 0.5em 0 0.5em 1em;
+  background-color: whitesmoke;
   /* border: 1px solid green; */
 }
 .text-near-icon {
   margin-left: 0.5em;
 }
-.comment-section {
-  /* border: 1px solid green; */
-  margin-top: 2em;
+.comment-section-div {
+  background-color: #111;
+  max-width: 80vw;
+  margin: auto;
+  min-height: 24em;
+  margin-top: 4em;
+  padding-top: 1em;
   display: flex;
   justify-content: center;
+}
+@media only screen and (min-width: 1080px) {
+  .main-content, .description-div, hr, .comment-section-div{
+    width: 900px;
+  }
+  /* .right-side{
+    background-color: black;
+  } */
 }
 </style>
