@@ -95,7 +95,7 @@ export default {
           if( user ){
             this.usr = "true"
             this.trebaSkuzit = "/"
-            this.loginButtonText = 'Home - shold be automatic'
+            this.loginButtonText = 'Home - should be automatic'
           } else {
             this.usr = 'false'
           }

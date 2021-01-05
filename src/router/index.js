@@ -38,6 +38,11 @@ const routes = [
     path: '/userProfile',
     name: 'UserProfile',
     component: () => import('@/views/UserProfile.vue')
+  },
+  {
+    path: '/addEvent',
+    name: 'AddEvent',
+    component: () => import('../views/AddEvent.vue')
   }
 ]
 

@@ -47,7 +47,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-color: snow;
+  background-color: white;
   min-height: 100vh;
   position: relative;
   padding-bottom: 150px;  // za footer; uglavnom ide visina footera
