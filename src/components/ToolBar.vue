@@ -108,4 +108,7 @@ export default {
   color: #2c3e50;
   border-radius: 16px;
 }
+#add-loggedIn {
+  text-decoration: none;
+}
 </style>
