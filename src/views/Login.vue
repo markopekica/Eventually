@@ -15,6 +15,12 @@
         <div class="col-2"></div>
       </div>
     </div>
+<<<<<<< HEAD
+=======
+    <!-- <div>
+            {{ usr }}
+          </div> -->
+>>>>>>> eventInfoVertical
     <div v-if="eror" id="error-message-div">Error: {{ eror }}</div>
     <form>
       <div class="form-group">
@@ -44,8 +50,18 @@
         Login
       </button> -->
       <div @click="checkData">
+<<<<<<< HEAD
         <router-link id="login-button" class="rutlink" tag="button" to="">
           Login
+=======
+        <router-link
+          id="login-button"
+          class="rutlink"
+          tag="button"
+          :to="trebaSkuzit"
+        >
+          {{ loginButtonText }}
+>>>>>>> eventInfoVertical
         </router-link>
       </div>
     </form>
@@ -69,8 +85,14 @@ export default {
       password: "",
       eror: "",
       usr: "",
+<<<<<<< HEAD
+=======
+      trebaSkuzit: "",
+      loginButtonText: "Login",
+>>>>>>> eventInfoVertical
     };
   },
+
   methods: {
     checkData() {
       // refresh values after every click; to hide previous message

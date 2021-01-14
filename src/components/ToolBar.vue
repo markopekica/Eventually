@@ -31,17 +31,19 @@
     <!--  DROPDOWNS  -->
     <div class="tools">
       <div class="calendar-div" v-if="calendarOpen">
-        calendar <br />
-        authenticated: {{ user_status }}
+        pick when u go
+        <input type="date" id="calendar" name="calendar" /> <br />
+        <!-- authenticated: {{ user_status }} -->
         <button
           id="apply-button"
           type="button"
-          @click="hideCalendar"
+          @click="applyDateFilter"
           class="btn btn-primary"
         >
           ok
         </button>
-      </div> <!--  calendar  -->
+      </div>
+      <!--  calendar  -->
     </div>
   </div>
 </template>
@@ -58,9 +60,11 @@ export default {
   },
   methods: {
     showCalendar() {
-      this.calendarOpen = true;
+      this.calendarOpen == false
+        ? (this.calendarOpen = true)
+        : (this.calendarOpen = false);
     },
-    hideCalendar() {
+    applyDateFilter() {
       this.calendarOpen = false;
     },
     addEvent() {
@@ -94,18 +98,36 @@ export default {
 }
 .calendar-div {
   margin: auto;
-  border: 1px dotted #111;
+  border-bottom: 1px dotted #111;
+  /* border-top: 1px dotted #111; */
+  /* background-color: snow; */
+  padding-top: .5em;
+  border-radius: 2em;
   display: flex;
   flex-direction: column;
   width: 350px;
-  margin-top: -2em;
+  margin-top: -4em;
+/* background: rgb(17,17,17);
+background: linear-gradient(180deg, rgba(17,17,17,1) 0%, rgba(17,17,17,1) 1%, rgba(255,255,255,1) 10%, rgba(255,255,255,1) 100%);
+ */
+}
+#calendar {
+  margin: 0.2em auto 0;
+  max-width: 42%;
+  /* background-color: #111;
+  color: snow; */
 }
 #apply-button {
-  background-color: snow;
+  background-color: white;
   border: 1px solid skyblue;
+  opacity: .8;
   padding: 0.2em 1em;
   margin: 1em auto;
   color: #2c3e50;
   border-radius: 16px;
+}
+#apply-button:hover{
+  box-shadow: 3px 3px 6px skyblue;
+  opacity: 1;
 }
 </style>
