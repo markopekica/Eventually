@@ -68,7 +68,7 @@
   </div>
 </template>
 <script>
-import firebase from "@/firebase";
+import {firebase} from "@/firebase";
 export default {
   name: "LogIn",
   data() {
@@ -77,6 +77,8 @@ export default {
       password: "",
       eror: "",
       usr: "",
+      trebaSkuzit: "",
+      loginButtonText: "Login",
     };
   },
 
