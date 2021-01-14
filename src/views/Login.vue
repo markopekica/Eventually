@@ -44,8 +44,16 @@
         Login
       </button> -->
       <div @click="checkData">
-        <router-link id="login-button" class="rutlink" tag="button" to="">
+        <!-- <router-link id="login-button" class="rutlink" tag="button" to="">
           Login
+          </router-link> -->
+        <router-link
+          id="login-button"
+          class="rutlink"
+          tag="button"
+          :to="trebaSkuzit"
+        >
+          {{ loginButtonText }}
         </router-link>
       </div>
     </form>
@@ -69,8 +77,11 @@ export default {
       password: "",
       eror: "",
       usr: "",
+      trebaSkuzit: "",
+      loginButtonText: "Login",
     };
   },
+
   methods: {
     checkData() {
       // refresh values after every click; to hide previous message

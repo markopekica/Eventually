@@ -34,7 +34,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .category-lane {
-  margin: 4em 25px;
+  margin: 5em 25px;
+}
+h3{
+  font-weight: 600;
 }
 #category {
   display: flex;
