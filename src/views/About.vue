@@ -46,7 +46,7 @@
             <span class="material-icons">masks<!-- elderly --></span>
             <p>Marko Pekica</p>
             <!-- <p>Student at Faculty of Informatics Pula<p> -->
-            <div>
+            <div class="icons">
               <a href="#" class="fa fa-github"></a>
               <a href="#" class="fa fa-linkedin"></a>
             </div>
@@ -55,7 +55,7 @@
             <span class="material-icons">masks<!-- support_agent --></span>
             <p>Darin Kusačić</p>
             <!-- <p>Student at Faculty of Informatics Pula<p> -->
-            <div>
+            <div class="icons">
               <a href="#" class="fa fa-github"></a>
               <a href="#" class="fa fa-linkedin"></a>
             </div>
@@ -64,7 +64,7 @@
             <span class="material-icons">masks<!-- child_care --></span>
             <p>Karlo Prodan</p>
             <!-- <p>Student at Faculty of Informatics Pula<p> -->
-            <div>
+            <div class="icons">
               <a href="#" class="fa fa-facebook"></a>
               <a href="#" class="fa fa-twitter"></a>
             </div>
@@ -92,7 +92,7 @@
 .app-info,
 .team-info {
   margin: 4em auto;
-  max-width: 65vw;
+  max-width: 80vw;
   text-align: left;
 }
 .col-4 {
@@ -101,6 +101,9 @@
   align-items: center;
   margin-top: 1em;
   padding: 0.5em;
+  border: 1px dotted #111;
+}
+.icons{
 }
 .fa {
   margin: 1em;
