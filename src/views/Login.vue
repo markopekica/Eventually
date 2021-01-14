@@ -77,6 +77,8 @@ export default {
       password: "",
       eror: "",
       usr: "",
+      trebaSkuzit: "",
+      loginButtonText: "Login",
     };
   },
 
