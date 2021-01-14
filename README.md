@@ -58,8 +58,8 @@ Karlo:
 ## TODO
 
 - [ ] App v_1.0
-  - Home **(view)**
-    - ToolBar *(component)*
+  - [ ] Home **(view)**
+    - [ ] ToolBar *(component)*
       - calendar
         - [ ] Calendar design
         - [ ] Calendar functionality
@@ -70,14 +70,27 @@ Karlo:
         - [ ] Design the view
         - [ ] Make it work
     - Lane *(component)*
-      - [ ] Hide lane if no cards on display
-  - UserProfile **(view)**
+      - [ ] Hide lane if no cards in category
+  - [ ] EventInfo 
+    - [ ] share
+      - [ ] share with link
+      - [~] social media share
+    - [ ] rating stars
+      - [ ] unlock after event has passed
+      - [ ] give rating only if logged in
+    - [ ] comment section
+      - [ ] hide comment button if not logged in
+        - [ ] add coment on click
+      - [ ] comment (main thread), response -> components? (mislim bar)
+        - [ ] add response
+  - [ ] UserProfile **(view)**
     - [ ] Design
     - [ ] Add functionality
       - [ ] Edit profile
       - [ ] Delete profile
-  - LogIn, Register **(view)**
-    - [ ] Make a transition to Home/UserProfile once loggedIn/registered successfully
+  - [X] LogIn, Register **(view)**
+    - [ ] pogledat novi video za security i poboljsat
+    - [X] Make a transition to Home/UserProfile once loggedIn/registered successfully
     - [ ] color input field in red according to error
 
 <br>

@@ -15,12 +15,10 @@
         <div class="col-2"></div>
       </div>
     </div>
-          <!-- <div>
+    <!-- <div>
             {{ usr }}
           </div> -->
-          <div v-if="eror" id="error-message-div">
-            Error: {{ eror }}
-          </div>
+    <div v-if="eror" id="error-message-div">Error: {{ eror }}</div>
     <form>
       <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
@@ -49,15 +47,15 @@
         Login
       </button> -->
       <div @click="checkData">
-      <router-link
-        id="login-button"
-        class="rutlink"
-        tag="button"
-        :to="trebaSkuzit"
-      >
-        {{ loginButtonText }}
-      </router-link>
-    </div>
+        <router-link
+          id="login-button"
+          class="rutlink"
+          tag="button"
+          :to="trebaSkuzit"
+        >
+          {{ loginButtonText }}
+        </router-link>
+      </div>
     </form>
     <div id="register-link">
       <hr />
@@ -77,42 +75,43 @@ export default {
     return {
       email: "",
       password: "",
-      eror: '',
-      usr: '',
-      trebaSkuzit: '',
-      loginButtonText: 'Login'
+      eror: "",
+      usr: "",
     };
   },
+
   methods: {
     checkData() {
       // refresh values after every click; to hide previous message
-      this.eror = ''
-      this.success = ''
+      this.eror = "";
+      this.success = "";
       firebase
-      .auth()
-      .signInWithEmailAndPassword(this.email, this.password)
-      .then ( (user) => {
-          if( user ){
-            this.usr = "true"
-            this.trebaSkuzit = "/"
-            this.loginButtonText = 'Home - should be automatic'
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then((user) => {
+          if (user) {
+            this.usr = "true";
+            this.$router.push(
+              "/"
+            ); /* https://reactgo.com/vue-redirect-to-external-url/ */
           } else {
-            this.usr = 'false'
+            this.usr = "false";
           }
         })
-      .catch( (error) => {
-        this.eror = error.message
-        /* alert(this.eror) */
-      })
+        .catch((error) => {
+          this.eror = error.message;
+          /* alert(this.eror) */
+        });
     },
   },
 };
 </script>
 <style lang="scss" scoped>
-.container{
+.container {
   margin: 1em auto;
 }
-.col-2, .col-8{
+.col-2,
+.col-8 {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -133,8 +132,8 @@ form {
 #register-link {
   margin-top: 4em;
 }
-#error-message-div{
-  padding: .5em;
+#error-message-div {
+  padding: 0.5em;
   margin-top: 1em;
   color: crimson;
 }
