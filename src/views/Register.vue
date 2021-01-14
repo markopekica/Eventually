@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import firebase from "@/firebase";
+import {firebase} from "@/firebase";
 export default {
   name: "Register",
   data() {
@@ -90,6 +90,7 @@ export default {
         .then( () => {
           console.log('Registration Completed')
           this.success = 'Your account on Eventually has been successfuly created.'
+          this.$router.push("/userProfile")
         })
         .catch( (error) => {
           console.log('The following error occured: ', error.message)

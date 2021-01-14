@@ -9,7 +9,7 @@
 <script>
 import FooterW from './components/FooterW.vue'
 import NavBar from './components/NavBar.vue'
-import firebase from '@/firebase.js'
+import {firebase} from '@/firebase.js'
 export default {
     components: {
       NavBar,

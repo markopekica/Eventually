@@ -23,4 +23,4 @@ import "firebase/firestore";
   firebase.initializeApp(firebaseConfig);
   
 
-  export  {firebase}
+  export {firebase}
