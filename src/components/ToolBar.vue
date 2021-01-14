@@ -1,5 +1,5 @@
-<template>
-  <div class="toolbar-wrap">
+<template :date="dateFrom">
+  <div class="toolbar-wrap" >
     <div class="toolbar">
       <span class="material-icons tool-icon" @click="showCalendar"
         >date_range</span
@@ -31,8 +31,21 @@
     <!--  DROPDOWNS  -->
     <div class="tools">
       <div class="calendar-div" v-if="calendarOpen">
-        pick when u go
-        <input type="date" id="calendar" name="calendar" /> <br />
+        <span><u>When do You want to go?</u></span>
+        <div class="date-from">
+          <div class="calendar-tag">From:</div>
+          <input
+            type="date"
+            class="calendar"
+            id="date-from"
+            name="calendar"
+            value="2021-01-20"
+          />
+        </div>
+        <div class="date-to">
+          <div class="calendar-tag">To:</div>
+          <input type="date" class="calendar" id="date-to" name="calendar" />
+        </div>
         <!-- authenticated: {{ user_status }} -->
         <button
           id="apply-button"
@@ -45,6 +58,23 @@
       </div>
       <!--  calendar  -->
     </div>
+
+    <div class="applied-filters">
+      <div style=" border-radius:2px; margin:.5em;"
+        >applied filters</div
+      >
+      <div class="filter">
+        date from: {{ dateFrom }}<br />
+        date to: {{ dateTo }}
+      </div>
+      
+    </div>
+    <!-- <router-link 
+        class="rutlink" 
+        tag="button"
+        >
+        More
+      </router-link> -->
   </div>
 </template>
 <script>
@@ -56,6 +86,8 @@ export default {
   data() {
     return {
       calendarOpen: false,
+      dateFrom: "",
+      dateTo: "",
     };
   },
   methods: {
@@ -66,6 +98,10 @@ export default {
     },
     applyDateFilter() {
       this.calendarOpen = false;
+      this.dateFrom = document.getElementById("date-from").value;
+      this.dateTo = document.getElementById("date-to").value;
+      console.log("Date from: ", this.dateFrom);
+      console.log("Date to: ", this.dateTo)
     },
     addEvent() {
       if (this.user_status == true) {
@@ -100,33 +136,51 @@ export default {
   margin: auto;
   border-bottom: 1px dotted #111;
   /* border-top: 1px dotted #111; */
-  /* background-color: snow; */
-  padding-top: .5em;
+  padding-top: 0.5em;
   border-radius: 2em;
   display: flex;
   flex-direction: column;
   width: 350px;
   margin-top: -4em;
-/* background: rgb(17,17,17);
+  /* background: rgb(17,17,17);
 background: linear-gradient(180deg, rgba(17,17,17,1) 0%, rgba(17,17,17,1) 1%, rgba(255,255,255,1) 10%, rgba(255,255,255,1) 100%);
  */
 }
-#calendar {
+.date-from,
+.date-to {
+  /* border: 1px solid red; */
+  width: 70%;
+  display: flex;
+  align-items: center;
+  margin: 0.2em auto;
+}
+.calendar {
   margin: 0.2em auto 0;
-  max-width: 42%;
-  /* background-color: #111;
-  color: snow; */
+  justify-self: center;
+  /* border:1px solid gold; */
+}
+.calendar-tag {
+  width: 20%;
+  align-self: flex-end;
+  /* border: 1px solid blue; */
+}
+input:invalid + span::after {
+  content: "✖";
+}
+
+input:valid + span::after {
+  content: "✓";
 }
 #apply-button {
   background-color: white;
   border: 1px solid skyblue;
-  opacity: .8;
+  opacity: 0.8;
   padding: 0.2em 1em;
   margin: 1em auto;
   color: #2c3e50;
   border-radius: 16px;
 }
-#apply-button:hover{
+#apply-button:hover {
   box-shadow: 3px 3px 6px skyblue;
   opacity: 1;
 }

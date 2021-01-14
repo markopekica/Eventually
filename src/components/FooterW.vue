@@ -21,7 +21,7 @@ export default {
   name: "FooterW",
    data() {
     return {
-      message: new Date().toLocaleString()
+      message: new Date().getFullYear()
     }
   }
 };
