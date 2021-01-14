@@ -16,7 +16,6 @@
       </div>
       <!-- /container -->
     </div>
-
     <div class="main-content">
       <div class="top-main">
         <div class="item picture-div">
@@ -25,9 +24,26 @@
         <div class="interactive">
           <div class="interactive-icons-div">
             <span class="material-icons host-icon">account_circle</span>
-            <span id="heart-icon" class="material-icons" @click="like">
-              favorite
-            </span>
+            <div class="watch-like-icon-div">
+              <div class="watch-div">
+                <!-- <span class="response-label">interested</span> -->
+                <span id="watch-icon" class="material-icons" @click="follow">
+                  visibility
+                </span>
+                <span class="number-of">
+                interested: 0 
+                </span>
+              </div>
+              <div class="like-div">
+                <!-- <span class="response-label">99% will come</span> -->
+                <span id="heart-icon" class="material-icons" @click="like">
+                  favorite
+                </span>
+                <span class="number-of">
+                 comming: 0
+                </span>
+              </div>
+            </div>
             <span class="material-icons"> share </span>
           </div>
         </div>
@@ -99,24 +115,138 @@
       </div>
     </div>
 
+    <!-- https://schier.co/blog/pure-html-share-buttons -->
+    <!-- <div class="share-links">
+      <br />
+      share this on:
+      <br />
+      <a
+        href="https://twitter.com/share?url=<URL>&text=<TEXT>via=<USERNAME>"
+        class="share-btn twitter"
+      >
+        Twitter
+      </a>
+      <a
+        href="https://www.facebook.com/sharer/sharer.php?u=<URL>"
+        class="share-btn facebook"
+      >
+        Facebook
+      </a>
+      <a
+        href="https://reddit.com/submit?url=<URL>&title=<TITLE>"
+        class="share-btn reddit"
+      >
+        Reddit
+      </a>
+      <a
+        href="https://www.linkedin.com/shareArticle?url=<URL>&title=<TITLE>&summary=<SUMMARY>&source=<SOURCE_URL>"
+        class="share-btn linkedin"
+      >
+        LinkedIn
+      </a>
+      <a href="mailto:?subject=<SUBJECT>&body=<BODY>" class="share-btn email">
+        Email
+      </a>
+    </div> -->
+
     <div class="comment-section-div">
-      <span class="material-icons"> comment </span>
+      <!-- 
+        skica
+       -->
+      <form>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Have anything to add?</label>
+          <textarea
+            class="form-control"
+            id="exampleFormControlTextarea1"
+            rows="3"
+          ></textarea>
+        </div>
+        <div class="comment-icon-div">
+          <span class="material-icons add-main-thread"> comment </span>
+        </div>
+      </form>
+      <!-- <div class="comment-thread">
+        <div class="comment-main-thread">
+          <div class="comment-owner-div">
+            <span class="material-icons host-icon">account_circle</span>
+            <span>userdasdsdsa dsa name</span>
+          </div>
+          <div class="comment-body">
+            <div class="comnet">
+              <span>comnet 1</span>
+            </div>
+            <div class="info">
+              <span>date</span>&emsp;
+              <span>time</span>
+            </div>
+          </div>
+        </div>
+        <div class="comment-response">
+          <div class="comment-owner-div">
+            <span class="material-icons host-icon">account_circle</span>
+            <span>user name</span>
+          </div>
+          <div class="comment-body">
+            <div class="comnet">
+              <span>comnet 1</span>
+            </div>
+            <div class="info">
+              <span>date</span>&emsp;
+              <span>time</span>
+            </div>
+          </div>
+        </div>
+        <span class="material-icons"> comment </span>
+      </div>
+      <div class="comment-thread">
+        <div class="comment-main-thread">
+          <div class="comment-owner-div">
+            <span class="material-icons host-icon">account_circle</span>
+            <span>user name</span>
+          </div>
+          <div class="comment-body">
+            <div class="comnet">
+              <span>comnet 1</span>
+            </div>
+            <div class="info">
+              <span>date</span>&emsp;
+              <span>time</span>
+            </div>
+          </div>
+        </div>
+        <span class="material-icons"> comment </span>
+      </div> -->
+      <!-- /commnet section -->
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  name: "EventInfo",
+  props: {
+    user_status: Boolean,
+    usr: {}
+  },
   data() {
-    return this.$route.query;
+    return {
+      routeData: this.$route.query,
+        
+    }
   },
   methods: {
     like() {
       let heartColor = document.getElementById("heart-icon").style.color;
-      if (heartColor != "#e0115f") {
+      if (heartColor != "#e0115f" && this.user_status==true) {
         document.getElementById("heart-icon").style.color = "#e0115f";
-      } else {
+      } /* else {
         document.getElementById("heart-icon").style.color = "black";
+      } */
+    },
+    follow() {
+      if(this.user_status == true){
+      document.getElementById("watch-icon").style.color = "skyblue";
       }
     },
   },
@@ -132,6 +262,9 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+h1{
+  font-weight: 700;
 }
 /*  BODY   */
 .main-content {
@@ -162,24 +295,42 @@ export default {
   margin: 0 1em 0.5em 1em;
   display: flex;
   width: 80%;
-  margin:auto;
+  margin: auto;
 }
 .interactive-icons-div {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
-#heart-icon:hover {
+.watch-like-icon-div {
+  display: flex;
+  * {
+    margin: 0 0.5em;
+  }
+}
+.like-div,
+.watch-div {
+  display: flex;
+  flex-direction: column;
+}
+.response-label {
+  font-size: 70%;
+}
+#heart-icon:hover,
+#watch-icon:hover {
   cursor: pointer;
+}
+.number-of{
+  font-size: 70%;
 }
 /* GREY INFO BOX */
 .basic-info {
   /*  grey frame with: time, date, location, price  */
   width: 80%;
   text-align: left;
-  margin: 1em auto 1em auto;
+  margin: 1em auto 2em auto;
   /* padding: 1.5em 1em 1em 1em; */
-  padding: .2em 0;
+  padding: 0.2em 0;
   color: rgb(204, 204, 204);
   background-color: #111;
   border-radius: 1.5em;
@@ -188,9 +339,13 @@ export default {
 .text-near-icon {
   margin-left: 0.5em;
 }
-.card-category, .card-date, .card-time, .card-location, .card-price{
+.card-category,
+.card-date,
+.card-time,
+.card-location,
+.card-price {
   /* border: 1px solid red; */
-  margin: 2em;
+  margin: 1.75em;
 }
 .card-date,
 .card-time {
@@ -214,7 +369,7 @@ export default {
 }
 hr {
   max-width: 80vw;
-  margin: 0 auto;
+  margin: 0.5em auto;
 }
 .description-div {
   max-width: 80vw;
@@ -225,7 +380,7 @@ hr {
 .previse-divova {
   /* description dio; ispod crte, iznad komentara */
   display: flex;
-  margin: 0.75em 1em 0.2em 1em;
+  margin: 0.5em 1em 0.2em 1em;
   /* justify-content: space-between; */
   * {
     margin-right: 1em;
@@ -242,16 +397,86 @@ hr {
 }
 /* COMMENT SECTION */
 .comment-section-div {
-  background-color: #111;
+  /* background-color: #111; */
+  border-top: 1px solid #111;
+  border-bottom: 1px solid #111;
+  border-radius: 4px;
   max-width: 80%;
-  margin: auto;
-  min-height: 24em;
-  margin-top: 4em;
+  margin: 4em auto 2em auto;
+  min-height: 6em;
   padding-top: 1em;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   border-radius: 1em;
+  /* background-color: rgb(255, 245, 225); */
 }
+#exampleFormControlTextarea1 {
+  width: 90%;
+  margin: auto;
+}
+.comment-icon-div {
+  margin-bottom: 1em;
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  margin: 0em auto 1em auto;
+  color: skyblue;
+}
+.add-main-thread{
+  opacity: .7;
+}
+.add-main-thread:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+/* .comment-thread {
+  margin: 1.5em auto;
+  width: 90%;
+}
+.comment-main-thread,
+.comment-response {
+  display: flex;
+}
+
+.comment-main-thread {
+  margin: 0 0 0.5em 0em;
+}
+.comment-response {
+  width: 90%;
+  margin-left: 10%;
+}
+.comment-owner-div {
+  border-right: 1px dotted #111;
+  background-color: #111;
+  color: rgb(204, 204, 204);
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em;
+  max-width: 100px;
+  word-break: break-word;
+  * {
+    margin-right: 0.2em;
+  }
+}
+.comment-body {
+  .comnet {
+    padding: 1em;
+    height: 70%;
+  }
+  .info {
+    border-top: 1px solid #111;
+    text-align: left;
+    padding-left: 0.5em;
+    font-size: 80%;
+    font-weight: bold;
+  }
+}
+.comment-main-thread,
+.comment-response {
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 5px;
+} */
 @media only screen and (min-width: 1080px) {
   .main-content,
   .description-div,
@@ -260,4 +485,72 @@ hr {
     width: 900px;
   }
 }
+@media only screen and (max-width: 600px) {
+  .main-content {
+    /* content above hr */
+    max-width: 90vw;
+    margin: 2em auto 0 auto;
+  }
+  .basic-info {
+    width: 90%;
+  }
+  .description-div {
+    max-width: 95%;
+  }
+  hr {
+    max-width: 90%;
+  }
+  .comment-section-div {
+    max-width: 90%;
+  }
+}
+
+
+/** Social Button CSS **/
+
+/* .share-btn {
+  display: inline-block;
+  color: #ffffff;
+  border: none;
+  padding: 0.1em 0.6em;
+  outline: none;
+  text-align: center;
+  font-size: 0.9em;
+  margin: 0 0.2em;
+}
+
+.share-btn:focus,
+.share-btn:hover {
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.share-btn:active {
+  color: #e2e2e2;
+}
+
+.share-btn.twitter {
+  background: #55acee;
+}
+.share-btn.google-plus {
+  background: #dd4b39;
+}
+.share-btn.facebook {
+  background: #3b5998;
+}
+.share-btn.stumbleupon {
+  background: #eb4823;
+}
+.share-btn.reddit {
+  background: #ff5700;
+}
+.share-btn.hackernews {
+  background: #ff6600;
+}
+.share-btn.linkedin {
+  background: #4875b4;
+}
+.share-btn.email {
+  background: #444444;
+} */
 </style>

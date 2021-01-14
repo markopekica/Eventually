@@ -3,7 +3,7 @@ export default{
       {
         id: "1",
         title: "Real Horrorshow",
-        url: "https://picsum.photos/id/1042/1920/1080",
+        url: "https://picsum.photos/1920/1080",
         category: "Music",
         description: "kad cemo napravit bazu na firebase za ovo dafsa  fsaf saf sfa fsa fsa fsa i fasojf aojsa fojsa fo asofj osafj aso sdasd dasd sfffffffffffffffffffffffffffffffffffff fffffffffffffffffffffffff fffafsffffffffffffffffffff ffffffffffffffffffffffffffffffa dasd wi f wajof afhasifoha fhsia of ha sifo f wofaf owanf san foasnf onsaf anfo saf",
         location: "Luzhniki – Moscow",
@@ -22,7 +22,7 @@ export default{
         {
           id: "2",
           title: "event 2",
-          url: "https://picsum.photos/id/88/300/200",
+          url: "https://picsum.photos/id/238/300/200",
           location: "location",
           dateFrom: "1.1.2021.",
           dateTo: "3.1.2021.",
@@ -33,7 +33,7 @@ export default{
         {
           id: "3",
           title: "Event 3",
-          url: "https://picsum.photos/id/100/300/200",
+          url: "https://picsum.photos/id/260/300/200",
           location: "location_3",
           date: "date",
           time: "time",

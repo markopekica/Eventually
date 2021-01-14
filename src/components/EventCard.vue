@@ -2,7 +2,7 @@
   <div v-if="this.card_info.category == this.lane_info.title" class="card" style="width: 18rem">
     <img :src="card_info.url" class="card-img-top" alt="pic" />
     <div class="card-body">
-      <h5 class="card-title">{{ card_info.title }}</h5>
+      <h3 class="card-title">{{ card_info.title }}</h3>
       <p class="on-card-info"><span class="material-icons">place</span> {{ card_info.location }}</p>
       <p class="on-card-info"><span class="material-icons">event</span> {{ card_info.dateFrom }}</p>
       <p class="on-card-info"><span class="material-icons">schedule</span> {{ card_info.timeFrom }}</p>
@@ -35,6 +35,9 @@ export default {
 .card-img-top{
   width:300px;
   height: 200px;
+}
+h3{
+  font-size: 160%;
 }
 .rutlink{
   margin: .25em auto;
