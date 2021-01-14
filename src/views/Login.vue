@@ -15,6 +15,9 @@
         <div class="col-2"></div>
       </div>
     </div>
+    <!-- <div>
+            {{ usr }}
+          </div> -->
     <div v-if="eror" id="error-message-div">Error: {{ eror }}</div>
     <form>
       <div class="form-group">
@@ -44,9 +47,6 @@
         Login
       </button> -->
       <div @click="checkData">
-        <!-- <router-link id="login-button" class="rutlink" tag="button" to="">
-          Login
-          </router-link> -->
         <router-link
           id="login-button"
           class="rutlink"
@@ -77,8 +77,6 @@ export default {
       password: "",
       eror: "",
       usr: "",
-      trebaSkuzit: "",
-      loginButtonText: "Login",
     };
   },
 
