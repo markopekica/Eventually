@@ -1,16 +1,10 @@
 <template :date="dateFrom">
-  <div class="toolbar-wrap" >
+  <div class="toolbar-wrap">
     <div class="toolbar">
       <span class="material-icons tool-icon" @click="showCalendar"
         >date_range</span
       >
       <span class="material-icons tool-icon">filter_list</span>
-      <!-- <span
-        id="add"
-        class="material-icons tool-icon"
-        v-bind:style="[user_status ? { color: 'skyblue' } : { color: 'grey' }]"
-        >add</span
-      > -->
       <span
         id="add-placeholder"
         class="material-icons tool-icon"
@@ -46,7 +40,6 @@
           <div class="calendar-tag">To:</div>
           <input type="date" class="calendar" id="date-to" name="calendar" />
         </div>
-        <!-- authenticated: {{ user_status }} -->
         <button
           id="apply-button"
           type="button"
@@ -59,22 +52,14 @@
       <!--  calendar  -->
     </div>
 
+    <!-- pomoc; kasnije cu obrisat -->
     <div class="applied-filters">
-      <div style=" border-radius:2px; margin:.5em;"
-        >applied filters</div
-      >
+      <div style="border-radius: 2px; margin: 0.5em">applied filters</div>
       <div class="filter">
         date from: {{ dateFrom }}<br />
         date to: {{ dateTo }}
       </div>
-      
     </div>
-    <!-- <router-link 
-        class="rutlink" 
-        tag="button"
-        >
-        More
-      </router-link> -->
   </div>
 </template>
 <script>
@@ -101,11 +86,11 @@ export default {
       this.dateFrom = document.getElementById("date-from").value;
       this.dateTo = document.getElementById("date-to").value;
       console.log("Date from: ", this.dateFrom);
-      console.log("Date to: ", this.dateTo)
+      console.log("Date to: ", this.dateTo);
     },
     addEvent() {
       if (this.user_status == true) {
-        // move to CreateEvent.vue view
+        // jump to: AddEvent.vue
       } else {
         alert("LogIn to use this feature");
       }
@@ -163,13 +148,6 @@ background: linear-gradient(180deg, rgba(17,17,17,1) 0%, rgba(17,17,17,1) 1%, rg
   width: 20%;
   align-self: flex-end;
   /* border: 1px solid blue; */
-}
-input:invalid + span::after {
-  content: "✖";
-}
-
-input:valid + span::after {
-  content: "✓";
 }
 #apply-button {
   background-color: white;

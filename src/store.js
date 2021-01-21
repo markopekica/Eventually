@@ -1,4 +1,5 @@
 export default{
+  currentUser: null,
     cards: [
       {
         id: "1",

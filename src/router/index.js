@@ -1,55 +1,79 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Home from "../views/Home.vue";
+import store from "@/store";
 
-
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: "/",
+    name: "Home",
+    component: Home,
   },
   {
-    path: '/login',
-    name: 'Login',
+    path: "/login",
+    name: "Login",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Login.vue')
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Login.vue"),
+    meta: {
+      blockUser: true,
+    },
   },
   {
-    path: '/register',
-    name: 'Register',
-    component: () => import('../views/Register.vue')
+    path: "/register",
+    name: "Register",
+    component: () => import("../views/Register.vue"),
+    meta: {
+      blockUser: true,
+    },
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import('../views/About.vue')
+    path: "/about",
+    name: "About",
+    component: () => import("../views/About.vue"),
   },
   {
-    path: '/eventInfo',
-    name: 'EventInfo',
-    component: () => import('../views/EventInfo.vue')
+    path: "/eventInfo",
+    name: "EventInfo",
+    component: () => import("../views/EventInfo.vue"),
   },
   {
-    path: '/userProfile',
-    name: 'UserProfile',
-    component: () => import('@/views/UserProfile.vue')
+    path: "/userProfile",
+    name: "UserProfile",
+    component: () => import("@/views/UserProfile.vue"),
+    meta: {
+      needsUser: true,
+    },
   },
   {
-    path: '/addEvent',
-    name: 'AddEvent',
-    component: () => import('../views/AddEvent.vue')
-  }
-]
+    path: "/addEvent",
+    name: "AddEvent",
+    component: () => import("../views/AddEvent.vue"),
+    meta: {
+      needsUser: true,
+    },
+  },
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
-export default router
+router.beforeEach((to, from, next) => {
+  const noUser = store.currentUser === null;
+
+  if (noUser && to.meta.needsUser) {
+    next("login");
+    console.error("NE MOŽE");
+  } else {
+    next();
+  }
+});
+
+export default router;

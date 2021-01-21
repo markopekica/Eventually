@@ -103,8 +103,8 @@
   padding: 0.5em;
   border: 1px dotted #111;
 }
-.icons{
-}
+/* .icons{
+} */
 .fa {
   margin: 1em;
   color: #111;

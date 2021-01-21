@@ -75,21 +75,21 @@ Karlo:
     - [ ] share
       - [ ] share with link
       - [~] social media share
-    - [ ] rating stars
-      - [ ] unlock after event has passed
-      - [ ] give rating only if logged in
     - [ ] comment section
       - [ ] hide comment button if not logged in
         - [ ] add coment on click
       - [ ] comment (main thread), response -> components? (mislim bar)
         - [ ] add response
+    - [ ] rating stars
+      - [ ] unlock after event has passed
+      - [ ] give rating only if logged in
   - [ ] UserProfile **(view)**
     - [ ] Design
     - [ ] Add functionality
       - [ ] Edit profile
       - [ ] Delete profile
   - [X] LogIn, Register **(view)**
-    - [ ] pogledat novi video za security i poboljsat
+    - [X] pogledat novi video za security i poboljsat
     - [X] Make a transition to Home/UserProfile once loggedIn/registered successfully
     - [ ] color input field in red according to error
 

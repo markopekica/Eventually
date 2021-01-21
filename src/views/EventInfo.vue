@@ -30,18 +30,14 @@
                 <span id="watch-icon" class="material-icons" @click="follow">
                   visibility
                 </span>
-                <span class="number-of">
-                interested: 0 
-                </span>
+                <span class="number-of"> interested: 0 </span>
               </div>
               <div class="like-div">
                 <!-- <span class="response-label">99% will come</span> -->
                 <span id="heart-icon" class="material-icons" @click="like">
                   favorite
                 </span>
-                <span class="number-of">
-                 comming: 0
-                </span>
+                <span class="number-of"> comming: 0 </span>
               </div>
             </div>
             <span class="material-icons"> share </span>
@@ -227,26 +223,25 @@ export default {
   name: "EventInfo",
   props: {
     user_status: Boolean,
-    usr: {}
+    usr: {},
   },
   data() {
     return {
       routeData: this.$route.query,
-        
-    }
+    };
   },
   methods: {
     like() {
       let heartColor = document.getElementById("heart-icon").style.color;
-      if (heartColor != "#e0115f" && this.user_status==true) {
+      if (heartColor != "#e0115f" && this.user_status == true) {
         document.getElementById("heart-icon").style.color = "#e0115f";
       } /* else {
         document.getElementById("heart-icon").style.color = "black";
       } */
     },
     follow() {
-      if(this.user_status == true){
-      document.getElementById("watch-icon").style.color = "skyblue";
+      if (this.user_status == true) {
+        document.getElementById("watch-icon").style.color = "skyblue";
       }
     },
   },
@@ -263,7 +258,7 @@ export default {
   flex-direction: column;
   justify-content: center;
 }
-h1{
+h1 {
   font-weight: 700;
 }
 /*  BODY   */
@@ -320,7 +315,7 @@ h1{
 #watch-icon:hover {
   cursor: pointer;
 }
-.number-of{
+.number-of {
   font-size: 70%;
 }
 /* GREY INFO BOX */
@@ -423,8 +418,8 @@ hr {
   margin: 0em auto 1em auto;
   color: skyblue;
 }
-.add-main-thread{
-  opacity: .7;
+.add-main-thread {
+  opacity: 0.7;
 }
 .add-main-thread:hover {
   cursor: pointer;
@@ -504,7 +499,6 @@ hr {
     max-width: 90%;
   }
 }
-
 
 /** Social Button CSS **/
 

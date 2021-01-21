@@ -2,42 +2,66 @@
   <div id="app">
     <nav-bar :user_status="isLoggedIn" :usr="usr" />
     <router-view :user_status="isLoggedIn" />
-    <footer-w/>
+    <footer-w />
   </div>
 </template>
 
 <script>
-import FooterW from './components/FooterW.vue'
-import NavBar from './components/NavBar.vue'
-import {firebase} from '@/firebase.js'
+import FooterW from "./components/FooterW.vue";
+import NavBar from "./components/NavBar.vue";
+import { firebase } from "@/firebase.js";
+import router from "@/router";
+import store from "@/store.js";
+
 export default {
-    components: {
-      NavBar,
-      FooterW,
-    },
-    data() {
-      return {
-        isLoggedIn: false,
-        usr: {}
-      }
-    },
-    /* props: {
-      user_status: Boolean
-    }, */
-    mounted() {
-      firebase.auth().onAuthStateChanged( (user) => {
-        if(user){
-          this.isLoggedIn = true
-          this.usr = user
-          /* console.log(user) */
-        } else{
-          this.isLoggedIn = false
-          this.usr = user
-          /* console.log('No user') */
+  components: {
+    NavBar,
+    FooterW,
+  },
+  data() {
+    return {
+      isLoggedIn: false,
+      usr: {},
+    };
+  },
+  mounted() {
+    this.userCheck();
+  },
+  methods: {
+    userCheck() {
+      firebase.auth().onAuthStateChanged((user) => {
+        const currentRoute = router.currentRoute;
+        if (user) {
+          /* user is logged in */
+          this.isLoggedIn = true;
+          this.usr = user;
+          store.currentUser = user.email;
+          /* if user not allowed on view jump to UserProfile */
+          if (currentRoute.meta.blockUser) {
+            router.push({ name: "UserProfile" });
+          }
+        } else {
+          /* no user logged in */
+          this.isLoggedIn = false;
+          this.usr = user;
+          store.currentUser = null;
+          /* if view needs user jump to login */
+          if (currentRoute.meta.needsUser) {
+            router.push({ name: "Login" });
+          }
         }
       });
-    }
-}
+    },
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.push({ name: "login" });
+        });
+    },
+  },
+};
 </script>
 
 <style lang="scss">
@@ -50,6 +74,6 @@ export default {
   background-color: white;
   min-height: 100vh;
   position: relative;
-  padding-bottom: 150px;  // za footer; uglavnom ide visina footera
+  padding-bottom: 150px; // za footer; uglavnom ide visina footera
 }
 </style>
