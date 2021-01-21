@@ -25,7 +25,18 @@
     <!--  DROPDOWNS  -->
     <div class="tools">
       <div class="calendar-div" v-if="calendarOpen">
-        <span><u>When do You want to go?</u></span>
+        <div class="uh">
+          <span
+            style="width:fit-content; margin:auto;">When do You want to go?</span
+          >
+          <span
+            class="material-icons"
+            id="cancel"
+            @click="cancel"
+          >
+            highlight_off
+          </span>
+        </div>
         <div class="date-from">
           <div class="calendar-tag">From:</div>
           <input
@@ -33,9 +44,12 @@
             class="calendar"
             id="date-from"
             name="calendar"
-            value="2021-01-20"
+            v-model="date"
           />
         </div>
+        <!-- <div class="decoration-arrow">
+          <span class="material-icons"> south </span>
+        </div> -->
         <div class="date-to">
           <div class="calendar-tag">To:</div>
           <input type="date" class="calendar" id="date-to" name="calendar" />
@@ -54,10 +68,20 @@
 
     <!-- pomoc; kasnije cu obrisat -->
     <div class="applied-filters">
-      <div style="border-radius: 2px; margin: 0.5em">applied filters</div>
+      <div style="border-radius: 2px; margin: 0.5em">
+        <strong>applied filters:</strong>
+      </div>
       <div class="filter">
-        date from: {{ dateFrom }}<br />
-        date to: {{ dateTo }}
+        <div>date from: {{ dateFrom }}</div>
+        <div>date to: {{ dateTo }}</div>
+        <!-- <div>jos jedan
+
+        </div>
+        <div>
+          i jos jedan
+        </div>
+        <div>i jos jedan</div>
+        <div>i jos</div> -->
       </div>
     </div>
   </div>
@@ -73,6 +97,8 @@ export default {
       calendarOpen: false,
       dateFrom: "",
       dateTo: "",
+      /* default date-from is today: https://renatello.com/vue-js-input-date/ */
+      date: new Date().toISOString().substr(0, 10),
     };
   },
   methods: {
@@ -85,8 +111,16 @@ export default {
       this.calendarOpen = false;
       this.dateFrom = document.getElementById("date-from").value;
       this.dateTo = document.getElementById("date-to").value;
-      console.log("Date from: ", this.dateFrom);
-      console.log("Date to: ", this.dateTo);
+      if (this.dateTo < this.dateFrom && this.dateTo !== "") {
+        this.dateTo = "";
+        alert("Please pick a valid date to:)");
+        this.calendarOpen = true
+      }
+      /* console.log("Date from: ", this.dateFrom);
+      console.log("Date to: ", this.dateTo); */
+    },
+    cancel() {
+      this.calendarOpen = false;
     },
     addEvent() {
       if (this.user_status == true) {
@@ -120,13 +154,14 @@ export default {
 .calendar-div {
   margin: auto;
   border-bottom: 1px dotted #111;
-  /* border-top: 1px dotted #111; */
+  border-top: 1px dotted #111;
   padding-top: 0.5em;
   border-radius: 2em;
   display: flex;
   flex-direction: column;
   width: 350px;
   margin-top: -4em;
+  /* background-color: snow; */
   /* background: rgb(17,17,17);
 background: linear-gradient(180deg, rgba(17,17,17,1) 0%, rgba(17,17,17,1) 1%, rgba(255,255,255,1) 10%, rgba(255,255,255,1) 100%);
  */
@@ -137,11 +172,18 @@ background: linear-gradient(180deg, rgba(17,17,17,1) 0%, rgba(17,17,17,1) 1%, rg
   width: 70%;
   display: flex;
   align-items: center;
-  margin: 0.2em auto;
+  margin: 0.5em auto;
 }
+/* .decoration-arrow{
+  display: flex;
+  justify-content: center;
+  padding-top: .2em;
+} */
 .calendar {
   margin: 0.2em auto 0;
   justify-self: center;
+  border-radius: 8px;
+  border: 1px dotted #111;
   /* border:1px solid gold; */
 }
 .calendar-tag {
@@ -152,7 +194,6 @@ background: linear-gradient(180deg, rgba(17,17,17,1) 0%, rgba(17,17,17,1) 1%, rg
 #apply-button {
   background-color: white;
   border: 1px solid skyblue;
-  opacity: 0.8;
   padding: 0.2em 1em;
   margin: 1em auto;
   color: #2c3e50;
@@ -160,6 +201,33 @@ background: linear-gradient(180deg, rgba(17,17,17,1) 0%, rgba(17,17,17,1) 1%, rg
 }
 #apply-button:hover {
   box-shadow: 3px 3px 6px skyblue;
-  opacity: 1;
+  opacity: 0.88;
+}
+.uh{
+  display: flex;
+  width: 90%;
+  margin: .25em auto;
+  justify-content: space-between;
+}
+#cancel{
+  color: red;
+}
+#cancel:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
+.applied-filters {
+  /* border: 1px solid green; */
+  margin: 2rem;
+}
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  * {
+    border: 1px solid #111;
+    margin: 0.5em auto;
+    padding: 0.25em;
+    border-radius: 4px;
+  }
 }
 </style>
