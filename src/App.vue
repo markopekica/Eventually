@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav-bar :user_status="isLoggedIn" :usr="usr" />
-    <router-view :user_status="isLoggedIn" />
+    <router-view :user="usr" :user_status="isLoggedIn" />
     <footer-w/>
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {
     data() {
       return {
         isLoggedIn: false,
-        usr: {}
+        usr: {},
       }
     },
     /* props: {
@@ -28,7 +28,7 @@ export default {
       firebase.auth().onAuthStateChanged( (user) => {
         if(user){
           this.isLoggedIn = true
-          this.usr = user
+          this.usr = user.email
           /* console.log(user) */
         } else{
           this.isLoggedIn = false

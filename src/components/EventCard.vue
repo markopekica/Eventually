@@ -1,11 +1,11 @@
 <template>
   <div v-if="this.card_info.category == this.lane_info.title" class="card" style="width: 18rem">
-    <img :src="card_info.url" class="card-img-top" alt="pic" />
+    <img :src="card_info.eventImage" class="card-img-top" alt="pic" />
     <div class="card-body">
-      <h3 class="card-title">{{ card_info.title }}</h3>
+      <h3 class="card-title">{{ this.card_info.title }}</h3>
       <p class="on-card-info"><span class="material-icons">place</span> {{ card_info.location }}</p>
-      <p class="on-card-info"><span class="material-icons">event</span> {{ card_info.dateFrom }}</p>
-      <p class="on-card-info"><span class="material-icons">schedule</span> {{ card_info.timeFrom }}</p>
+      <p class="on-card-info"><span class="material-icons">event</span> {{ card_info.startDate }}</p>
+      <p class="on-card-info"><span class="material-icons">schedule</span> {{ card_info.startTime }}</p>
       <router-link 
         class="rutlink" 
         tag="button"

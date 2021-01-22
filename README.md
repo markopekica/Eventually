@@ -67,8 +67,8 @@ Karlo:
         - [ ] Design
         - [ ] Functionality
       - AddEvent **(view))**
-        - [ ] Design the view
-        - [ ] Make it work
+        - [x] Design the view
+        - [x] Make it work
     - Lane *(component)*
       - [ ] Hide lane if no cards in category
   - [ ] EventInfo 
