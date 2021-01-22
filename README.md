@@ -58,20 +58,21 @@ Karlo:
 ## TODO
 
 - [ ] App v_1.0
-  - [ ] Home **(view)**
-    - [ ] ToolBar *(component)*
-      - calendar
+  - [ ] Home
+    - [ ] **ToolBar**
+      - **calendar**
         - [ ] Calendar design
         - [ ] Calendar functionality
-      - filters
+      - **filters**
         - [ ] Design
         - [ ] Functionality
-      - AddEvent **(view))**
-        - [ ] Design the view
-        - [ ] Make it work
-    - Lane *(component)*
+      - AddEvent
+        - [x] Design the view
+        - [x] Make it work
+    - Lane
       - [ ] Hide lane if no cards in category
   - [ ] EventInfo 
+    - [ ] add to favorites
     - [ ] share
       - [ ] share with link
       - [~] social media share
@@ -83,16 +84,21 @@ Karlo:
     - [ ] rating stars
       - [ ] unlock after event has passed
       - [ ] give rating only if logged in
-  - [ ] UserProfile **(view)**
+  - [ ] **UserProfile**
     - [ ] Design
     - [ ] Add functionality
       - [ ] Edit profile
       - [ ] Delete profile
-  - [X] LogIn, Register **(view)**
+  - [X] LogIn, Register
     - [X] pogledat novi video za security i poboljsat
     - [X] Make a transition to Home/UserProfile once loggedIn/registered successfully
     - [ ] color input field in red according to error
 
 <br>
+
+1. Toolbar
+   1. calendar
+   2. filters
+2. UserProfile
 
 <!-- - App v_2.0 -->

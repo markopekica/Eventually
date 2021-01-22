@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <nav-bar :user_status="isLoggedIn" :usr="usr" />
-    <router-view :user_status="isLoggedIn" />
-    <footer-w />
+    <router-view :user="usr" :user_status="isLoggedIn" />
+    <footer-w/>
   </div>
 </template>
 

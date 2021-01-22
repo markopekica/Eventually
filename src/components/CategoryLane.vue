@@ -17,17 +17,56 @@
 <script>
 import EventCard from "./EventCard.vue";
 import store from "@/store.js";
+import { db } from "@/firebase.js";
+
 export default {
   name: "CategoryLane",
   props: {
-    lane_info: Object
+    lane_info: Object,
   },
   components: {
-    EventCard
+    EventCard,
   },
   data() {
-    return store
-  }
+    return {
+      store,
+      cards: [],
+    };
+  },
+  mounted() {
+    this.getCards();
+  },
+  methods: {
+    getCards() {
+      console.log("Firebase dohvat...");
+
+      db.collection("events")
+        .get()
+        .then((query) => {
+          this.cards = [];
+          query.forEach((doc) => {
+            
+            const data = doc.data();
+
+            this.cards.push({
+              id: doc.id,
+              time: data.posted_at,
+              eventImage: data.eventImage,
+              title: data.eventTitle,
+              author: data.author,
+              organization: data.org,
+              additionalInfo: data.additionalInfo,
+              category: data.category,
+              price: data.price,
+              startDate: data.startDate,
+              endDate: data.endDate,
+              startTime: data.startTime,
+              endTime: data.endTime,
+            });
+          });
+        });
+    },
+  },
 };
 </script>
 
@@ -36,7 +75,7 @@ export default {
 .category-lane {
   margin: 5em 25px;
 }
-h3{
+h3 {
   font-weight: 600;
 }
 #category {

@@ -16,14 +16,14 @@
     </div>
 
     <div class="addEventContent">
-      <form>
-        <br>
+      <hr class="solid" />
+      <form @submit.prevent="postEvent">
         <h2>Basic info</h2>
         <h6>
           Name your event and tell event-goers why they should come. <br />
           Add details that highlight what makes it unique.
         </h6>
-        <br>
+        <br />
         <croppa
           v-model="croppa"
           :width="500"
@@ -32,20 +32,23 @@
           placeholder-color="#111"
           :placeholder-font-size="20"
           canvas-color="transparent"
+          :accept="'image/*'"
           :show-remove-button="true"
           remove-button-color="red"
           :remove-button-size="35"
           :show-loading="true"
           :loading-size="50"
-          :loading-color="white"
           :prevent-white-space="true"
-          >
-          <div class="testdiv"><i class="large material-icons test">insert_photo</i></div>
+        >
+          <div class="testdiv">
+            <i class="large material-icons test">insert_photo</i>
+          </div>
         </croppa>
-        <br>
+        <br />
         <div class="form-group">
           <label for="NameEvent">How would you like to name your event?</label>
           <input
+            v-model="newEventName"
             type="text"
             id="NameEvent"
             class="form-control"
@@ -53,8 +56,11 @@
           />
         </div>
         <div class="form-group">
-          <label for="NameEvent">Are you a well known organizer?</label>
+          <label for="NameEvent"
+            >Do you represent a well known organization?</label
+          >
           <input
+            v-model="newEventOrg"
             type="text"
             id="NameEvent"
             class="form-control"
@@ -63,6 +69,7 @@
         </div>
         <br />
         <textarea
+          v-model="newEventMoreInfo"
           rows="10"
           cols="59"
           placeholder="Add additional info..."
@@ -70,20 +77,25 @@
         <!-- info o eventu -->
       </form>
 
-      <form>
+      <form @submit.prevent="postEvent">
         <!-- Odabir kategorije -->
         <div class="odvoji">
-          <select name="tags" class="tag-select">
+          <select name="tags" v-model="newEventCategory" class="tag-select">
             <option value="">Category</option>
-            <option value="music">Music</option>
-            <option value="film">Film</option>
-            <option value="art">Art</option>
-            <option value="food">Food and drinks</option>
-            <option value="sports">Sports/Outdoors</option>
+            <option value="Music">Music</option>
+            <option value="Film">Film</option>
+            <option value="Art">Art</option>
+            <option value="Food/Drinks">Food and drinks</option>
+            <option value="Sports/Outdoors">Sports/Outdoors</option>
           </select>
 
           <!-- Odabir cijene -->
-          <input type="text" list="currency" placeholder="Price" />
+          <input
+            type="text"
+            v-model="newEventPrice"
+            list="currency"
+            placeholder="Price"
+          />
           <datalist id="currency">
             <option>$</option>
             <option>€</option>
@@ -95,7 +107,7 @@
 
       <hr class="solid" />
 
-      <form>
+      <form @submit.prevent="postEvent">
         <h2>Date & Time</h2>
         <h6>
           Tell event-goers when your event starts and ends <br />
@@ -107,21 +119,23 @@
           <div class="datumi-posebno">
             <label for="start">Start date:</label>
             <input
+              v-model="newEventStartDate"
               type="date"
               class="date-input"
               value="0000-00-00"
-              min="2018-01-01"
-              max="2021-12-31"
+              min="2020-01-01"
+              max="2022-12-31"
             />
           </div>
           <div class="datumi-posebno">
             <label for="end">End date:</label>
             <input
+              v-model="newEventEndDate"
               type="date"
               class="date-input"
               value="0000-00-00"
-              min="2018-01-01"
-              max="2021-12-31"
+              min="2020-01-01"
+              max="2022-12-31"
             />
           </div>
         </div>
@@ -129,11 +143,21 @@
         <div class="sati">
           <div class="sati-posebno">
             <label for="start">Start time:</label>
-            <input type="time" class="time-input" value="00:00"/>
+            <input
+              type="time"
+              v-model="newEventStartTime"
+              class="time-input"
+              value="10:00"
+            />
           </div>
           <div class="sati-posebno">
             <label for="end">End time:</label>
-            <input type="time" class="time-input" value="00:00"/>
+            <input
+              type="time"
+              v-model="newEventEndTime"
+              class="time-input"
+              value="00:00"
+            />
           </div>
         </div>
       </form>
@@ -144,7 +168,9 @@
         <h2>Location</h2>
         <h6>Let your attendees know where your event will be taking place</h6>
       </form>
-      <button type="submit" class="btn btn-primary">Create</button>
+      <form @submit.prevent="postEvent">
+        <button type="submit" class="btn btn-primary">Create</button>
+      </form>
     </div>
   </div>
 </template>
@@ -154,12 +180,98 @@ import "vue-croppa/dist/vue-croppa.css";
 import Vue from "vue";
 import Croppa from "vue-croppa";
 
+import { db, storage } from "@/firebase.js";
+
 Vue.use(Croppa);
 
 export default {
   name: "addEvent",
+
   data() {
-    return { croppa: {} };
+    return {
+      croppa: null,
+      eventImage: Blob,
+      newEventName: "",
+      newEventOrg: "",
+      newEventMoreInfo: "",
+      newEventCategory: "",
+      newEventPrice: "",
+      newEventStartDate: "",
+      newEventEndDate: "",
+      newEventStartTime: "",
+      newEventEndTime: "",
+    };
+  },
+
+  methods: {
+    postEvent() {
+      this.croppa.generateBlob((blobData) => {
+
+        let imageName = "/posts" + this.$attrs.user + "/" + Date.now() + ".png";
+
+        storage
+          .ref(imageName)
+          .put(blobData)
+          .then((result) => {
+            // Uspjesna linija
+            result.ref
+              .getDownloadURL()
+              .then((url) => {
+                console.log("Javni link: ", url);
+
+                const eventName = this.newEventName;
+                const eventOrg = this.newEventOrg;
+                const eventMoreInfo = this.newEventMoreInfo;
+                const eventCategory = this.newEventCategory;
+                const eventPrice = this.newEventPrice;
+                const eventStartDate = this.newEventStartDate;
+                const eventEndDate = this.newEventEndDate;
+                const eventStartTime = this.newEventStartTime;
+                const eventEndTime = this.newEventEndTime;
+                //    const eventLocation = ??
+
+                db.collection("events")
+                  .add({
+                    eventTitle: eventName,
+                    author: this.$attrs.user.email,
+                    posted_at: Date.now(),
+                    eventImage: url,
+                    org: eventOrg,
+                    additionalInfo: eventMoreInfo,
+                    category: eventCategory,
+                    price: eventPrice,
+                    startDate: eventStartDate,
+                    endDate: eventEndDate,
+                    startTime: eventStartTime,
+                    endTime: eventEndTime,
+                  })
+                  .then((doc) => {
+                    console.log("Spremljeno", doc);
+
+                    this.newEventName = "";
+                    this.croppa.remove();
+                    this.newEventOrg = "";
+                    this.newEventMoreInfo = "";
+                    this.newEventCategory = "";
+                    this.newEventPrice = "";
+                    this.newEventStartDate = "";
+                    this.newEventEndDate = "";
+                    this.newEventStartTime = "";
+                    this.newEventEndTime = "";
+                  })
+                  .catch((e) => {
+                    console.error(e);
+                  });
+              })
+              .catch((e) => {
+                console.error(e);
+              });
+          })
+          .catch((e) => {
+            console.error(e);
+          });
+      });
+    },
   },
 };
 </script>
@@ -167,6 +279,10 @@ export default {
 <style lang="scss" scoped>
 .container {
   margin: 1em auto;
+}
+
+::-webkit-input-placeholder {
+  font-style: italic;
 }
 
 .col-2,
@@ -208,6 +324,10 @@ form {
   display: flex;
   flex-direction: column;
   text-align: left;
+  .btn-primary {
+    max-width: 80px;
+    margin: auto;
+  }
 }
 
 .addEventContent {
@@ -315,7 +435,7 @@ textarea:hover {
     border: 2px solid #dadada;
     border-radius: 10px;
     margin: auto;
-    padding-left: 15px;
+    padding-left: 63px;
     padding-right: 10px;
     outline: none;
   }
@@ -349,7 +469,6 @@ h6 {
 .form-group {
   margin-bottom: 10px;
 }
-
 
 .btn-primary {
   border: 1px solid black;

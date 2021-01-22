@@ -19,7 +19,7 @@
     <div class="main-content">
       <div class="top-main">
         <div class="item picture-div">
-          <img :src="$route.query.card.url" class="cover-picture" alt="pic" />
+          <img :src="$route.query.card.eventImage" class="cover-picture" alt="pic" />
         </div>
         <div class="interactive">
           <div class="interactive-icons-div">
@@ -58,13 +58,13 @@
           <div class="date-from">
             <span class="text-near-icon from">From:</span>
             <span class="text-near-icon">
-              {{ $route.query.card.dateFrom }}
+              {{ $route.query.card.startDate }}
             </span>
           </div>
           <div class="date-to">
             <span class="text-near-icon to">To:</span>
             <span class="text-near-icon">
-              {{ $route.query.card.dateTo }}
+              {{ $route.query.card.endDate }}
             </span>
           </div>
         </div>
@@ -73,13 +73,13 @@
           <div class="time-from">
             <span class="text-near-icon from">From:</span>
             <span class="text-near-icon">
-              {{ $route.query.card.timeFrom }}
+              {{ $route.query.card.startTime }}
             </span>
           </div>
           <div class="time-to">
             <span class="text-near-icon to">To:</span>
             <span class="text-near-icon">
-              {{ $route.query.card.timeTo }}
+              {{ $route.query.card.endTime }}
             </span>
           </div>
         </div>
@@ -107,7 +107,7 @@
         <span class="material-icons"> language </span>
       </div>
       <div class="card-description">
-        {{ $route.query.card.description }}
+        {{ $route.query.card.additionalInfo }}
       </div>
     </div>
 

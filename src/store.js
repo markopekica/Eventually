@@ -1,6 +1,6 @@
 export default{
-  currentUser: null,
-    cards: [
+    currentUser: null,
+    cards1: [
       {
         id: "1",
         title: "Real Horrorshow",
@@ -59,9 +59,10 @@ export default{
           category: "Music"
         },
     ],
+    
     lanes: [
         { id: "1", title: "Music" },
-        { id: "2", title: "Sport" },
+        { id: "2", title: "Sports/Outdoors" },
         { id: "3", title: "Film" }
     ]
 }
