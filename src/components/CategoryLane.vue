@@ -31,7 +31,7 @@ export default {
     return {
       store,
       cards: [],
-      card: [],
+      //card: [],
     };
   },
   mounted() {
@@ -70,7 +70,17 @@ export default {
   },
   computed: {
     filteredCards() {
-      return this.cards.filter((card) => card.startDate >= store.dateFrom || card.endDate <= store.dateTo);
+      if (store.dateFrom != "") {
+        if (store.dateTo != "") {
+          return this.cards.filter(
+            (card) =>
+              card.startDate >= store.dateFrom && card.endDate <= store.dateTo
+          );
+        }
+        return this.cards.filter((card) => card.startDate >= store.dateFrom);
+      } else {
+        return this.cards;
+      }
     },
   },
 };

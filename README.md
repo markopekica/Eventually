@@ -63,7 +63,7 @@ Karlo:
       - **calendar**
         - [X] Calendar design
         - [X] Calendar functionality
-        - [ ] Poboljsati ako ostane vremena
+        - [ ] nakon odabira datuma, zapamti pri ponovnom otvaranju kalendara
       - **filters**
         - [ ] Design
         - [ ] Functionality
