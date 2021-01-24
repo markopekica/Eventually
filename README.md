@@ -61,8 +61,9 @@ Karlo:
   - [ ] Home
     - [ ] **ToolBar**
       - **calendar**
-        - [ ] Calendar design
-        - [ ] Calendar functionality
+        - [X] Calendar design
+        - [X] Calendar functionality
+        - [ ] Poboljsati ako ostane vremena
       - **filters**
         - [ ] Design
         - [ ] Functionality
@@ -95,10 +96,5 @@ Karlo:
     - [ ] color input field in red according to error
 
 <br>
-
-1. Toolbar
-   1. calendar
-   2. filters
-2. UserProfile
 
 <!-- - App v_2.0 -->
