@@ -5,7 +5,7 @@
     </div>
     <div id="lane">
       <event-card
-        v-for="eventCard in cards"
+        v-for="eventCard in filteredCards"
         :key="eventCard.id"
         :card_info="eventCard"
         :lane_info="lane_info"
@@ -31,6 +31,7 @@ export default {
     return {
       store,
       cards: [],
+      card: [],
     };
   },
   mounted() {
@@ -44,8 +45,8 @@ export default {
         .get()
         .then((query) => {
           this.cards = [];
+
           query.forEach((doc) => {
-            
             const data = doc.data();
 
             this.cards.push({
@@ -65,6 +66,11 @@ export default {
             });
           });
         });
+    },
+  },
+  computed: {
+    filteredCards() {
+      return this.cards.filter((card) => card.startDate >= store.dateFrom || card.endDate <= store.dateTo);
     },
   },
 };

@@ -1,5 +1,7 @@
 export default{
     currentUser: null,
+    dateFrom: "",
+    dateTo: "",
     cards1: [
       {
         id: "1",

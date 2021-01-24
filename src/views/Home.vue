@@ -2,81 +2,80 @@
   <div class="home">
     <!-- <tool-bar :user_status="$attrs.user_status" /> -->
     <div class="toolbar-wrap">
-    <div class="toolbar">
-      <span class="material-icons tool-icon" @click="showCalendar"
-        >date_range</span
-      >
-      <span class="material-icons tool-icon">filter_list</span>
-      <span
-        id="add-placeholder"
-        class="material-icons tool-icon"
-        style="color: grey"
-        v-if="!this.$attrs.user_status"
-        @click="addEvent"
-        >add</span
-      >
-      <router-link
-        id="add-loggedIn"
-        class="material-icons tool-icon"
-        style="color: skyblue"
-        v-if="this.$attrs.user_status"
-        to="/addEvent"
-        >add</router-link
-      >
-    </div>
-    <!--  DROPDOWNS  -->
-    <div class="tools">
-      <div class="calendar-div" v-if="calendarOpen">
-        <div class="uh">
-          <span
-            style="width:fit-content; margin:auto;">When do You want to go?</span
-          >
-          <span
-            class="material-icons"
-            id="cancel"
-            @click="cancel"
-          >
-            highlight_off
-          </span>
-        </div>
-        <div class="date-from">
-          <div class="calendar-tag">From:</div>
-          <input
-            type="date"
-            class="calendar"
-            id="date-from"
-            name="calendar"
-            v-model="date"
-          />
-        </div>
-        <!-- <div class="decoration-arrow">
+      <div class="toolbar">
+        <span class="material-icons tool-icon" @click="showCalendar"
+          >date_range</span
+        >
+        <span class="material-icons tool-icon">filter_list</span>
+        <span
+          id="add-placeholder"
+          class="material-icons tool-icon"
+          style="color: grey"
+          v-if="!this.$attrs.user_status"
+          @click="addEvent"
+          >add</span
+        >
+        <router-link
+          id="add-loggedIn"
+          class="material-icons tool-icon"
+          style="color: skyblue"
+          v-if="this.$attrs.user_status"
+          to="/addEvent"
+          >add</router-link
+        >
+      </div>
+      <!--  DROPDOWNS  -->
+      <div class="tools">
+        <div class="calendar-div" v-if="calendarOpen">
+          <div class="uh">
+            <span style="width: fit-content; margin: auto"
+              >When do You want to go?</span
+            >
+            <span class="material-icons" id="cancel" @click="cancel">
+              highlight_off
+            </span>
+          </div>
+          <div class="date-from">
+            <div class="calendar-tag">From:</div>
+            <input
+              type="date"
+              class="calendar"
+              id="date-from"
+              name="calendar"
+              v-model="date"
+            />
+          </div>
+          <!-- <div class="decoration-arrow">
           <span class="material-icons"> south </span>
         </div> -->
-        <div class="date-to">
-          <div class="calendar-tag">To:</div>
-          <input type="date" class="calendar" id="date-to" name="calendar" />
+          <div class="date-to">
+            <div class="calendar-tag">To:</div>
+            <input type="date" class="calendar" id="date-to" name="calendar" />
+          </div>
+          <div class="errorInDate">
+            {{ this.err }}
+          </div>
+          <button
+            id="apply-button"
+            type="button"
+            @click="applyDateFilter"
+            class="btn btn-primary"
+          >
+            ok
+          </button>
         </div>
-        <button
-          id="apply-button"
-          type="button"
-          @click="applyDateFilter"
-          class="btn btn-primary"
-        >
-          ok
-        </button>
+        <!--  calendar  -->
       </div>
-      <!--  calendar  -->
-    </div>
 
-    <!-- pomoc; kasnije cu obrisat -->
-    <div class="applied-filters">
-      <div style="border-radius: 2px; margin: 0.5em">
-        <strong>applied filters:</strong>
-      </div>
-      <div class="filter">
-        <div>date from: {{ dateFrom }}</div>
-        <div>date to: {{ dateTo }}</div>
-        <!-- <div>jos jedan
+      <!-- pomoc; kasnije cu obrisat -->
+      <div class="applied-filters">
+        <div style="border-radius: 2px; margin: 0.5em">
+          <strong>applied filters:</strong>
+        </div>
+        <div class="filter">
+          <div>date from: {{ dateFrom }}</div>
+          <div>date to: {{ dateTo }}</div>
+          <!-- <div>jos jedan
 
         </div>
         <div>
@@ -84,9 +83,9 @@
         </div>
         <div>i jos jedan</div>
         <div>i jos</div> -->
+        </div>
       </div>
     </div>
-  </div>
     <category-lane
       v-for="lane in this.store.lanes"
       :key="lane.id"
@@ -102,7 +101,7 @@ import store from "@/store.js";
 export default {
   name: "Home",
   components: {
-    CategoryLane
+    CategoryLane,
   },
   data() {
     return {
@@ -111,8 +110,12 @@ export default {
       dateFrom: "",
       dateTo: "",
       /* default date-from is today: https://renatello.com/vue-js-input-date/ */
-      date: new Date().toISOString().substr(0, 10),  
-    }
+      date: new Date().toISOString().substr(0, 10),
+      err: "",
+    };
+  },
+  mounted() {
+    /* this.applyDateFilter() */
   },
   methods: {
     showCalendar() {
@@ -124,13 +127,21 @@ export default {
       this.calendarOpen = false;
       this.dateFrom = document.getElementById("date-from").value;
       this.dateTo = document.getElementById("date-to").value;
+
+      this.store.dateFrom = this.dateFrom;
+      this.store.dateTo = this.dateTo;
+
       if (this.dateTo < this.dateFrom && this.dateTo !== "") {
         this.dateTo = "";
-        alert("Please pick a valid date to:)");
-        this.calendarOpen = true
+        /* alert("Please pick a valid date to:)"); */
+        this.err = "Date to has to be larger than date from."
+        setTimeout(() => {
+          this.err = "";
+        }, 4000);
+        this.calendarOpen = true;
       }
-      /* console.log("Date from: ", this.dateFrom);
-      console.log("Date to: ", this.dateTo); */
+      console.log("Date from: ", this.dateFrom);
+      console.log("Date to: ", this.dateTo);
     },
     cancel() {
       this.calendarOpen = false;
@@ -148,7 +159,6 @@ export default {
 
 
 <style lang="scss" scoped>
-
 .toolbar {
   max-width: 300px;
   margin: auto;
@@ -203,6 +213,11 @@ export default {
   align-self: flex-end;
   /* border: 1px solid blue; */
 }
+.errorInDate{
+  margin: .5em;
+  color:red;
+  font-size: 80%;
+}
 #apply-button {
   background-color: white;
   border: 1px solid skyblue;
@@ -215,13 +230,13 @@ export default {
   box-shadow: 3px 3px 6px skyblue;
   opacity: 0.88;
 }
-.uh{
+.uh {
   display: flex;
   width: 90%;
-  margin: .25em auto;
+  margin: 0.25em auto;
   justify-content: space-between;
 }
-#cancel{
+#cancel {
   color: red;
 }
 #cancel:hover {
