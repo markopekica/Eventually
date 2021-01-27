@@ -68,13 +68,13 @@
       </div>
 
       <!-- pomoc; kasnije cu obrisat -->
-      <div class="applied-filters">
+      <div class="applied-filters" v-if='dateTo != "" || dateFrom != ""'>
         <div style="border-radius: 2px; margin: 0.5em">
           <strong>applied filters:</strong>
         </div>
         <div class="filter">
-          <div>date from: {{ dateFrom }}</div>
-          <div>date to: {{ dateTo }}</div>
+          <div v-if='dateFrom != ""'>date from: {{ dateFrom }}</div>
+          <div v-if='dateTo != ""'>date to: {{ dateTo }}</div>
           <!-- <div>jos jedan
 
         </div>
