@@ -209,6 +209,8 @@ export default {
 
         let imageName = "/posts" + this.$attrs.user + "/" + Date.now() + ".png";
 
+        console.log(imageName)
+
         storage
           .ref(imageName)
           .put(blobData)
