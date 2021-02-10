@@ -104,7 +104,10 @@
     <div class="item icon-field description-div">
       <div class="previse-divova">
         <span class="material-icons description-icon"> description </span>
-        <span class="material-icons"> language </span>
+        <div>
+        <span class="material-icons site"> language </span>
+        <!-- <div class="hide">i should be a link. to official site</div> -->
+        </div>
       </div>
       <div class="card-description">
         {{ $route.query.card.additionalInfo }}
@@ -145,10 +148,9 @@
       </a>
     </div> -->
 
+  <!--
+
     <div class="comment-section-div">
-      <!-- 
-        skica
-       -->
       <form>
         <div class="form-group">
           <label for="exampleFormControlTextarea1">Have anything to add?</label>
@@ -162,7 +164,9 @@
           <span class="material-icons add-main-thread"> comment </span>
         </div>
       </form>
-      <!-- <div class="comment-thread">
+
+      
+      <div class="comment-thread">
         <div class="comment-main-thread">
           <div class="comment-owner-div">
             <span class="material-icons host-icon">account_circle</span>
@@ -212,13 +216,15 @@
           </div>
         </div>
         <span class="material-icons"> comment </span>
-      </div> -->
-      <!-- /commnet section -->
+      </div>
+       /commnet section 
     </div>
+    -->
   </div>
 </template>
 
 <script>
+import { db } from "@/firebase.js";
 export default {
   name: "EventInfo",
   props: {
@@ -232,6 +238,15 @@ export default {
   },
   methods: {
     like() {
+      db.collection('events').get().then((query => {
+        query.forEach((doc) => {
+          // id spremit u folder od usera koji lajka
+          console.log('ID: ', doc.id)
+          console.log('podaci: ', doc.data())
+        })
+      }))
+      
+
       let heartColor = document.getElementById("heart-icon").style.color;
       if (heartColor != "#e0115f" && this.user_status == true) {
         document.getElementById("heart-icon").style.color = "#e0115f";
@@ -299,6 +314,8 @@ h1 {
 }
 .watch-like-icon-div {
   display: flex;
+  /* border: 1px solid red; */
+  margin: auto;
   * {
     margin: 0 0.5em;
   }
@@ -318,7 +335,7 @@ h1 {
 .number-of {
   font-size: 70%;
 }
-/* GREY INFO BOX */
+/* INFO BOX */
 .basic-info {
   /*  grey frame with: time, date, location, price  */
   width: 80%;
@@ -376,9 +393,12 @@ hr {
   /* description dio; ispod crte, iznad komentara */
   display: flex;
   margin: 0.5em 1em 0.2em 1em;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   * {
     margin-right: 1em;
+  }
+  .site:hover{
+    color:skyblue;
   }
 }
 .card-description {

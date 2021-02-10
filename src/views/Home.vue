@@ -168,8 +168,14 @@ export default {
   margin: 0 1em;
 }
 .tool-icon {
+  text-decoration: none;
   cursor: pointer;
+  
 }
+.tool-icon:hover{
+    //box-shadow: 4px 4px 0px 0px skyblue;
+    box-shadow: 0em 0 .75em .06em skyblue;
+  }
 .calendar-div {
   margin: auto;
   border-bottom: 1px dotted #111;
@@ -218,7 +224,7 @@ export default {
   box-shadow: 3px 3px 6px skyblue;
   opacity: 0.88;
 }
-.uh {
+.uh { //txt na kalendaru: kad zelis ic?
   display: flex;
   width: 90%;
   margin: 0.25em auto;

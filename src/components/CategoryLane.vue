@@ -1,7 +1,7 @@
 <template>
   <div class="category-lane">
     <div id="category">
-      <h3>{{ lane_info.title }}</h3>
+      <h2>{{ lane_info.title }}</h2>
     </div>
     <div id="lane">
       <event-card
@@ -91,7 +91,7 @@ export default {
 .category-lane {
   margin: 5em 25px;
 }
-h3 {
+h2 {
   font-weight: 600;
 }
 #category {
@@ -101,5 +101,8 @@ h3 {
 #lane {
   overflow: auto;
   white-space: nowrap;
+  background-color: rgb(15, 2, 2);
+  padding: .75em 0;
+  display: flex;
 }
 </style>

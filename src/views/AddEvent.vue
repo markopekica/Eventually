@@ -207,7 +207,7 @@ export default {
     postEvent() {
       this.croppa.generateBlob((blobData) => {
 
-        let imageName = "posts/" + this.$attrs.user + "/" + Date.now() + ".png";
+        let imageName = "posts/" + this.$attrs.user.email + "/" + Date.now() + ".png";
 
         console.log(imageName)
 

@@ -114,6 +114,9 @@ Karlo:
 - f (funkcionalnosti)
   - [ ] search filters **K.P.**
   - [ ] mark with (coming/interested); like **M.P.**
+    - [ ] svaki user treba mapu: liked i watched?
+    - [ ] svaki event treba: visitors i jos jednu
+    - [ ] kad user klikne, biljezi se sta? isti onaj name slike? to je unique..
 - [ ] dokumentacija
 - [ ] promotivna prezentacija (3-5 min) **K.P.**
 

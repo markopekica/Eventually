@@ -65,6 +65,9 @@ h3 {
   background-color: white;
   padding: 0.25em 1em;
 }
+.rutlink:hover{
+  box-shadow: 3px 3px skyblue;
+}
 .on-card-info {
   //paragraphs: location, time, date
   margin: 0 auto 0.5em auto;
