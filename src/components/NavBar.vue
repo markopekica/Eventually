@@ -3,9 +3,6 @@
     <router-link to="/"
       ><img src="../assets/logo.png" id="home-logo" alt=""
     /></router-link>
-    <!-- <div style="color: crimson; opacity:0.7;" v-if="user_status">
-      welcome <br>{{ user_status }}
-    </div> -->
     <router-link to="/login" v-if="!user_status"
       ><span id="login" class="material-icons">login</span></router-link
     >
@@ -21,8 +18,7 @@
 export default {
   name: "NavBar",
   props: {
-    user_status: Boolean,
-    usr: {}
+    user_status: Boolean
   },
 };
 </script>

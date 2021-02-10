@@ -200,14 +200,16 @@ export default {
       newEventEndDate: "",
       newEventStartTime: "",
       newEventEndTime: "",
+      author: this.$attrs.user.email,
     };
   },
 
   methods: {
     postEvent() {
+      alert(this.usr)
       this.croppa.generateBlob((blobData) => {
 
-        let imageName = "/posts" + this.$attrs.user + "/" + Date.now() + ".png";
+        let imageName = "posts/" + this.$attrs.user.email + "/" + Date.now() + ".png";
 
         console.log(imageName)
 

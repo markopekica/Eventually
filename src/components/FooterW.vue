@@ -9,7 +9,7 @@
             <img src="../assets/logo.png" id="home-logo" alt="">
           </div>
           <div class="col-sm">
-            <span v-bind:title="message">Eventually &copy; {{ message }}</span>
+            <span v-bind:title="year">Eventually &copy; {{ year }}</span>
           </div>
         </div>
       </div>
@@ -21,7 +21,7 @@ export default {
   name: "FooterW",
    data() {
     return {
-      message: new Date().getFullYear()
+      year: new Date().getFullYear()
     }
   }
 };

@@ -65,9 +65,6 @@ h3 {
   background-color: white;
   padding: 0.25em 1em;
 }
-/* .card-title{
-  text-align: left;
-} */
 .on-card-info {
   //paragraphs: location, time, date
   margin: 0 auto 0.5em auto;
