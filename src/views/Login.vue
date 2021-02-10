@@ -15,9 +15,6 @@
         <div class="col-2"></div>
       </div>
     </div>
-    <!-- <div>
-            {{ usr }}
-          </div> -->
     <div v-if="eror" id="error-message-div">Error: {{ eror }}</div>
     <form>
       <div class="form-group">
@@ -39,13 +36,6 @@
           v-model="password"
         />
       </div>
-      <!-- <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-        <label class="form-check-label" for="exampleCheck1">Remember me</label>
-      </div> -->
-      <!-- <button id="login-button" type="button" @click="checkData" class="btn btn-primary">
-        Login
-      </button> -->
       <div @click="checkData">
         <router-link
           id="login-button"

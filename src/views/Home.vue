@@ -45,9 +45,6 @@
               v-model="date"
             />
           </div>
-          <!-- <div class="decoration-arrow">
-          <span class="material-icons"> south </span>
-        </div> -->
           <div class="date-to">
             <div class="calendar-tag">To:</div>
             <input type="date" class="calendar" id="date-to" name="calendar" />
@@ -66,23 +63,20 @@
         </div>
         <!--  calendar  -->
       </div>
-
       <!-- pomoc; kasnije cu obrisat -->
-      <div class="applied-filters" v-if='dateTo != "" || dateFrom != ""'>
+      <div class="applied-filters" v-if="dateTo != '' || dateFrom != ''">
         <div style="border-radius: 2px; margin: 0.5em">
           <strong>applied filters:</strong>
         </div>
         <div class="filter">
-          <div v-if='dateFrom != ""'>date from: {{ dateFrom }}</div>
-          <div v-if='dateTo != ""'>date to: {{ dateTo }}</div>
-          <!-- <div>jos jedan
-
-        </div>
-        <div>
-          i jos jedan
-        </div>
-        <div>i jos jedan</div>
-        <div>i jos</div> -->
+          <div v-if="dateFrom != ''">date from: {{ dateFrom }}</div>
+          <div v-if="dateTo != ''">date to: {{ dateTo }}</div>
+          <!--
+            <div>jos jedan</div>
+            <div>i jos jedan</div>
+            <div>i jos jedan</div>
+            <div>i jos</div>
+          -->
         </div>
       </div>
     </div>
@@ -134,7 +128,7 @@ export default {
       if (this.dateTo < this.dateFrom && this.dateTo !== "") {
         this.dateTo = "";
         /* alert("Please pick a valid date to:)"); */
-        this.err = "Date to has to be larger than date from."
+        this.err = "Date to has to be larger than date from.";
         setTimeout(() => {
           this.err = "";
         }, 4000);
@@ -156,7 +150,6 @@ export default {
   },
 };
 </script>
-
 
 <style lang="scss" scoped>
 .toolbar {
@@ -196,11 +189,6 @@ export default {
   align-items: center;
   margin: 0.5em auto;
 }
-/* .decoration-arrow{
-  display: flex;
-  justify-content: center;
-  padding-top: .2em;
-} */
 .calendar {
   margin: 0.2em auto 0;
   justify-self: center;
@@ -213,9 +201,9 @@ export default {
   align-self: flex-end;
   /* border: 1px solid blue; */
 }
-.errorInDate{
-  margin: .5em;
-  color:red;
+.errorInDate {
+  margin: 0.5em;
+  color: red;
   font-size: 80%;
 }
 #apply-button {
