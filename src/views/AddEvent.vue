@@ -167,6 +167,16 @@
       <form>
         <h2>Location</h2>
         <h6>Let your attendees know where your event will be taking place</h6>
+        <div class="form-group"> 
+          <input
+            v-model="newEventLocation"
+            type="text"
+            id="loc"
+            class="form-control"
+            placeholder="address, city"
+          />
+        </div>
+
       </form>
       <form @submit.prevent="postEvent">
         <button type="submit" class="btn btn-primary">Create</button>
@@ -200,6 +210,7 @@ export default {
       newEventEndDate: "",
       newEventStartTime: "",
       newEventEndTime: "",
+      newEventLocation: "",
     };
   },
 
@@ -230,7 +241,7 @@ export default {
                 const eventEndDate = this.newEventEndDate;
                 const eventStartTime = this.newEventStartTime;
                 const eventEndTime = this.newEventEndTime;
-                //    const eventLocation = ??
+                const eventLocation = this.newEventLocation;
 
                 db.collection("events")
                   .add({
@@ -246,6 +257,7 @@ export default {
                     endDate: eventEndDate,
                     startTime: eventStartTime,
                     endTime: eventEndTime,
+                    location: eventLocation,
                   })
                   .then((doc) => {
                     console.log("Spremljeno", doc);
@@ -260,6 +272,7 @@ export default {
                     this.newEventEndDate = "";
                     this.newEventStartTime = "";
                     this.newEventEndTime = "";
+                    this.newEventLocation = "";
                   })
                   .catch((e) => {
                     console.error(e);
@@ -353,6 +366,8 @@ textarea {
   border: 2px solid #dadada;
   border-radius: 10px;
   outline: none;
+  
+ 
 }
 
 .tag-select {

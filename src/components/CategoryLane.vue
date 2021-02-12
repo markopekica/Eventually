@@ -63,6 +63,7 @@ export default {
               endDate: data.endDate,
               startTime: data.startTime,
               endTime: data.endTime,
+              location: data.location,
             });
           });
         });

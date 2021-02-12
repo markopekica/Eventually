@@ -384,6 +384,7 @@ hr {
 .card-description {
   margin: 0.5em 1em;
   text-align: left;
+  white-space: pre-wrap;
 }
 .event-website-link-div {
   margin: 0.2em 0.5em;
