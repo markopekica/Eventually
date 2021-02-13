@@ -1,30 +1,33 @@
 <template>
-  <div
-    v-if="this.card_info.category == this.lane_info.title"
-    class="card"
-    style="width: 18rem"
-  >
+  <div class="card" style="width: 18rem">
+    <!-- 
+    ovo sam uklonio iz gornjeg diva
+      v-if="this.card_info.category == this.lane_info.title"
+    kartica se sad filtrira po redu unutar lane komponente
+    cini mi se da je to bolje
+    sad mogu koristit karticu kao komponentu i na user profilu
+    -->
     <!-- <div v-if="this.card_info.startDate > this.store.dateFrom"> -->
-      <img :src="card_info.eventImage" class="card-img-top" alt="pic" />
-      <div class="card-body">
-        <h3 class="card-title">{{ this.card_info.title }}</h3>
-        <p class="on-card-info">
-          <span class="material-icons">place</span> {{ card_info.location }}
-        </p>
-        <p class="on-card-info">
-          <span class="material-icons">event</span> {{ card_info.startDate }}
-        </p>
-        <p class="on-card-info">
-          <span class="material-icons">schedule</span> {{ card_info.startTime }}
-        </p>
-        <router-link
-          class="rutlink"
-          tag="button"
-          :to="{ path: '/EventInfo', query: { card: this.card_info } }"
-        >
-          More
-        </router-link>
-      </div>
+    <img :src="card_info.eventImage" class="card-img-top" alt="pic" />
+    <div class="card-body">
+      <h3 class="card-title">{{ this.card_info.title }}</h3>
+      <p class="on-card-info">
+        <span class="material-icons">place</span> {{ card_info.location }}
+      </p>
+      <p class="on-card-info">
+        <span class="material-icons">event</span> {{ card_info.startDate }}
+      </p>
+      <p class="on-card-info">
+        <span class="material-icons">schedule</span> {{ card_info.startTime }}
+      </p>
+      <router-link
+        class="rutlink"
+        tag="button"
+        :to="{ path: '/EventInfo', query: { card: this.card_info } }"
+      >
+        More
+      </router-link>
+    </div>
     <!-- </div> -->
   </div>
 </template>
@@ -65,8 +68,8 @@ h3 {
   background-color: white;
   padding: 0.25em 1em;
 }
-.rutlink:hover{
-  box-shadow: 3px 3px skyblue;
+.rutlink:hover {
+  box-shadow: 2px 2px skyblue;
 }
 .on-card-info {
   //paragraphs: location, time, date

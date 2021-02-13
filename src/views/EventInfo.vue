@@ -229,11 +229,13 @@ export default {
   name: "EventInfo",
   props: {
     user_status: Boolean,
-    usr: {},
+    //usr: String,
   },
   data() {
     return {
       routeData: this.$route.query,
+      usr: this.$attrs.user.email,
+      currentEventId: this.$route.query.card.id
     };
   },
   methods: {
@@ -241,8 +243,15 @@ export default {
       db.collection('events').get().then((query => {
         query.forEach((doc) => {
           // id spremit u folder od usera koji lajka
-          console.log('ID: ', doc.id)
-          console.log('podaci: ', doc.data())
+          //let saveHere = "likes/" + this.$attrs.user.email + "/"
+          //console.log("this id: ", this.currentEventId)
+          //console.log('ID: ', doc.id)
+          if (doc.id == this.currentEventId) {
+            console.log("ID: ", this.currentEventId, "\ndoc: ", doc, "\nthis is it. save this event")
+          } else {
+            console.log("sta da tu stavim? to nije taj event")
+          }
+          //console.log('podaci: ', doc.data())
         })
       }))
       
@@ -404,6 +413,7 @@ hr {
 .card-description {
   margin: 0.5em 1em;
   text-align: left;
+  white-space: pre-wrap;
 }
 .event-website-link-div {
   margin: 0.2em 0.5em;

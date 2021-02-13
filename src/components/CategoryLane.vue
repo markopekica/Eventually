@@ -4,12 +4,14 @@
       <h2>{{ lane_info.title }}</h2>
     </div>
     <div id="lane">
-      <event-card
-        v-for="eventCard in filteredCards"
-        :key="eventCard.id"
-        :card_info="eventCard"
-        :lane_info="lane_info"
-      />
+      <div v-for="eventCard in filteredCards" :key="eventCard.id">
+        <event-card
+          v-if="eventCard.category == lane_info.title"
+          :key="eventCard.id"
+          :card_info="eventCard"
+          :lane_info="lane_info"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -31,7 +33,6 @@ export default {
     return {
       store,
       cards: [],
-      //card: [],
     };
   },
   mounted() {
@@ -63,6 +64,7 @@ export default {
               endDate: data.endDate,
               startTime: data.startTime,
               endTime: data.endTime,
+              location: data.location,
             });
           });
         });
@@ -70,17 +72,24 @@ export default {
   },
   computed: {
     filteredCards() {
+      // filter by date
       if (store.dateFrom != "") {
         if (store.dateTo != "") {
+          // vrati sve unutar odabranih datuma
           return this.cards.filter(
             (card) =>
               card.startDate >= store.dateFrom && card.endDate <= store.dateTo
           );
         }
+        // vrati samo one nakon odabranog startDate
         return this.cards.filter((card) => card.startDate >= store.dateFrom);
       } else {
         return this.cards;
       }
+      // filter by name
+      // uh...
+      //  if(store.wantedName != "")
+      //    ponovi gornji postupak...
     },
   },
 };
@@ -101,8 +110,8 @@ h2 {
 #lane {
   overflow: auto;
   white-space: nowrap;
-  background-color: rgb(15, 2, 2);
-  padding: .75em 0;
+  /* background-color: rgb(15, 2, 2); */
+  padding: 0.75em 0;
   display: flex;
 }
 </style>

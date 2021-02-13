@@ -134,8 +134,8 @@ export default {
         }, 4000);
         this.calendarOpen = true;
       }
-      console.log("Date from: ", this.dateFrom);
-      console.log("Date to: ", this.dateTo);
+      /* console.log("Date from: ", this.dateFrom);
+      console.log("Date to: ", this.dateTo); */
     },
     cancel() {
       this.calendarOpen = false;
