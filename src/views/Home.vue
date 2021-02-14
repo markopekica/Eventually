@@ -71,12 +71,6 @@
         <div class="filter">
           <div v-if="dateFrom != ''">date from: {{ dateFrom }}</div>
           <div v-if="dateTo != ''">date to: {{ dateTo }}</div>
-          <!--
-            <div>jos jedan</div>
-            <div>i jos jedan</div>
-            <div>i jos jedan</div>
-            <div>i jos</div>
-          -->
         </div>
       </div>
     </div>
@@ -107,9 +101,6 @@ export default {
       date: new Date().toISOString().substr(0, 10),
       err: "",
     };
-  },
-  mounted() {
-    /* this.applyDateFilter() */
   },
   methods: {
     showCalendar() {

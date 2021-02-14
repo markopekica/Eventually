@@ -70,7 +70,7 @@ router.beforeEach((to, from, next) => {
 
   if (noUser && to.meta.needsUser) {
     next("login");
-    console.error("NE MOŽE");
+    //console.error("NE MOŽE");
   } else {
     next();
   }

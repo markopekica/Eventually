@@ -9,7 +9,6 @@
           v-if="eventCard.category == lane_info.title"
           :key="eventCard.id"
           :card_info="eventCard"
-          :lane_info="lane_info"
         />
       </div>
     </div>
@@ -40,8 +39,7 @@ export default {
   },
   methods: {
     getCards() {
-      console.log("Firebase dohvat...");
-
+      
       db.collection("events")
         .get()
         .then((query) => {
@@ -68,6 +66,7 @@ export default {
             });
           });
         });
+        
     },
   },
   computed: {
@@ -110,8 +109,8 @@ h2 {
 #lane {
   overflow: auto;
   white-space: nowrap;
-  /* background-color: rgb(15, 2, 2); */
   padding: 0.75em 0;
   display: flex;
+  /* background-color: rgb(15, 2, 2); */
 }
 </style>

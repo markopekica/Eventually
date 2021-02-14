@@ -19,7 +19,11 @@
     <div class="main-content">
       <div class="top-main">
         <div class="item picture-div">
-          <img :src="$route.query.card.eventImage" class="cover-picture" alt="pic" />
+          <img
+            :src="$route.query.card.eventImage"
+            class="cover-picture"
+            alt="pic"
+          />
         </div>
         <div class="interactive">
           <div class="interactive-icons-div">
@@ -30,14 +34,20 @@
                 <span id="watch-icon" class="material-icons" @click="follow">
                   visibility
                 </span>
-                <span class="number-of"> interested: 0 </span>
+                <span class="number-of">
+                  interested: <br />
+                  0
+                </span>
               </div>
               <div class="like-div">
                 <!-- <span class="response-label">99% will come</span> -->
                 <span id="heart-icon" class="material-icons" @click="like">
                   favorite
                 </span>
-                <span class="number-of"> comming: 0 </span>
+                <span class="number-of"
+                  >comming: <br />
+                  {{ this.numLiked }}
+                </span>
               </div>
             </div>
             <span class="material-icons"> share </span>
@@ -105,8 +115,8 @@
       <div class="previse-divova">
         <span class="material-icons description-icon"> description </span>
         <div>
-        <span class="material-icons site"> language </span>
-        <!-- <div class="hide">i should be a link. to official site</div> -->
+          <span class="material-icons site"> language </span>
+          <!-- <div class="hide">i should be a link. to official site</div> -->
         </div>
       </div>
       <div class="card-description">
@@ -148,7 +158,7 @@
       </a>
     </div> -->
 
-  <!--
+    <!--
 
     <div class="comment-section-div">
       <form>
@@ -232,36 +242,92 @@ export default {
     //usr: String,
   },
   data() {
-    return {
-      routeData: this.$route.query,
-      usr: this.$attrs.user.email,
-      currentEventId: this.$route.query.card.id
-    };
+    if (this.user_status) {
+      return {
+        routeData: this.$route.query,
+        usr: this.$attrs.user.email,
+        currentEventId: this.$route.query.card.id,
+        liked: false,
+        numLiked: 0,
+        watched: false,
+        numWatched: Number,
+      };
+    } else {
+      return {
+        routeData: this.$route.query,
+        //usr: this.$attrs.user.email,
+        currentEventId: this.$route.query.card.id,
+        liked: false,
+        numLiked: 0,
+        watched: false,
+        numWatched: Number,
+      };
+    }
+  },
+  mounted() {
+    this.checkIfLiked();
   },
   methods: {
+    checkIfLiked() {
+      if (this.user_status) {
+        db.collection("events")
+          .doc(this.currentEventId)
+          .collection("hearts")
+          .get()
+          .then((query) => {
+            query.forEach((doc) => {
+              //console.log(doc.data());
+              this.numLiked += 1;
+              if (doc.data().usr == this.usr) {
+                this.liked = true;
+                document.getElementById("heart-icon").style.color = "#e0115f";
+                //console.log(this.liked);
+              }
+            });
+          });
+      } else {
+        db.collection("events")
+          .doc(this.currentEventId)
+          .collection("hearts")
+          .get()
+          .then((query) => {
+            query.forEach(() => {
+              this.numLiked += 1;
+            });
+          });
+      }
+    },
     like() {
-      db.collection('events').get().then((query => {
-        query.forEach((doc) => {
-          // id spremit u folder od usera koji lajka
-          //let saveHere = "likes/" + this.$attrs.user.email + "/"
-          //console.log("this id: ", this.currentEventId)
-          //console.log('ID: ', doc.id)
-          if (doc.id == this.currentEventId) {
-            console.log("ID: ", this.currentEventId, "\ndoc: ", doc, "\nthis is it. save this event")
-          } else {
-            console.log("sta da tu stavim? to nije taj event")
-          }
-          //console.log('podaci: ', doc.data())
-        })
-      }))
-      
-
-      let heartColor = document.getElementById("heart-icon").style.color;
-      if (heartColor != "#e0115f" && this.user_status == true) {
-        document.getElementById("heart-icon").style.color = "#e0115f";
-      } /* else {
-        document.getElementById("heart-icon").style.color = "black";
-      } */
+      if (this.user_status != true) {
+        alert("Login to use this feature");
+      } else {
+        // ako nije jos lajkao ubaci ga
+        if (this.liked == false) {
+          const data = {
+            usr: this.usr,
+          };
+          // sprema usera u ovaj event
+          // https://firebase.google.com/docs/firestore/manage-data/add-data
+          db.collection("events")
+            .doc(this.currentEventId)
+            .collection("hearts")
+            .doc(this.usr)
+            .set(data);
+          document.getElementById("heart-icon").style.color = "#e0115f";
+          this.liked = true;
+          this.numLiked += 1;
+        } else if (this.liked == true) {
+          // ako je obrisi ga iz lajkova
+          db.collection("events")
+            .doc(this.currentEventId)
+            .collection("hearts")
+            .doc(this.usr)
+            .delete();
+          document.getElementById("heart-icon").style.color = "#2c3e50";
+          this.liked = false;
+          this.numLiked -= 1;
+        }
+      }
     },
     follow() {
       if (this.user_status == true) {
@@ -353,12 +419,14 @@ h1 {
   /* padding: 1.5em 1em 1em 1em; */
   padding: 0.2em 0;
   color: rgb(204, 204, 204);
-  background-color: #111;
+  //background-color: #111;
+  box-shadow: 0em 0 .95em .088em #111;
+  color: #111;
   border-radius: 1.5em;
   /* border: 1px solid green; */
 }
 .text-near-icon {
-  margin-left: 0.5em;
+  margin-left: 0.75em;
 }
 .card-category,
 .card-date,
@@ -406,8 +474,8 @@ hr {
   * {
     margin-right: 1em;
   }
-  .site:hover{
-    color:skyblue;
+  .site:hover {
+    color: skyblue;
   }
 }
 .card-description {
@@ -507,8 +575,9 @@ hr {
   .description-div,
   hr,
   .comment-section-div {
-    width: 900px;
+    width: 800px;
   }
+  .basic-info{width:470px;}
 }
 @media only screen and (max-width: 600px) {
   .main-content {

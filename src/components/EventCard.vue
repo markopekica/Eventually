@@ -23,7 +23,7 @@
       <router-link
         class="rutlink"
         tag="button"
-        :to="{ path: '/EventInfo', query: { card: this.card_info } }"
+        :to="{ path: '/eventInfo', query: { card: this.card_info } }"
       >
         More
       </router-link>
@@ -38,7 +38,7 @@ export default {
   name: "EventCard",
   props: {
     card_info: Object,
-    lane_info: Object,
+    //lane_info: Object,
   },
   data() {
     return {
