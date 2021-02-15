@@ -27,16 +27,16 @@
         </div>
         <div class="interactive">
           <div class="interactive-icons-div">
-            <span class="material-icons host-icon">account_circle</span>
+            <!-- <span class="material-icons host-icon">account_circle</span> -->
             <div class="watch-like-icon-div">
               <div class="watch-div">
                 <!-- <span class="response-label">interested</span> -->
-                <span id="watch-icon" class="material-icons" @click="follow">
+                <span id="eye-icon" class="material-icons" @click="watch">
                   visibility
                 </span>
                 <span class="number-of">
-                  interested: <br />
-                  0
+                  interested <br>
+                  {{ this.numWatched }}
                 </span>
               </div>
               <div class="like-div">
@@ -44,13 +44,13 @@
                 <span id="heart-icon" class="material-icons" @click="like">
                   favorite
                 </span>
-                <span class="number-of"
-                  >comming: <br />
+                <span class="number-of">
+                  will try to come <br>
                   {{ this.numLiked }}
                 </span>
               </div>
             </div>
-            <span class="material-icons"> share </span>
+            <!-- <span class="material-icons"> share </span> -->
           </div>
         </div>
         <!-- /top (picture, like icon) -->
@@ -239,7 +239,6 @@ export default {
   name: "EventInfo",
   props: {
     user_status: Boolean,
-    //usr: String,
   },
   data() {
     if (this.user_status) {
@@ -250,9 +249,10 @@ export default {
         liked: false,
         numLiked: 0,
         watched: false,
-        numWatched: Number,
+        numWatched: 0,
       };
     } else {
+      // inace baca err u konzolu: can't read email of undefined
       return {
         routeData: this.$route.query,
         //usr: this.$attrs.user.email,
@@ -260,12 +260,13 @@ export default {
         liked: false,
         numLiked: 0,
         watched: false,
-        numWatched: Number,
+        numWatched: 0,
       };
     }
   },
   mounted() {
     this.checkIfLiked();
+    this.checkIfWatched();
   },
   methods: {
     checkIfLiked() {
@@ -293,6 +294,7 @@ export default {
           .then((query) => {
             query.forEach(() => {
               this.numLiked += 1;
+              document.getElementById("heart-icon").style.color = "#e0115f";
             });
           });
       }
@@ -316,6 +318,16 @@ export default {
           document.getElementById("heart-icon").style.color = "#e0115f";
           this.liked = true;
           this.numLiked += 1;
+          if (this.watched == true) {
+            db.collection("events")
+              .doc(this.currentEventId)
+              .collection("eye")
+              .doc(this.usr)
+              .delete();
+            document.getElementById("eye-icon").style.color = "#2c3e50";
+            this.watched = false;
+            this.numWatched -= 1;
+          }
         } else if (this.liked == true) {
           // ako je obrisi ga iz lajkova
           db.collection("events")
@@ -329,9 +341,73 @@ export default {
         }
       }
     },
-    follow() {
-      if (this.user_status == true) {
-        document.getElementById("watch-icon").style.color = "skyblue";
+    checkIfWatched() {
+      if (this.user_status) {
+        db.collection("events")
+          .doc(this.currentEventId)
+          .collection("eye")
+          .get()
+          .then((query) => {
+            query.forEach((doc) => {
+              this.numWatched += 1;
+              if (doc.data().usr == this.usr) {
+                this.watched = true;
+                document.getElementById("eye-icon").style.color = "skyblue";
+              }
+            });
+          });
+      } else {
+        db.collection("events")
+          .doc(this.currentEventId)
+          .collection("eye")
+          .get()
+          .then((query) => {
+            query.forEach(() => {
+              this.numWatched += 1;
+              document.getElementById("eye-icon").style.color = "skyblue";
+            });
+          });
+      }
+    },
+    watch() {
+      if (this.user_status != true) {
+        alert("Login to use this feature");
+      } else {
+        if (this.watched == false) {
+          const data = {
+            usr: this.usr,
+          };
+          // dodaj ga u oko
+          db.collection("events")
+            .doc(this.currentEventId)
+            .collection("eye")
+            .doc(this.usr)
+            .set(data);
+          document.getElementById("eye-icon").style.color = "skyblue";
+          this.watched = true;
+          this.numWatched += 1;
+          if (this.liked == true) {
+            // obrisi ga iz srca
+            db.collection("events")
+              .doc(this.currentEventId)
+              .collection("hearts")
+              .doc(this.usr)
+              .delete();
+            document.getElementById("heart-icon").style.color = "#2c3e50";
+            this.liked = false;
+            this.numLiked -= 1;
+          }
+        } else if (this.watched == true) {
+          // ako je obrisi ga iz lajkova
+          db.collection("events")
+            .doc(this.currentEventId)
+            .collection("eye")
+            .doc(this.usr)
+            .delete();
+          document.getElementById("eye-icon").style.color = "#2c3e50";
+          this.watched = false;
+          this.numWatched -= 1;
+        }
       }
     },
   },
@@ -404,7 +480,7 @@ h1 {
   font-size: 70%;
 }
 #heart-icon:hover,
-#watch-icon:hover {
+#eye-icon:hover {
   cursor: pointer;
 }
 .number-of {
@@ -420,7 +496,7 @@ h1 {
   padding: 0.2em 0;
   color: rgb(204, 204, 204);
   //background-color: #111;
-  box-shadow: 0em 0 .95em .088em #111;
+  box-shadow: 0em 0 0.3em 0.01em #111;
   color: #111;
   border-radius: 1.5em;
   /* border: 1px solid green; */
@@ -577,7 +653,9 @@ hr {
   .comment-section-div {
     width: 800px;
   }
-  .basic-info{width:470px;}
+  .basic-info {
+    width: 470px;
+  }
 }
 @media only screen and (max-width: 600px) {
   .main-content {
