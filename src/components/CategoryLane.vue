@@ -39,7 +39,6 @@ export default {
   },
   methods: {
     getCards() {
-      
       db.collection("events")
         .get()
         .then((query) => {
@@ -82,13 +81,38 @@ export default {
         }
         // vrati samo one nakon odabranog startDate
         return this.cards.filter((card) => card.startDate >= store.dateFrom);
-      } else {
+      } /* else {
         return this.cards;
-      }
-      // filter by name
-      // uh...
-      //  if(store.wantedName != "")
-      //    ponovi gornji postupak...
+      } */
+
+       // filter by name
+        let naziv = this.store.nameFilter;
+        let newCards = [];
+
+        if (store.nameFilter != "") {
+          for (let card of this.cards) {
+            if (card.title.indexOf(naziv) >= 0) {
+              newCards.push(card);
+            }
+          }
+          return newCards;
+        }
+
+        // filter by location
+        let lokacija = this.store.locationFilter;
+          let newCards1 = [];
+          if (store.locationFilter != "") {
+            for (let card of this.cards) {
+              if (card.location.indexOf(lokacija) >= 0) {
+                newCards1.push(card);
+              }
+            }
+            
+            return newCards1;
+            
+          }
+
+      return this.cards;
     },
   },
 };

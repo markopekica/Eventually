@@ -2,6 +2,8 @@ export default{
     currentUser: null,
     dateFrom: "",
     dateTo: "",
+    nameFilter: "",
+    locationFilter: "",
     lanes: [
       { id: "1", title: "Music" },
       { id: "2", title: "Sports/Outdoors" },

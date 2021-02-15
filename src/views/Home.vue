@@ -6,7 +6,9 @@
         <span class="material-icons tool-icon" @click="showCalendar"
           >date_range</span
         >
-        <span class="material-icons tool-icon">filter_list</span>
+        <span class="material-icons tool-icon" @click="showFilters"
+          >filter_list</span
+        >
         <span
           id="add-placeholder"
           class="material-icons tool-icon"
@@ -24,12 +26,52 @@
           >add</router-link
         >
       </div>
+
       <!--  DROPDOWNS  -->
       <div class="tools">
+        <!--  Ovdje pocinju filteri  -->
+        <div class="filteri" v-if="filtersOpen">
+          <div class="">
+            <span style="width: fit-content; margin: auto"
+              >View events by their name or their location</span
+            >
+            <span class="material-icons" id="cancel" @click="cancel">
+              highlight_off
+            </span>
+          </div>
+          <div class="filterByName">
+            <input
+              type="text"
+              class="filterBy_input"
+              id="filterByName"
+              placeholder="Event name"
+              v-model="store.nameFilter"
+            />
+          </div>
+          <br />
+          <div class="filterByLocation">
+            <input
+              type="text"
+              class="filterBy_input"
+              id="filterByLocation"
+              placeholder="Event location"
+              v-model="store.locationFilter"
+            />
+          </div>
+          <button
+            id="apply-button"
+            type="button"
+            @click="applyFilters"
+            class="btn btn-primary"
+          >
+            ok
+          </button>
+        </div>
+        <!--  Ovdje pocinje kalendar  -->
         <div class="calendar-div" v-if="calendarOpen">
           <div class="uh">
             <span style="width: fit-content; margin: auto"
-              >When do You want to go?</span
+              >View events by given date.</span
             >
             <span class="material-icons" id="cancel" @click="cancel">
               highlight_off
@@ -97,12 +139,26 @@ export default {
       calendarOpen: false,
       dateFrom: "",
       dateTo: "",
+      filtersOpen: false,
+      filterByName: "",
+      filterByLocation: "",
       /* default date-from is today: https://renatello.com/vue-js-input-date/ */
       date: new Date().toISOString().substr(0, 10),
       err: "",
     };
   },
   methods: {
+    showFilters() {
+      this.filtersOpen == false
+        ? (this.filtersOpen = true)
+        : (this.filtersOpen = false);
+    },
+    applyFilters() {
+      this.filtersOpen = false;
+      this.filterByName = document.getElementById("filterByName").value;
+      this.filterByLocation = document.getElementById("filterByLocation").value;
+      console.log(this.filterByName);
+    },
     showCalendar() {
       this.calendarOpen == false
         ? (this.calendarOpen = true)
@@ -130,6 +186,7 @@ export default {
     },
     cancel() {
       this.calendarOpen = false;
+      this.filtersOpen = false;
     },
     addEvent() {
       if (this.$attrs.user_status == true) {
@@ -161,12 +218,11 @@ export default {
 .tool-icon {
   text-decoration: none;
   cursor: pointer;
-  
 }
-.tool-icon:hover{
-    //box-shadow: 4px 4px 0px 0px skyblue;
-    box-shadow: 0em 0 .75em .06em skyblue;
-  }
+.tool-icon:hover {
+  //box-shadow: 4px 4px 0px 0px skyblue;
+  box-shadow: 0em 0 0.75em 0.06em skyblue;
+}
 .calendar-div {
   margin: auto;
   border-bottom: 1px dotted #111;
@@ -180,7 +236,7 @@ export default {
 }
 .date-from,
 .date-to {
-  /* border: 1px solid red; */
+ border: 1px solid red; 
   width: 70%;
   display: flex;
   align-items: center;
@@ -190,14 +246,47 @@ export default {
   margin: 0.2em auto 0;
   justify-self: center;
   border-radius: 8px;
-  border: 1px dotted #111;
+  border: 2px solid #dadada;
   /* border:1px solid gold; */
 }
+.calendar:hover {
+  border-color: rgb(97, 97, 97);
+}
+
 .calendar-tag {
   width: 20%;
   align-self: flex-end;
-  /* border: 1px solid blue; */
 }
+
+.filteri {
+  margin: auto;
+  border-bottom: 1px dotted #111;
+  border-top: 1px dotted #111;
+  padding-top: 0.5em;
+  border-radius: 2em;
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  margin-top: -4em;
+}
+
+.filterByName,
+.filterByLocation {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  margin: 0.5em auto;
+}
+.filterBy_input {
+  margin: 0.2em auto 0;
+  justify-self: center;
+  border-radius: 8px;
+  border: 2px solid #dadada;
+}
+.filterBy_input:hover {
+    border-color: rgb(97, 97, 97);
+  }
+
 .errorInDate {
   margin: 0.5em;
   color: red;
@@ -215,7 +304,8 @@ export default {
   box-shadow: 3px 3px 6px skyblue;
   opacity: 0.88;
 }
-.uh { //txt na kalendaru: kad zelis ic?
+.uh {
+  //txt na kalendaru: kad zelis ic?
   display: flex;
   width: 90%;
   margin: 0.25em auto;
@@ -241,5 +331,8 @@ export default {
     padding: 0.25em;
     border-radius: 4px;
   }
+}
+::-webkit-input-placeholder {
+  font-style: italic;
 }
 </style>
