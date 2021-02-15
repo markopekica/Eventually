@@ -3,7 +3,16 @@
     <div class="like-lane">
       <p>liked events:</p>
       <event-card
-        v-for="eventCard in cards"
+        v-for="eventCard in cardsHeart"
+        :key="eventCard.id"
+        :card_info="eventCard"
+      >
+      </event-card>
+    </div>
+    <div class="eye-lane">
+      <p>watched events:</p>
+      <event-card
+        v-for="eventCard in cardsEye"
         :key="eventCard.id"
         :card_info="eventCard"
       >
@@ -34,7 +43,8 @@ export default {
   data() {
     return {
       store,
-      cards: [],
+      cardsHeart: [],
+      cardsEye: [],
       usr: this.$attrs.user.email,
     };
   },
@@ -46,20 +56,48 @@ export default {
       db.collection("events")
         .get()
         .then((query) => {
-          this.cards = [];
+          this.cardsHeart = [];
+          this.cardsEye = [];
 
-          query.forEach((doc1) => {
-            const data = doc1.data();
+          query.forEach((event) => {
+            const data = event.data();
 
             db.collection("events")
-              .doc(doc1.id)
+              .doc(event.id)
               .collection("hearts")
               .get()
               .then((query) => {
-                query.forEach((doc2) => {
-                  if (doc2.data().usr == this.usr) {
-                    this.cards.push({
-                      id: doc1.id,
+                query.forEach((hearts) => {
+                  if (hearts.data().usr == this.usr) {
+                    this.cardsHeart.push({
+                      id: event.id,
+                      time: data.posted_at,
+                      eventImage: data.eventImage,
+                      title: data.eventTitle,
+                      author: data.author,
+                      organization: data.org,
+                      additionalInfo: data.additionalInfo,
+                      category: data.category,
+                      price: data.price,
+                      startDate: data.startDate,
+                      endDate: data.endDate,
+                      startTime: data.startTime,
+                      endTime: data.endTime,
+                      location: data.location,
+                    });
+                  }
+                });
+              });
+
+            db.collection("events")
+              .doc(event.id)
+              .collection("eye")
+              .get()
+              .then((query) => {
+                query.forEach((eye) => {
+                  if (eye.data().usr == this.usr) {
+                    this.cardsEye.push({
+                      id: event.id,
                       time: data.posted_at,
                       eventImage: data.eventImage,
                       title: data.eventTitle,
@@ -104,9 +142,10 @@ export default {
   color: #2c3e50;
   border-radius: 16px;
 }
-.like-lane {
-  width: 100vw;
-  /* border: 1px solid black; */
+.like-lane,
+.eye-lane {
+  width: 90vw;
+  margin: 4em auto;
   display: flex;
   overflow: scroll;
 }
