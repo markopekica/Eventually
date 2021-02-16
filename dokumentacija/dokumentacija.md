@@ -25,7 +25,7 @@ kako dokumenti inace imaju
 
 <br>
 
-Cilj projekta, u sklopu kolegija programsko inženjerstvo, bio je napraviti jasnu, preglednu, čistu i pristupačnu platformu (web aplikaciju), jednostavnog ali učinkovitog dizajna. Namjena aplikacije je djeljenje odnosno, objavu događaja kao i za jednostavan pronalazak istih prema vlasitim željama i ukusu.
+Cilj projekta, u sklopu kolegija programsko inženjerstvo, bio je napraviti jasnu, preglednu, čistu i pristupačnu web aplikaciju, jednostavnog ali učinkovitog dizajna. Namjena aplikacije je djeljenje odnosno, objavu događaja kao i za jednostavan pronalazak istih prema vlasitim željama i ukusu.
 
 **Ciljano tržište** je sva populacija kojoj je dozvoljen posjet događaja (dakle dobna granica ovisiti će o pojedinom događaju), odnosno koji žele provesti neko vrijeme prisustvujući na nekom od organiziranih, javnih događaja; poput primjerice grupnih rekreativnih sportstkih aktivnosti, glazbenih nastupa i događaja, online događaja (edukativni, 'entertainment'), kinematografskog sadržaja... **Korisnici** aplikacije su stoga ljudi koji žele proširiti glas o nekom događaju ili ljudi koji žele posjetiti neki događaj.
 
@@ -56,9 +56,6 @@ _Druga prednost_ je ta da aplikacija ima jednu glavnu svrhu. Bazirana je isklju�
 - Ako želite, priložiti i kako je izgledao prototip sučelja za aplikaciju. To može biti u obliku nekoliko
   "ekrana": prijava, početni izbornik (ako ima), podešavanje opcija (ako treba) te svakako ekrane za
   kompliciranije procese.
-
-Početna ideja bila je dosta stvari napraviti pomoću pop-up prozora. Prilikom realizacije ta je ideja odbačena te su skočni prozori napravljeni kao 'samostalne' stranice. Na slici je prikazan login koi se pojavljuje preko glavne stranice (home) slide-down animacijom.
-![prototip -> login](prototip_login.png)
 
 <div style="page-break-after:always;"></div>
 

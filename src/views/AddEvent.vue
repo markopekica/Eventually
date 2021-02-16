@@ -50,7 +50,6 @@
           <input
             v-model="newEventName"
             type="text"
-            id="NameEvent"
             class="form-control"
             placeholder="Event name"
           />
@@ -62,7 +61,6 @@
           <input
             v-model="newEventOrg"
             type="text"
-            id="NameEvent"
             class="form-control"
             placeholder="Organizer"
           />
@@ -166,7 +164,7 @@
 
       <form>
         <h2>Location</h2>
-        <h6>Let your attendees know where your event will be taking place</h6>
+        <h6>Let attendees know where your event will be taking place.</h6>
         <div class="form-group"> 
           <input
             v-model="newEventLocation"
@@ -350,10 +348,10 @@ form {
   justify-content: center;
 }
 
-#NameEvent {
+.form-control {
   border-radius: 10px;
 }
-#NameEvent:hover {
+.form-control:hover {
   border-color: rgb(97, 97, 97);
 }
 

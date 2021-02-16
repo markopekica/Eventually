@@ -73,7 +73,9 @@ Karlo:
         - [x] Design the view
         - [x] Make it work
     - Lane
-      - [ ] Hide lane if no cards in category
+      - [X] Hide lane if no cards in category
+      - [ ] Ubacit jos kategorija u store.js
+        - [ ] dodat ih na input tag za category, na AddEvent.vue
   - [X] EventInfo
     - [X] add to favorites
   - [ ] **UserProfile**

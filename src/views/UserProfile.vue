@@ -1,7 +1,14 @@
 <template>
   <div class="user-profile-page">
-    <div class="like-lane">
-      <p>liked events:</p>
+    <div style="margin: 1em auto; color: hotpink">
+      <p>welcome {{ usr }}</p>
+    </div>
+    <div class="my-events" style="margin: 6em auto;">
+
+<div class="like-lane">
+      <span id="heart-icon" class="material-icons" style="color: #e0115f;">
+        favorite
+      </span>
       <event-card
         v-for="eventCard in cardsHeart"
         :key="eventCard.id"
@@ -9,8 +16,11 @@
       >
       </event-card>
     </div>
+    <span id="eye-icon" class="material-icons" style="color:skyblue; margin:auto;">
+        visibility
+      </span>
     <div class="eye-lane">
-      <p>watched events:</p>
+      
       <event-card
         v-for="eventCard in cardsEye"
         :key="eventCard.id"
@@ -18,6 +28,9 @@
       >
       </event-card>
     </div>
+
+    </div>
+    
     <span class="logout-link-wrapper" @click="logout">
       <router-link
         id="logout-button"
@@ -145,8 +158,10 @@ export default {
 .like-lane,
 .eye-lane {
   width: 90vw;
-  margin: 4em auto;
+  margin: .2em auto 4em auto;
   display: flex;
-  overflow: scroll;
+  overflow: auto;
+  min-height: fit-content;
+  border: 1px dotted #111;
 }
 </style>

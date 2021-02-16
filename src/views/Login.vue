@@ -48,7 +48,7 @@
       </div>
     </form>
     <div id="register-link">
-      <hr />
+      <hr id="crta" />
       <p>
         Don't have an account? You can make one
         <router-link to="/register"><a href="#">here</a></router-link
@@ -128,5 +128,8 @@ form {
   padding: 0.5em;
   margin-top: 1em;
   color: crimson;
+}
+#crta {
+  max-width: 32em;
 }
 </style>

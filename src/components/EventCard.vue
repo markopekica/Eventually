@@ -60,6 +60,7 @@ export default {
 }
 h3 {
   font-size: 160%;
+  overflow: auto;
 }
 .rutlink {
   margin: 0.25em auto;
