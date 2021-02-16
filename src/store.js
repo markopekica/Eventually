@@ -6,8 +6,9 @@ export default{
     locationFilter: "",
     lanes: [
       { id: "1", title: "Music" },
-      { id: "2", title: "Sports/Outdoors" },
-      { id: "3", title: "Film" },
-      { id: "4", title: "Comedy" },
+      { id: "2", title: "Film" },
+      { id: "3", title: "Art" },
+      { id: "4", title: "Food and Drinks" },
+      { id: "5", title: "Sports/Outdoors" },
     ],
 }
