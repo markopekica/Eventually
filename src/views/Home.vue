@@ -150,15 +150,15 @@ export default {
   },
   methods: {
     showFilters() {
-      /* this.filtersOpen == false
-        ? (this.filtersOpen = true)
-        : (this.filtersOpen = false); */
-      if (this.filtersOpen == false) {
+      this.filtersOpen == false
+        ? (this.filtersOpen = true, this.calendarOpen = false)
+        : (this.filtersOpen = false);
+      /* if (this.filtersOpen == false) {
         this.filtersOpen = true
         if (this.calendarOpen == true) {this.calendarOpen = false}
       } else {
         this.filtersOpen = false
-      }
+      } */
     },
     applyFilters() {
       this.filtersOpen = false;

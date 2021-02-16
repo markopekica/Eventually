@@ -86,6 +86,7 @@
             <option value="Art">Art</option>
             <option value="Food/Drinks">Food and drinks</option>
             <option value="Sports/Outdoors">Sports/Outdoors</option>
+            <option value="Random">Random</option>
           </select>
 
           <!-- Odabir cijene -->

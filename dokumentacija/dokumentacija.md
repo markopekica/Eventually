@@ -25,17 +25,17 @@ kako dokumenti inace imaju
 
 <br>
 
-Cilj projekta, u sklopu kolegija programsko inženjerstvo, bio je napraviti jasnu, preglednu, čistu i pristupačnu web aplikaciju, jednostavnog ali učinkovitog dizajna. Namjena aplikacije je djeljenje odnosno, objavu događaja kao i za jednostavan pronalazak istih prema vlasitim željama i ukusu.
+Cilj projekta, u sklopu kolegija programsko inženjerstvo, bio je napraviti jasnu, preglednu, čistu i pristupačnu web aplikaciju, jednostavnog ali učinkovitog dizajna. Namjena aplikacije je djeljenje odnosno, objava događaja kao i jednostavan pronalazak istih prema vlasitim željama i ukusu.
 
 **Ciljano tržište** je sva populacija kojoj je dozvoljen posjet događaja (dakle dobna granica ovisiti će o pojedinom događaju), odnosno koji žele provesti neko vrijeme prisustvujući na nekom od organiziranih, javnih događaja; poput primjerice grupnih rekreativnih sportstkih aktivnosti, glazbenih nastupa i događaja, online događaja (edukativni, 'entertainment'), kinematografskog sadržaja... **Korisnici** aplikacije su stoga ljudi koji žele proširiti glas o nekom događaju ili ljudi koji žele posjetiti neki događaj.
 
 <br>
 
-Mnogo modernih stranica (/web aplikacija) je ultra nabrijano dizajnirano. Svašta se dešava. Reklame skaču na sve strane. Stranice sa svrhom koju mi nastojimo ispuniti nisu puno drugačije. Naša stranica trebala bi biti jasna, čista, pregledna i nenapadna, **prednost** toga bilo bi veće usmjerenje pažnje na same događaje. _Prednost_ je i manja potrošnja kapaciteta mozga koju će korisnici upotrebljavati tijekom korištenja naše aplikacije (pažnja se neče rasipati na nepotreban sadržaj, jer ga neće ni biti).
+Mnogo modernih stranica (/web aplikacija) je ultra nabrijano dizajnirano. Mnogo se dešava. Reklame skaču na sve strane. Stranice sa svrhom koju mi nastojimo ispuniti nisu puno drugačije. Naša stranica trebala bi biti jasna, čista, pregledna i nenapadna, **prednost** toga bilo bi veće usmjerenje pažnje na same događaje. _Prednost_ je i manja potrošnja kapaciteta mozga koju će korisnici upotrebljavati tijekom korištenja naše aplikacije (pažnja se neče rasipati na nepotreban sadržaj, jer ga neće ni biti).
 
 _Druga prednost_ je ta da aplikacija ima jednu glavnu svrhu. Bazirana je isključivo oko društvenih događaja; Za razliku od drugih aplikacija koje uz mogućnost objave/pretrage događaja pružaju mnoge druge usluge, primjerice facebook, odnosno aplikacija kojima svrha nije bazirana primarno oko društvenih događaja. To je prednost iz dva razloga. Jedan je taj da korisnik može koristiti aplikaciju samo sa jednom svrhom, drugi je da zbog veće specjalizacije možemo bolje prilagoditi usluge ciljanom tržištu.
 
-    Mnogo ljudi ima korisničke profile na raznim durštvenim mrežama, poput facebook-a. Facebook primjerice ima integriranu mogućnost za objavu događaja. No Facebook nije u redu. Koristite našu aplikaciju. Nemojte podupirati kriminalne ili polu-kriminalne organizacije pod vodstvom ljudi upitnih moralnih načela.
+    Mnogo ljudi ima korisničke profile na raznim durštvenim mrežama, poput facebook-a. Facebook primjerice ima integriranu mogućnost za objavu događaja. No Facebook nije u redu, pa savjetujemo da umjesto toga koristite našu aplikaciju.
 
 <div style="page-break-after:always;"></div>
 
@@ -49,7 +49,7 @@ _Druga prednost_ je ta da aplikacija ima jednu glavnu svrhu. Bazirana je isklju�
   "Use Case" dijagramu. Opisati korisničke scenarije na temelju kojih je
   izrađen dijagram. -->
 
-<br>
+<!-- <br> -->
 
 - Opisati i grupirati funkcionalnosti po skupinama korisnika (pr. administrator, menadžer, korisnik
   smartphone-a, ...). Priložiti "Use Case" dijagram cijelog sustava.
@@ -119,10 +119,44 @@ Početni klasni dijagram:
 
 <div style="page-break-after:always;"></div>
 
-**Treba napravit novi, prilagođen**
+**Klasni dijagram prilagođen stvarnoj aplikaciji**
 
-- Sastaviti klasni dijagram (eng. Class diagram) za objekte iz domene aplikacije koji se spremaju na
-  bazu/backend (Korisnik, Račun, Artikl …) te pojasniti po potrebi ključne dijelove dijagrama (npr. zbog čega se negdje koristi agregacija, kompozicija, nasljeđivanje) ako to nije intuitivno jasno.
+<!-- - Sastaviti klasni dijagram (eng. Class diagram) za objekte iz domene aplikacije koji se spremaju na
+  bazu/backend (Korisnik, Račun, Artikl …) te pojasniti po potrebi ključne dijelove dijagrama (npr. zbog čega se negdje koristi agregacija, kompozicija, nasljeđivanje) ako to nije intuitivno jasno. -->
+
+- Objekti o kojima spremamo podatke na backend (aplikacija koristi Firebase za backend soluciju):
+  - user
+  - event
+    - url slike
+    - broj zainteresiranih za event
+<!-- ![](dijagrami/New_UML_Class_Diagram.png) -->
+<div style="display:flex; flex-direction:column; text-align:center;">
+  <img src="dijagrami/New_UML_Class_Diagram.png">
+  <figcaption>Class Diagram - Signavio</figcaption>
+</div>
+
+'Najškakljiviji' dio diagrama su mape 'hearts' i 'eye' u koje se pohranjuje email korisnika koji označi pojedini event za pripadajućom oznakom. Kod je napisan tako da za jedan event svaki korisnik može imati označenu samo jednu od dvije oznake (ne može označiti 1 event sa obje oznake).
+
+**Odnos event->hearts/eye**   
+Veza event - hearts, event - eye je veza kompozicije. Ako se event obriše treba obrisati i pripadajuče mape hearts, eye; ukoliko iste postoje za taj event. Svaki event može imati 0 ili 1 od te dvije mape; jedna mapa ima samo jedan 'parent' event.
+
+<div style="page-break-after:always;"></div>
+
+- **Odnos user->hearts/eye**; Veza je ista kao u odnosu eventa i mapa za oznaku (kompozicija). Vjerujem da ovisno o tome kako gledamo možemo vezu shvatiti na 2 načina:
+  1. user -- 1..* ---- 0..1 -- eye/hearts
+     - svaka od 2 mape može imati pohranjen mail od 1 ili više korisnika
+     - 1 ili više korisnika može biti pohranjen u mapu za pojedini event 0 ili jednom
+  2. user -- 1 ---- 0..* -- eye/hearts
+     -  svaki user može staviti oznaku u 0 ili više mapa (za različite evente)
+     - u svakoj se mapi može userov mail može nalaziti samo jednom 
+
+<!-- <br>
+
+**KARLO - stavi tu malo ljepsi iz lucid charta**
+<div style="display:flex; flex-direction:column; text-align:center;">
+  <img src="dijagrami/New_UML_Class_Diagram.png">
+  <figcaption>Class Diagram - Lucid Chart</figcaption>
+</div> -->
 
 <div style="page-break-after:always;"></div>
 
@@ -133,6 +167,32 @@ Početni klasni dijagram:
   aplikaciji (npr. Izrada računa, …) gdje je vidljivo koje se Vue komponente koriste
   (views/components), te na koji način su povezane. Vue komponentu prikazati kao jednu klasu i
   njezine „data“ kao atribute.
+
+<div style="display:flex;">
+  <div>
+    <img src="4/popis_fajlova.png">
+    <figcaption>Lista dokumenata u projektu</figcaption>
+  </div>
+  <div style="border:1px solid orange; padding:.75em;">
+    <div>
+      kljucne klase za ostvarivanje kljucnih funkcionalnosti:
+      <ul>
+        <li>Home.vue</li>
+          <ul>
+            <li>CategoryLane.vue</li>
+            <ul>
+              <li>EventCard.vue</li>
+            </ul>
+          </ul>
+        <li>Register</li>
+        <ul>
+          <li>Login</li>
+        </ul>
+      </ul>
+    </div>
+  </div>
+</div>
+
 
 <div style="page-break-after:always;"></div>
 
