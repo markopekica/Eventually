@@ -67,8 +67,8 @@ Karlo:
         - [x] Calendar functionality
         - [ ] nakon odabira, zapamti datume pri ponovnom otvaranju kalendara
       - **filters**
-        - [ ] Design
-        - [ ] Functionality
+        - [x] Design
+        - [x] Functionality
       - AddEvent
         - [x] Design the view
         - [x] Make it work

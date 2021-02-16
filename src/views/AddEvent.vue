@@ -16,8 +16,9 @@
     </div>
 
     <div class="addEventContent">
-      <hr class="solid" />
-      <form @submit.prevent="postEvent">
+      <hr v-if="!loading" class="solid" />
+      <img v-if="loading" class = "loading" :src="require('@/assets/loading.gif')"/>
+      <form v-if="!loading" @submit.prevent="postEvent">
         <h2>Basic info</h2>
         <h6>
           Name your event and tell event-goers why they should come. <br />
@@ -75,7 +76,7 @@
         <!-- info o eventu -->
       </form>
 
-      <form @submit.prevent="postEvent">
+      <form v-if="!loading" @submit.prevent="postEvent">
         <!-- Odabir kategorije -->
         <div class="odvoji">
           <select name="tags" v-model="newEventCategory" class="tag-select">
@@ -103,9 +104,9 @@
         </div>
       </form>
 
-      <hr class="solid" />
+      <hr v-if="!loading" class="solid" />
 
-      <form @submit.prevent="postEvent">
+      <form v-if="!loading" @submit.prevent="postEvent">
         <h2>Date & Time</h2>
         <h6>
           Tell event-goers when your event starts and ends <br />
@@ -160,12 +161,12 @@
         </div>
       </form>
       <br />
-      <hr class="solid" />
+      <hr v-if="!loading" class="solid" />
 
-      <form>
+      <form v-if="!loading" @submit.prevent="postEvent">
         <h2>Location</h2>
         <h6>Let attendees know where your event will be taking place.</h6>
-        <div class="form-group"> 
+        <div class="form-group">
           <input
             v-model="newEventLocation"
             type="text"
@@ -174,11 +175,13 @@
             placeholder="address, city"
           />
         </div>
-
       </form>
-      <form @submit.prevent="postEvent">
+      <form v-if="!loading" @submit.prevent="postEvent">
         <button type="submit" class="btn btn-primary">Create</button>
       </form>
+
+      
+      
     </div>
   </div>
 </template>
@@ -197,6 +200,7 @@ export default {
 
   data() {
     return {
+      loading: false,
       croppa: null,
       eventImage: Blob,
       newEventName: "",
@@ -213,77 +217,73 @@ export default {
   },
 
   methods: {
-    postEvent() {
-      this.croppa.generateBlob((blobData) => {
+    getImage() {
+      // Promise based, omotač oko callbacka
 
-        let imageName = "posts/" + this.$attrs.user.email + "/" + Date.now() + ".png";
-
-        console.log(imageName)
-
-        storage
-          .ref(imageName)
-          .put(blobData)
-          .then((result) => {
-            // Uspjesna linija
-            result.ref
-              .getDownloadURL()
-              .then((url) => {
-                console.log("Javni link: ", url);
-
-                const eventName = this.newEventName;
-                const eventOrg = this.newEventOrg;
-                const eventMoreInfo = this.newEventMoreInfo;
-                const eventCategory = this.newEventCategory;
-                const eventPrice = this.newEventPrice;
-                const eventStartDate = this.newEventStartDate;
-                const eventEndDate = this.newEventEndDate;
-                const eventStartTime = this.newEventStartTime;
-                const eventEndTime = this.newEventEndTime;
-                const eventLocation = this.newEventLocation;
-
-                db.collection("events")
-                  .add({
-                    eventTitle: eventName,
-                    author: this.$attrs.user.email,
-                    posted_at: Date.now(),
-                    eventImage: url,
-                    org: eventOrg,
-                    additionalInfo: eventMoreInfo,
-                    category: eventCategory,
-                    price: eventPrice,
-                    startDate: eventStartDate,
-                    endDate: eventEndDate,
-                    startTime: eventStartTime,
-                    endTime: eventEndTime,
-                    location: eventLocation,
-                  })
-                  .then((doc) => {
-                    console.log("Spremljeno", doc);
-
-                    this.newEventName = "";
-                    this.croppa.remove();
-                    this.newEventOrg = "";
-                    this.newEventMoreInfo = "";
-                    this.newEventCategory = "";
-                    this.newEventPrice = "";
-                    this.newEventStartDate = "";
-                    this.newEventEndDate = "";
-                    this.newEventStartTime = "";
-                    this.newEventEndTime = "";
-                    this.newEventLocation = "";
-                  })
-                  .catch((e) => {
-                    console.error(e);
-                  });
-              })
-              .catch((e) => {
-                console.error(e);
-              });
-          })
-          .catch((e) => {
-            console.error(e);
-          });
+      return new Promise((resolveFn) => {
+        this.croppa.generateBlob((blobData) => {
+          resolveFn(blobData);
+        });
       });
+    },
+    async postEvent() {
+      try {
+        this.loading = true;
+        let blobData = await this.getImage()
+        let imageName = "posts/" + this.$attrs.user.email + "/" + Date.now() + ".png";
+        console.log(imageName);
+        let result = await storage.ref(imageName).put(blobData);
+
+        let url = await result.ref.getDownloadURL(); //Promise
+
+            console.log("Javni link: ", url);
+
+            const eventName = this.newEventName;
+            const eventOrg = this.newEventOrg;
+            const eventMoreInfo = this.newEventMoreInfo;
+            const eventCategory = this.newEventCategory;
+            const eventPrice = this.newEventPrice;
+            const eventStartDate = this.newEventStartDate;
+            const eventEndDate = this.newEventEndDate;
+            const eventStartTime = this.newEventStartTime;
+            const eventEndTime = this.newEventEndTime;
+            const eventLocation = this.newEventLocation;
+
+            let doc = await db.collection("events").add({
+              eventTitle: eventName,
+              author: this.$attrs.user.email,
+              posted_at: Date.now(),
+              eventImage: url,
+              org: eventOrg,
+              additionalInfo: eventMoreInfo,
+              category: eventCategory,
+              price: eventPrice,
+              startDate: eventStartDate,
+              endDate: eventEndDate,
+              startTime: eventStartTime,
+              endTime: eventEndTime,
+              location: eventLocation,
+            });
+
+            console.log("Spremljeno", doc);
+
+            this.newEventName = "";
+          //  this.croppa.remove();
+            this.newEventOrg = "";
+            this.newEventMoreInfo = "";
+            this.newEventCategory = "";
+            this.newEventPrice = "";
+            this.newEventStartDate = "";
+            this.newEventEndDate = "";
+            this.newEventStartTime = "";
+            this.newEventEndTime = "";
+            this.newEventLocation = ""; 
+      }
+      catch (e) {
+        console.error("GREŠKA", e);
+      }
+      this.loading = false;
+      this.$router.push("/")
     },
   },
 };
@@ -296,6 +296,10 @@ export default {
 
 ::-webkit-input-placeholder {
   font-style: italic;
+}
+
+.loading {
+  width: 400px;
 }
 
 .col-2,
@@ -364,8 +368,6 @@ textarea {
   border: 2px solid #dadada;
   border-radius: 10px;
   outline: none;
-  
- 
 }
 
 .tag-select {
