@@ -1,6 +1,6 @@
 <template>
   <div class="category-lane">
-    <div id="category">
+    <div id="category" v-if="cardNum > 0">
       <h2>{{ lane_info.title }}</h2>
     </div>
     <div id="lane">
@@ -9,7 +9,7 @@
           v-if="eventCard.category == lane_info.title"
           :key="eventCard.id"
           :card_info="eventCard"
-        />
+        >{{cardNum = cardNum + 1}}</event-card>
       </div>
     </div>
   </div>
@@ -32,6 +32,7 @@ export default {
     return {
       store,
       cards: [],
+      cardNum: 0
     };
   },
   mounted() {
@@ -65,7 +66,6 @@ export default {
             });
           });
         });
-        
     },
   },
   computed: {
@@ -81,36 +81,31 @@ export default {
         }
         // vrati samo one nakon odabranog startDate
         return this.cards.filter((card) => card.startDate >= store.dateFrom);
-      } /* else {
-        return this.cards;
-      } */
+      }
 
-       // filter by name
-        let naziv = this.store.nameFilter;
-        let newCards = [];
-
-        if (store.nameFilter != "") {
-          for (let card of this.cards) {
-            if (card.title.indexOf(naziv) >= 0) {
-              newCards.push(card);
-            }
+      // filter by name
+      let naziv = this.store.nameFilter;
+      let newCards = [];
+      if (store.nameFilter != "") {
+        for (let card of this.cards) {
+          if (card.title.indexOf(naziv) >= 0) {
+            newCards.push(card);
           }
-          return newCards;
         }
+        return newCards;
+      }
 
-        // filter by location
-        let lokacija = this.store.locationFilter;
-          let newCards1 = [];
-          if (store.locationFilter != "") {
-            for (let card of this.cards) {
-              if (card.location.indexOf(lokacija) >= 0) {
-                newCards1.push(card);
-              }
-            }
-            
-            return newCards1;
-            
+      // filter by location
+      let lokacija = this.store.locationFilter;
+      let newCards1 = [];
+      if (store.locationFilter != "") {
+        for (let card of this.cards) {
+          if (card.location.indexOf(lokacija) >= 0) {
+            newCards1.push(card);
           }
+        }
+        return newCards1;
+      }
 
       return this.cards;
     },
@@ -121,10 +116,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .category-lane {
-  margin: 5em 25px;
+  margin: 6em 25px;
 }
 h2 {
   font-weight: 600;
+  /* margin: .2em auto; */
 }
 #category {
   display: flex;

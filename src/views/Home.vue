@@ -71,7 +71,7 @@
         <div class="calendar-div" v-if="calendarOpen">
           <div class="uh">
             <span style="width: fit-content; margin: auto"
-              >View events by given date.</span
+              >Search events by date</span
             >
             <span class="material-icons" id="cancel" @click="cancel">
               highlight_off
@@ -108,7 +108,8 @@
       <!-- pomoc; kasnije cu obrisat -->
       <div class="applied-filters" v-if="dateTo != '' || dateFrom != ''">
         <div style="border-radius: 2px; margin: 0.5em">
-          <strong>applied filters:</strong>
+          <p id="filter-instruction"><strong>applied filters:</strong></p>
+          <p id="hidden-info">To restart filters reload the page</p>
         </div>
         <div class="filter">
           <div v-if="dateFrom != ''">date from: {{ dateFrom }}</div>
@@ -149,9 +150,15 @@ export default {
   },
   methods: {
     showFilters() {
-      this.filtersOpen == false
+      /* this.filtersOpen == false
         ? (this.filtersOpen = true)
-        : (this.filtersOpen = false);
+        : (this.filtersOpen = false); */
+      if (this.filtersOpen == false) {
+        this.filtersOpen = true
+        if (this.calendarOpen == true) {this.calendarOpen = false}
+      } else {
+        this.filtersOpen = false
+      }
     },
     applyFilters() {
       this.filtersOpen = false;
@@ -161,7 +168,7 @@ export default {
     },
     showCalendar() {
       this.calendarOpen == false
-        ? (this.calendarOpen = true)
+        ? (this.calendarOpen = true, this.filtersOpen = false)
         : (this.calendarOpen = false);
     },
     applyDateFilter() {
@@ -236,7 +243,7 @@ export default {
 }
 .date-from,
 .date-to {
- border: 1px solid red; 
+ /* border: 1px solid red;  */
   width: 70%;
   display: flex;
   align-items: center;
@@ -334,5 +341,13 @@ export default {
 }
 ::-webkit-input-placeholder {
   font-style: italic;
+}
+// prikaz odabranih filtra
+#hidden-info {
+  display: none;
+  color: red;
+}
+#filter-instruction:hover + #hidden-info {
+  display: block;
 }
 </style>

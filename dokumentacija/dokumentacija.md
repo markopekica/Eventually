@@ -25,7 +25,7 @@ kako dokumenti inace imaju
 
 <br>
 
-Cilj projekta, u sklopu kolegija programsko inženjerstvo, bio je napraviti jasnu, preglednu, čistu i pristupačnu platformu, jednostavno ali učinkovito dizajniranu; Namjenjenu za dijeljenje odnosno, objavu događaja kao i za jednostavan i lagodan pronalazak istih prema vlasitim željama i ukusu.
+Cilj projekta, u sklopu kolegija programsko inženjerstvo, bio je napraviti jasnu, preglednu, čistu i pristupačnu web aplikaciju, jednostavnog ali učinkovitog dizajna. Namjena aplikacije je djeljenje odnosno, objavu događaja kao i za jednostavan pronalazak istih prema vlasitim željama i ukusu.
 
 **Ciljano tržište** je sva populacija kojoj je dozvoljen posjet događaja (dakle dobna granica ovisiti će o pojedinom događaju), odnosno koji žele provesti neko vrijeme prisustvujući na nekom od organiziranih, javnih događaja; poput primjerice grupnih rekreativnih sportstkih aktivnosti, glazbenih nastupa i događaja, online događaja (edukativni, 'entertainment'), kinematografskog sadržaja... **Korisnici** aplikacije su stoga ljudi koji žele proširiti glas o nekom događaju ili ljudi koji žele posjetiti neki događaj.
 
@@ -81,4 +81,23 @@ _Druga prednost_ je ta da aplikacija ima jednu glavnu svrhu. Bazirana je isklju�
 
 - Pojasniti način na koji se koristi aplikacija koristeći screenshote sa stvarnog sučelja aplikacije
 
+Početna stranica trebala bi biti jednostavna, bez nerazumljivih djelova. U gornjem desnom kutu posjetitelj stranice može otići na stranisu za prijavu i registraciju (registracijom odnosno, prijavom u aplikaciju korisnik ostvaruje sve mogućnosti aplikacije).
+![home](5_upute/home_loggedout.png)
+![login](5_upute/login.png)
+
+
+Toolbar pruža većinu mogućnosti koje korisnik može ostvariti pomoću aplikacije. Mogućnosti su redom:
+
+- kalendar: pruža mogućnost biranja prikazanih događaja po datumu
+- filtri: mogućnost filtriranja po ostalim informacijama, poput naziva i lokacije
+- add (+): vodi korisnika na novi prozor gdje su ponuđena polja za unos podataka o događaju
+  ![toolbar komponenta](5_upute/toolbar.png)
+
+
+Pritiskom na 'more' na bilo kojoj kartici korisnik će biti preusmjeren na odgovarajući prozor na kojem su prikazani svi podaci o pojedinom događaju; također, korisnik ima mogućnost označiti pojedini događaj sa ikonom oko ili srce kako bi sam kreator događaja imao uvid u broj zainteresiranih (srce označava veću sigurnost da će korisnik doći a oko zainteresiranost i manju mogućnost dolaska).  
+![more_info](5_upute/more_info.png)
+Mogućnost oznake sa dolaskom može ostvariti samo prijavljeni korisnik.
+
 <br>
+
+Tu još može doć nešto kad user bude imao gotov profile page
