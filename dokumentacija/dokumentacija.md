@@ -50,13 +50,6 @@ _Druga prednost_ je ta da aplikacija ima jednu glavnu svrhu. Bazirana je isklju�
   izrađen dijagram. -->
 
 <!-- <br> -->
-<<<<<<< HEAD
-
-<!-- - Opisati i grupirati funkcionalnosti po skupinama korisnika (pr. administrator, menadžer, korisnik
-  smartphone-a, ...). Priložiti "Use Case" dijagram cijelog sustava. -->
-
-=======
->>>>>>> e7092619ebd5f97b41dfbf6d31de8fd170cacd1c
 Posjetitelj:
   - pregled događaja (uz mogućnost filtriranja po željenim kriterijima)
   - kreiranje korisničkog računa
@@ -189,17 +182,6 @@ Home sadrži podatke iz store.js-a o kategorijama za CategoryLane, te ih šalje 
 Prikaz .vue dokumenata koji imaju ulogu u **kreiranju računa** (unosu korisnika u bazu), te **prijave korisnika** u sustav.   
 ![login class diagram](4/login_class_diagram.png)
 
-<<<<<<< HEAD
-Najbitnija funkcionalnost aplikacije je kreiranje novog događaja.
-- AddEvent.vue je polazišna točka ove funkcionalnosti.
-  - u odgovarajuća polja ispunjavamo potrebne podatke koje čine jedan događaj, kao što su sama naslovna slika događaja, njegov naziv, vrijeme održavanja i lokacija događaja.
-  - kada smo ispunili sve potrebne podatke, oni se šalju u Firestore
-  - na kraju se ti podaci dohvaćaju u CategoryLane.vue gdje se i prikazuju
-![create_event](4/Kreiranje_eventa_dijagram.png)
-
-<div style="page-break-after:always;"></div>
-=======
->>>>>>> e7092619ebd5f97b41dfbf6d31de8fd170cacd1c
 
 - korisnik (posjetitelj) može sa *Home.vue* otići na *Login.vue*
   - Home.view sadrži podatke o statusu korisnka (ako je prijavljen ne može otići na Login.view), i o korisniku (ako je prijavljen)
@@ -215,6 +197,23 @@ Najbitnija funkcionalnost aplikacije je kreiranje novog događaja.
 ![označavanje eventa](4/oznacavanje_eventa.png)   
 Za svaki event korisnik bira jednu od dvije oznake te se njegov mail sprema u odgovarajuću mapu, u event sa pripadajućim id-jem.
 
+
+<div style="page-break-after:always;"></div>
+
+Najbitnija funkcionalnost aplikacije je kreiranje novog događaja.
+- *AddEvent.vue* je polazišna točka ove funkcionalnosti.
+  - u odgovarajuća polja ispunjavamo potrebne podatke koje čine jedan događaj, kao što su sama naslovna slika događaja, njegov naziv, vrijeme održavanja i lokacija događaja.
+  - kada smo ispunili sve potrebne podatke, oni se šalju u Firestore
+  - na kraju se ti podaci dohvaćaju u *CategoryLane.vue* gdje se i prikazuju
+![kreiranje eventa](4/Kreiranje_eventa_dijagram.png)
+
+<br>
+
+Kada pregledavamo događaje na aplikaciji, moguće ih je filtrirati po tri svojstva; pretraživanje po imenu te filtriranje po lokaciji i datumu održavanja.
+- filtrima pristupamo interakcijom sa toolbarom koji je na *Home.vue*
+- nakon odabira, događaji se filtriraju unutar *CategoryLane.vue* te se prikazuju oni koji su određeni odabranim filterom
+
+![filtriranje eventa](4/Filtriranje_evenata.png)
 
 <div style="page-break-after:always;"></div>
 
