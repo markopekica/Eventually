@@ -89,6 +89,7 @@
             <option value="Sports/Outdoors">Initiatives/Campaigns</option>
             <option value="Sports/Outdoors">Educational</option>
             <option value="Sports/Outdoors">Games</option>
+            <option value="Random">Random</option>
           </select>
 
           <!-- Odabir cijene -->

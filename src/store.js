@@ -13,5 +13,6 @@ export default{
       { id: "6", title: "Initiatives/Campaigns" },
       { id: "7", title: "Educational" },
       { id: "8", title: "Games" },
+      { id: "9", title: "Random" },
     ],
 }
