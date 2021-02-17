@@ -51,8 +51,8 @@ _Druga prednost_ je ta da aplikacija ima jednu glavnu svrhu. Bazirana je isklju�
 
 <!-- <br> -->
 
-- Opisati i grupirati funkcionalnosti po skupinama korisnika (pr. administrator, menadžer, korisnik
-  smartphone-a, ...). Priložiti "Use Case" dijagram cijelog sustava.
+<!-- - Opisati i grupirati funkcionalnosti po skupinama korisnika (pr. administrator, menadžer, korisnik
+  smartphone-a, ...). Priložiti "Use Case" dijagram cijelog sustava. -->
 
 Posjetitelj:
   - pregled događaja (uz mogućnost filtriranja po željenim kriterijima)
@@ -68,16 +68,16 @@ Početni Use Case dijagram izgledao je ovako:
 
 <div style="page-break-after:always;"></div>
 
-- Ukoliko je potrebno, može se
+<!-- - Ukoliko je potrebno, može se
   napraviti i "Use Case" dijagram posebno za dijelove sustava, no svakako mora postojati jedan početni
   krovni dijagram cijelog sustava. Navesti i opisati način na koji će aplikacija komunicirati sa ostalim
   sustavima (pr. sustavi u postojećim ustanovama, vladini sustavi, ...) što također mora biti vidljivi na
   "Use Case" dijagramu. Opisati korisničke scenarije na temelju kojih je
-  izrađen dijagram.
+  izrađen dijagram. -->
 
 Novi use case dijagram, prilagođen stvarnoj aplikaciji:   
-![novi use case dijagram ovdje]()   
-potreban opis novog dijagrama
+![novi use case dijagram ovdje](dijagrami/New_USE-CASE.png)   
+
 
 
 <div style="page-break-after:always;"></div>
@@ -198,6 +198,13 @@ Veza event - hearts, event - eye je veza kompozicije. Ako se event obriše treba
 
 #### 4.2 implementacija str.2
 
+Najbitnija funkcionalnost aplikacije je kreiranje novog događaja.
+- AddEvent.vue je polazišna točka ove funkcionalnosti.
+  - u odgovarajuća polja ispunjavamo potrebne podatke koje čine jedan događaj, kao što su sama naslovna slika događaja, njegov naziv, vrijeme održavanja i lokacija događaja.
+  - kada smo ispunili sve potrebne podatke, oni se šalju u Firestore
+  - na kraju se ti podaci dohvaćaju u CategoryLane.vue gdje se i prikazuju
+![create_event](4/Kreiranje_eventa_dijagram.png)
+
 <div style="page-break-after:always;"></div>
 
 #### 4.3 implementacija str.3
@@ -214,16 +221,18 @@ Početna stranica trebala bi biti jednostavna, bez nerazumljivih djelova. U gorn
 
 
 Toolbar pruža većinu mogućnosti koje korisnik može ostvariti pomoću aplikacije. Mogućnosti su redom:
-
-- kalendar: pruža mogućnost biranja prikazanih događaja po datumu
-- filtri: mogućnost filtriranja po ostalim informacijama, poput naziva i lokacije
+ ![toolbar komponenta](5_upute/toolbar.png)
+- kalendar: pruža mogućnost biranja prikazanih događaja po datumu   
+   ![toolbar komponenta](5_upute/dateFilter.png)
+- filtri: mogućnost filtriranja po ostalim informacijama, poput naziva i lokacije   
+   ![toolbar komponenta](5_upute/name&locationFilter.png)
 - add (+): vodi korisnika na novi prozor gdje su ponuđena polja za unos podataka o događaju
-  ![toolbar komponenta](5_upute/toolbar.png)
+  
 
 
-<br>
 
-**TU MOŽE DOĆ SLIKA FILTRA (klendar i filters)**
+
+
 
 <div style="page-break-after:always;"></div>
 
