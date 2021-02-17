@@ -45,7 +45,7 @@
                   favorite
                 </span>
                 <span class="number-of">
-                  will try to come <br>
+                  planning to attend <br>
                   {{ this.numLiked }}
                 </span>
               </div>
@@ -123,6 +123,8 @@
         {{ $route.query.card.additionalInfo }}
       </div>
     </div>
+
+    
 
     <!-- https://schier.co/blog/pure-html-share-buttons -->
     <!-- <div class="share-links">

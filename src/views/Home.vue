@@ -31,9 +31,9 @@
       <div class="tools">
         <!--  Ovdje pocinju filteri  -->
         <div class="filteri" v-if="filtersOpen">
-          <div class="">
+          <div class="uh">
             <span style="width: fit-content; margin: auto"
-              >View events by their name or their location</span
+              >Filter events by name or location:</span
             >
             <span class="material-icons" id="cancel" @click="cancel">
               highlight_off
@@ -64,14 +64,14 @@
             @click="applyFilters"
             class="btn btn-primary"
           >
-            ok
+            Search
           </button>
         </div>
         <!--  Ovdje pocinje kalendar  -->
         <div class="calendar-div" v-if="calendarOpen">
           <div class="uh">
             <span style="width: fit-content; margin: auto"
-              >Search events by date</span
+              >Filter events by date:</span
             >
             <span class="material-icons" id="cancel" @click="cancel">
               highlight_off
@@ -100,7 +100,7 @@
             @click="applyDateFilter"
             class="btn btn-primary"
           >
-            ok
+            Search
           </button>
         </div>
         <!--  calendar  -->

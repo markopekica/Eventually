@@ -53,6 +53,7 @@ export default {
   margin: 1em 2em;
   display: inline-block;
   min-width: fit-content;
+  border-radius: 20px;
 }
 .card-img-top {
   width: 300px;
@@ -80,4 +81,5 @@ h3 {
 .material-icons {
   margin-right: 0.25em;
 }
+
 </style>

@@ -21,14 +21,14 @@
       <form v-if="!loading" @submit.prevent="postEvent">
         <h2>Basic info</h2>
         <h6>
-          Name your event and tell event-goers why they should come. <br />
+          Name your event and tell event-goers why you think they should attend. <br />
           Add details that highlight what makes it unique.
         </h6>
         <br />
         <croppa
           v-model="croppa"
           :width="500"
-          :height="270"
+          :height="280"
           placeholder="Drag & drop or click to add main event image."
           placeholder-color="#111"
           :placeholder-font-size="20"
@@ -84,8 +84,11 @@
             <option value="Music">Music</option>
             <option value="Film">Film</option>
             <option value="Art">Art</option>
-            <option value="Food/Drinks">Food and drinks</option>
+            <option value="Food/Drinks">Food/Drinks</option>
             <option value="Sports/Outdoors">Sports/Outdoors</option>
+            <option value="Sports/Outdoors">Initiatives/Campaigns</option>
+            <option value="Sports/Outdoors">Educational</option>
+            <option value="Sports/Outdoors">Games</option>
           </select>
 
           <!-- Odabir cijene -->
@@ -175,6 +178,7 @@
             placeholder="address, city"
           />
         </div>
+        <br>
       </form>
       <form v-if="!loading" @submit.prevent="postEvent">
         <button type="submit" class="btn btn-primary">Create</button>
