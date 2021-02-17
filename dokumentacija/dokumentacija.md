@@ -163,44 +163,44 @@ Veza event - hearts, event - eye je veza kompozicije. Ako se event obriše treba
 
 ## 4. Implementacija (3-5 stranica)
 
-- Dokumentirati koristeći klasne dijagrame na koji način su riješene ključne funkcionalnosti u
+<!-- - Dokumentirati koristeći klasne dijagrame na koji način su riješene ključne funkcionalnosti u
   aplikaciji (npr. Izrada računa, …) gdje je vidljivo koje se Vue komponente koriste
   (views/components), te na koji način su povezane. Vue komponentu prikazati kao jednu klasu i
-  njezine „data“ kao atribute.
+  njezine „data“ kao atribute. -->
 
 <div style="display:flex;">
-  <div>
+  <div style="">
     <img src="4/popis_fajlova.png">
     <figcaption>Lista dokumenata u projektu</figcaption>
   </div>
-  <div style="border:1px solid orange; padding:.75em;">
-    <div>
-      kljucne klase za ostvarivanje kljucnih funkcionalnosti:
-      <ul>
-        <li>Home.vue</li>
-          <ul>
-            <li>CategoryLane.vue</li>
-            <ul>
-              <li>EventCard.vue</li>
-            </ul>
-          </ul>
-        <li>Register</li>
-        <ul>
-          <li>Login</li>
-        </ul>
-      </ul>
-    </div>
-  </div>
 </div>
 
+Na temelju [ovog dijela vue dokumentacije](https://vuejs.org/v2/guide/components.html#Organizing-Components), hijerarhija komponenti na Home.vue view-u izgleda ovako:      
+![home - prikaz evenata](4/home_prikaz_evenata.png)    
+Na **Home.vue** view-u nalazi se **CategoryLane.vue** komponenta u kojoj se nalazi **EventCard.vue** komponenta.
+
+Home sadrži podatke iz store.js-a o kategorijama za CategoryLane, te ih šalje u tu komponentu; U lane komponenti nalazi se EventCard komponenta. U samoj EventCard komponenti odvija se provjera pripada li kartica u trenutni red.
 
 <div style="page-break-after:always;"></div>
 
-#### 4.2 implementacija str.2
+Prikaz .vue dokumenata koji imaju ulogu u **kreiranju računa** (unosu korisnika u bazu), te **prijave korisnika** u sustav.   
+![login class diagram](4/login_class_diagram.png)
 
-<div style="page-break-after:always;"></div>
 
-#### 4.3 implementacija str.3
+- korisnik (posjetitelj) može sa *Home.vue* otići na *Login.vue*
+  - Home.view sadrži podatke o statusu korisnka (ako je prijavljen ne može otići na Login.view), i o korisniku (ako je prijavljen)
+- *Login.vue* omogućuje prijavu u aplikaciju ili pristup *Register.vue* kako bi se registrirao ako već nije
+  - Login.view bilježi podatke: mail, password (za prijavu), te eror ako prijava nije uspješna
+- **Register.vue** omogućuje korisniku izradu računa
+  - potrebni podaci: email, passwrd, repeatPassword
+  - nakon unosa podataka korisnik je spremljen u bazu ako je Firebase provjerom ustanovio da su podaci ispravni
+
+<br><br>
+
+**Označavanje eventa** sa like/watch odvija se na sljedeći način:    
+![označavanje eventa](4/oznacavanje_eventa.png)   
+Za svaki event korisnik bira jednu od dvije oznake te se njegov mail sprema u odgovarajuću mapu, u event sa pripadajućim id-jem.
+
 
 <div style="page-break-after:always;"></div>
 
