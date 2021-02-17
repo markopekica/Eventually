@@ -1,15 +1,15 @@
 <template>
-  <div class="category-lane">
-    <div id="category" v-if="cardNum > 0">
+  <div class="category-lane" >
+    <div id="category" ><!-- v-if="cardNum > 0" -->
       <h2>{{ lane_info.title }}</h2>
     </div>
-    <div id="lane">
+    <div id="lane" >
       <div v-for="eventCard in filteredCards" :key="eventCard.id">
         <event-card
           v-if="eventCard.category == lane_info.title"
           :key="eventCard.id"
           :card_info="eventCard"
-        >{{cardNum = cardNum + 1}}</event-card>
+        ><!-- {{cardNum = cardNum + 1}} --></event-card>
       </div>
     </div>
   </div>
@@ -32,7 +32,7 @@ export default {
     return {
       store,
       cards: [],
-      cardNum: 0
+      /* cardNum: 0 */
     };
   },
   mounted() {
