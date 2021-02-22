@@ -66,12 +66,12 @@ export default {
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Rubik', 'Roboto Slab', Helvetica, Arial, sans-serif;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-color: white;
   min-height: 100vh;
   position: relative;
   padding-bottom: 150px; // za footer; uglavnom ide visina footera

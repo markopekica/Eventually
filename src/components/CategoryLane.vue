@@ -119,8 +119,8 @@ export default {
   margin: 6em 25px;
 }
 h2 {
-  font-weight: 600;
-  /* margin: .2em auto; */
+  font-weight: 700;
+  font-family: 'Roboto Slab', serif;
 }
 #category {
   display: flex;
@@ -131,6 +131,9 @@ h2 {
   white-space: nowrap;
   padding: 0.75em 0;
   display: flex;
-  /* background-color: rgb(15, 2, 2); */
+  background-color: rgb(238, 238, 238);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  
 }
 </style>

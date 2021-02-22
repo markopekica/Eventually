@@ -57,7 +57,7 @@
         </div>
         <div class="form-group">
           <label for="NameEvent"
-            >Do you represent a well known organization?</label
+            >What is the name of the organization you're presenting?</label
           >
           <input
             v-model="newEventOrg"
@@ -86,9 +86,9 @@
             <option value="Art">Art</option>
             <option value="Food/Drinks">Food/Drinks</option>
             <option value="Sports/Outdoors">Sports/Outdoors</option>
-            <option value="Sports/Outdoors">Initiatives/Campaigns</option>
-            <option value="Sports/Outdoors">Educational</option>
-            <option value="Sports/Outdoors">Games</option>
+            <option value="Initiatives/Campaigns">Initiatives/Campaigns</option>
+            <option value="Educational">Educational</option>
+            <option value="Games">Games</option>
             <option value="Random">Random</option>
           </select>
 
@@ -377,7 +377,7 @@ textarea {
 
 .tag-select {
   margin: 10px;
-  max-width: 165px;
+  max-width: 210px;
   padding-left: 15px;
   border: 3px solid #dadada;
   border-radius: 10px;
@@ -395,7 +395,7 @@ textarea:hover {
 }
 
 .odvoji {
-  //border: 1px solid lime;
+  // border: 1px solid lime;
   display: flex;
   justify-content: space-around;
   margin-top: 20px;
@@ -406,7 +406,7 @@ textarea:hover {
     border: 3px solid #dadada;
     border-radius: 10px;
     height: 45px;
-    max-width: 165px;
+    max-width: 120px;
     outline: none;
   }
   input:focus {
@@ -419,7 +419,7 @@ textarea:hover {
 }
 
 .datumi {
-  //border: 1px solid yellowgreen;
+  // border: 1px solid yellowgreen;
   width: 100%;
   margin: auto;
   margin-top: 30px;
@@ -430,10 +430,10 @@ textarea:hover {
     margin: 10px;
   }
   input {
-    width: 175px;
+    width: 185px;
     border: 2px solid #dadada;
     border-radius: 10px;
-    padding-left: 15px;
+    padding-left: 19px;
     padding-right: 10px;
     outline: none;
   }
@@ -452,12 +452,12 @@ textarea:hover {
     margin: 10px;
   }
   input {
-    width: 175px;
+    width: 185px;
     height: fit-content;
     border: 2px solid #dadada;
     border-radius: 10px;
     margin: auto;
-    padding-left: 63px;
+    padding-left: 68px;
     padding-right: 10px;
     outline: none;
   }

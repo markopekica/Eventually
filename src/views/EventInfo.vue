@@ -30,22 +30,20 @@
             <!-- <span class="material-icons host-icon">account_circle</span> -->
             <div class="watch-like-icon-div">
               <div class="watch-div">
-                <!-- <span class="response-label">interested</span> -->
                 <span id="eye-icon" class="material-icons" @click="watch">
                   visibility
                 </span>
+                <span class="response-label">interested</span>
                 <span class="number-of">
-                  interested <br>
                   {{ this.numWatched }}
                 </span>
               </div>
               <div class="like-div">
-                <!-- <span class="response-label">99% will come</span> -->
                 <span id="heart-icon" class="material-icons" @click="like">
                   favorite
                 </span>
+                <span class="response-label">planning to attend</span>
                 <span class="number-of">
-                  planning to attend <br>
                   {{ this.numLiked }}
                 </span>
               </div>
@@ -61,6 +59,14 @@
           <span class="material-icons">label</span>
           <span class="text-near-icon">
             {{ $route.query.card.category }}
+          </span>
+        </div>
+        <div class="item icon-field card-category">
+          <span class="material-icons">
+            business
+          </span>
+          <span class="text-near-icon">
+            {{ $route.query.card.organization }}
           </span>
         </div>
         <div class="item icon-field card-date">
@@ -105,6 +111,7 @@
             {{ $route.query.card.price }}
           </span>
         </div>
+
         <!-- /basic info (black box) -->
       </div>
       <!-- /main content -->
@@ -123,8 +130,6 @@
         {{ $route.query.card.additionalInfo }}
       </div>
     </div>
-
-    
 
     <!-- https://schier.co/blog/pure-html-share-buttons -->
     <!-- <div class="share-links">
@@ -478,16 +483,16 @@ h1 {
   display: flex;
   flex-direction: column;
 }
-.response-label {
-  font-size: 70%;
+
+.response-label,
+.number-of {
+  font-size: 80%;
 }
 #heart-icon:hover,
 #eye-icon:hover {
   cursor: pointer;
 }
-.number-of {
-  font-size: 70%;
-}
+
 /* INFO BOX */
 .basic-info {
   /*  grey frame with: time, date, location, price  */

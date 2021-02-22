@@ -53,14 +53,16 @@ export default {
   margin: 1em 2em;
   display: inline-block;
   min-width: fit-content;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 .card-img-top {
   width: 300px;
   height: 200px;
+
+  border-radius: 10px 10px 0 0;
 }
 h3 {
-  font-size: 160%;
+ // font-size: 10%;
   overflow: auto;
 }
 .rutlink {
@@ -69,6 +71,7 @@ h3 {
   border-radius: 16px;
   background-color: white;
   padding: 0.25em 1em;
+  outline: none;
 }
 .rutlink:hover {
   box-shadow: 2px 2px skyblue;
