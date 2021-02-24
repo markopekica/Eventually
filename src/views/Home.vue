@@ -12,7 +12,7 @@
         <span
           id="add-placeholder"
           class="material-icons tool-icon"
-          style="color: grey"
+          style="color: grey; box-shadow: none;"
           v-if="!this.$attrs.user_status"
           @click="addEvent"
           >add</span
@@ -213,7 +213,7 @@ export default {
   display: flex;
   padding: 1em;
   justify-content: center;
-  margin-top: 0.25em;
+  margin-top: 0.5em;
   margin-bottom: 4em;
   background-color: #111;
   border-radius: 16px;
@@ -228,7 +228,7 @@ export default {
 }
 .tool-icon:hover {
   //box-shadow: 4px 4px 0px 0px skyblue;
-  box-shadow: 0em 0 0.75em 0.06em skyblue;
+  box-shadow: 0 0 0.5em 0.042em skyblue;
 }
 .calendar-div {
   margin: auto;
@@ -345,7 +345,7 @@ export default {
 // prikaz odabranih filtra
 #hidden-info {
   display: none;
-  color: red;
+  color: orangered;
 }
 #filter-instruction:hover + #hidden-info {
   display: block;

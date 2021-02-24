@@ -84,23 +84,43 @@ Novi use case dijagram, prilagođen stvarnoj aplikaciji:
   "ekrana": prijava, početni izbornik (ako ima), podešavanje opcija (ako treba) te svakako ekrane za
   kompliciranije procese. -->
 
+<br>
+
 Home (glavna stranica) u prototipu bila je zamišljena ovako:   
 ![](prototip/prototip_home.png)
+
+<br>
 
 Sa Home stranice posjetitelj može pristupiti dijelu za prijavu (i, registraciju):    
 ![](prototip/prototip_login.png)
 
+<div style="page-break-after:always;"></div>
+
+
 Prijavom korisniku se u toolbar-u pojavljuje mogućnost za kreiranje eventa:    
 ![](prototip/home_prijavljen.png)
 
+<br><br>
+
 Korisnički profil bio je zamišljen ovako:    
-![](prototip/user_profile.png)
+![](prototip/user_profile.png)   
+
+<div style="page-break-after:always;"></div>
+
 
 Pritiskom na 'full info' sa korisničkog profila prikazuje se koje je podatke korisnik spremio o sebi:    
+<!-- <div style="display:flex;">
+  <img style="width: 80%; height:auto;" src="prototip/user_full_info.png">
+</div> -->
 ![](prototip/user_full_info.png)
+
+<br>
 
 Na dnu stranice 'UserProfile' zamišljeno je da stoje mogućnosti za uređivanje/brisanje korisničkog profila:    
 ![](prototip/user_settings.png)
+
+<div style="page-break-after:always;"></div>
+
 
 Također, u prvobitnoj ideji bilo je zamišljeno da korsinik ima mogućnost pregleda događaja koje je objavio, te uređivanja/brisanja istih:    
 ![](prototip/edit_event_info.png)
@@ -172,7 +192,9 @@ Veza event - hearts, event - eye je veza kompozicije. Ako se event obriše treba
 </div>
 
 Na temelju [ovog dijela vue dokumentacije](https://vuejs.org/v2/guide/components.html#Organizing-Components), hijerarhija komponenti na Home.vue view-u izgleda ovako:      
-![home - prikaz evenata](4/home_prikaz_evenata.png)    
+![home - prikaz evenata](4/home_prikaz_evenata.png)   
+
+Naziv klase je naziv komponente;
 Na **Home.vue** view-u nalazi se **CategoryLane.vue** komponenta u kojoj se nalazi **EventCard.vue** komponenta.
 
 Home sadrži podatke iz store.js-a o kategorijama za CategoryLane, te ih šalje u tu komponentu; U lane komponenti nalazi se EventCard komponenta. U samoj EventCard komponenti odvija se provjera pripada li kartica u trenutni red.
@@ -219,12 +241,20 @@ Kada pregledavamo događaje na aplikaciji, moguće ih je filtrirati po tri svojs
 
 ## 5. (Opcionalno) Korisničke upute (4 - 6 stranica)
 
+<br>
+
 - Pojasniti način na koji se koristi aplikacija koristeći screenshote sa stvarnog sučelja aplikacije
 
 Početna stranica trebala bi biti jednostavna, bez nerazumljivih djelova. U gornjem desnom kutu posjetitelj stranice može otići na stranisu za prijavu i registraciju (registracijom odnosno, prijavom u aplikaciju korisnik ostvaruje sve mogućnosti aplikacije).
+
+<br>
 ![home](5_upute/home_loggedout.png)
+
+<br>
+
 ![login](5_upute/login.png)
 
+<br>
 
 Toolbar pruža većinu mogućnosti koje korisnik može ostvariti pomoću aplikacije. Mogućnosti su redom:
  ![toolbar komponenta](5_upute/toolbar.png)

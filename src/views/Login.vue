@@ -114,12 +114,15 @@ form {
   margin: auto;
 }
 #login-button {
-  background-color: snow;
   border: 1px solid skyblue;
-  padding: 0.5em 1em;
-  margin: 1em 0;
-  color: #2c3e50;
+  background-color: white;
   border-radius: 16px;
+  margin: 1em 0;
+  padding: 0.32em 1em;
+  /* color: #2c3e50; */
+}
+#login-button:hover {
+  box-shadow: 1px 1px 1px skyblue;
 }
 #register-link {
   margin-top: 4em;

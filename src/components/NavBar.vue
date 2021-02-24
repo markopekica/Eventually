@@ -31,6 +31,7 @@ export default {
   max-height: 64px;
   justify-content: space-between;
   background-color: #111;
+  /* box-shadow: 0em 2px .75em #111; */
 }
 .material-icons {
   font-family: "Material Icons";

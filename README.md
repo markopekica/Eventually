@@ -57,11 +57,11 @@ Karlo:
 
 <br><br><br><br><br>
 
-## TODO
+## sprint
 
-- [ ] App v_1.0
-  - [ ] Home
-    - [ ] **ToolBar**
+<!-- - [ ] App v_1.0
+  - [X] Home
+    - [X] **ToolBar**
       - **calendar**
         - [x] Calendar design
         - [x] Calendar functionality
@@ -74,8 +74,8 @@ Karlo:
         - [x] Make it work
     - Lane
       - [X] Hide lane if no cards in category
-      - [ ] Ubacit jos kategorija u store.js
-        - [ ] dodat ih na input tag za category, na AddEvent.vue
+      - [X] Ubacit jos kategorija u store.js
+        - [X] dodat ih na input tag za category, na AddEvent.vue
   - [X] EventInfo
     - [X] add to favorites
   - [ ] **UserProfile**
@@ -87,51 +87,65 @@ Karlo:
     - [x] pogledat novi video za security i poboljsat
     - [x] Make a transition to Home/UserProfile once loggedIn/registered successfully
 
-<br>
+<br> -->
 
-|   pon    |  uto  |  sri  |          cet           |  pet  |  sub  |  ned  |
-| :------: | :---: | :---: | :--------------------: | :---: | :---: | :---: |
-|    1     |   2   |   3   |           4            |   5   |   6   |   7   |
-|    8     |   9   |  10   |           11           |  12   |  13   |  14   |
-|    15    |  16   |  17   | **18**<br>treba predat |  19   |  20   |  21   |
-| **!22!** |       |       |                        |       |       |       |
+|                pon                |                uto                |  sri  |  cet  |  pet  |  sub  |  ned  |
+| :-------------------------------: | :-------------------------------: | :---: | :---: | :---: | :---: | :---: |
+|                 X                 | **<p style="color:green;">23<p>** |  24   |  25   |  26   |  27   |  28   |
+| **<p style="color:red;">1.3.<p>** |                                   |       |       |       |       |       |
 
 <br>
 
 ##### Nuzno
 
-- [ ] UserProfile page **D.K.**
-  - [ ] layout
-  - [ ] da si unese podatke
-- f (funkcionalnosti)
-  - [ ] search filters **K.P.**
-  - [x] mark with (coming/interested); like **M.P.**
-- [ ] dokumentacija
-- [ ] promotivna prezentacija (3-5 min) **K.P.**
+- mora bit gotovo do (u 12:00)
+- *<span style="color:red;">24.2. <span>*
+  - [ ] UserProfile page **D.K.**
+    - [ ] layout **D.K.**
+    - [ ] da si unese podatke **D.K.**
+    -  *<span style="color:red;">25.2. <span>*
+       - [ ] da vidi i evente koje je postao
+         - [ ] edit na njima
+  <!-- - f (funkcionalnosti)
+    - [X] search filters **K.P.**
+    - [x] mark with (coming/interested); like **M.P.** -->
+- *<div style="color:red;">26.2. </div>*
+  - [ ] dokumentacija **SVI**
+  - [ ] promotivna prezentacija (3-5 min) **K.P.**
+
+<br>
+
+###### detalji
+
+- [ ] smanjit tonu call to action boje
+  - [ ] u navu user ikona druge boje ili slika
+  - [ ] u toolbaru shadow neutralan (siv)
+
 
 <br><br>
 
 <!-- App v_2.0 -->
 
-<!-- - [ ] App v_2.0
-  - [ ] Home
-    - [ ] **ToolBar**
-      - **calendar**
-        - [ ] nakon odabira, zapamti datume pri ponovnom otvaranju kalendara
+---
+
+- [ ] App v_1.1
+  - [ ] **Home**
+    - [ ] *ToolBar*
+        - [ ] nakon odabira, zapamti filtre; kod refresha/promjene view-a
     - Lane
-      - [ ] Hide lane if no cards in category
-  - [ ] EventInfo
+      - [X] Hide lane if no cards in category
+        - kad se sakriju prazni, i dalje zauzimaju mjesto
+  - [ ] **EventInfo**
     - [ ] share
     - [ ] comment section
-      - [ ] hide comment button if not logged in
+      <!-- - [ ] hide comment button if not logged in
         - [ ] add coment on click
       - [ ] comment (main thread), response -> components? (mislim bar)
-        - [ ] add response
+        - [ ] add response -->
     - [ ] rating stars
       - [ ] unlock after event has passed
       - [ ] give rating only if logged in
   - [ ] **UserProfile**
-    - [ ] Design
     - [ ] Add functionality
       - [ ] Edit profile
-      - [ ] Delete profile -->
+      - [ ] Delete profile

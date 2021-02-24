@@ -119,12 +119,15 @@ form {
   margin: auto;
 }
 #register-button {
-  background-color: snow;
   border: 1px solid skyblue;
-  padding: 0.5em 1em;
+  background-color: white;
+  border-radius: 16px;
+  padding: 0.32em 1em;
   margin: 1em 0;
   color: #2c3e50;
-  border-radius: 16px;
+}
+#register-button:hover {
+  box-shadow: 1px 1px 1px skyblue;
 }
 #error-message-div {
   padding: 0.5em;

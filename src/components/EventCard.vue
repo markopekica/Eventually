@@ -54,6 +54,8 @@ export default {
   display: inline-block;
   min-width: fit-content;
   border-radius: 10px;
+  box-shadow: 2px 0 0px 2px #111;
+  box-shadow: .25em 3px .4em lightgray;
 }
 .card-img-top {
   width: 300px;
@@ -66,15 +68,15 @@ h3 {
   overflow: auto;
 }
 .rutlink {
-  margin: 0.25em auto;
-  border: 1px solid skyblue;
-  border-radius: 16px;
+  border: 1px dotted skyblue;
   background-color: white;
+  border-radius: 16px;
+  margin: 0.25em auto;
   padding: 0.25em 1em;
   outline: none;
 }
 .rutlink:hover {
-  box-shadow: 2px 2px skyblue;
+  box-shadow: 1px 1px 2px skyblue;
 }
 .on-card-info {
   //paragraphs: location, time, date
