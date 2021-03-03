@@ -12,40 +12,57 @@
         <div class="col-8">
           <h1>My Profile</h1>
         </div>
+        <div class="col-2">
+          <span class="logout-link-wrapper" @click="logout">
+            <router-link id="logout" to="/"
+              ><span id="login" class="material-icons">logout</span>Log
+              Out</router-link
+            >
+          </span>
+        </div>
       </div>
     </div>
-<div class="page-content page-container" id="page-content" v-if="EnableEdit==false">
-  <div class="col-sm-12">
-     <div>
-            <img
-              :src="slika"
-              style="
+    <div
+      class="page-content page-container"
+      id="page-content"
+      v-if="EnableEdit == false"
+    >
+      <div class="col-sm-12">
+        <div>
+          <img
+            :src="slika"
+            style="
                 box-shadow: 0 0 1px #111;
-                width: 140px;
-                height: 140px;
+                width: 220px;
+                height: 220px;
                 border-radius: 50%;
                 object-fit: cover;
               "
-              alt="uuh"
-            />
-          </div>
-    <p class="m-b-10 f-w-600">Username: {{covik}}</p>
-  </div>
-  <!-- <button type="submit" class="EditP" @click="Edit">Edit profile </button> -->
-  <span class="material-icons" @click="Edit">
-    mode_edit
-  </span>
-</div>
+            alt="uuh"
+          />
+        </div>
+        
+        <p class="m-b-10 f-w-600">{{ covik }}</p>
+      </div>
+      <!-- <button type="submit" class="EditP" @click="Edit">Edit profile </button> -->
+      <span class="material-icons" @click="Edit">
+        mode_edit
+      </span>
+    </div>
 
-<div class="page-content page-container" id="page-content" v-if="EnableEdit==true">
-<form @submit.prevent="Save"> 
-  <croppa
+    <div
+      class="page-content page-container"
+      id="page-content"
+      v-if="EnableEdit == true"
+    >
+      <form @submit.prevent="Save">
+        <croppa
           v-model="croppa"
-          :width="370"
-          :height="240"
-          placeholder="Drag & drop or click to add a new profile image."
+          :width="280"
+          :height="280"
+          placeholder="Add a new profile image."
           placeholder-color="#111"
-          :placeholder-font-size="15"
+          :placeholder-font-size="20"
           canvas-color="transparent"
           :accept="'image/*'"
           :show-remove-button="true"
@@ -54,7 +71,7 @@
           :show-loading="true"
           :loading-size="50"
           :prevent-white-space="true"
-          
+          :image-border-radius="300"
         >
           <div class="testdiv">
             <i class="large material-icons test">insert_photo</i>
@@ -71,12 +88,13 @@
           />
         </div>
         <br />
-        <button type="submit" class="btn btn-primary" @click="Save">Save changes</button>
+        <button type="submit" class="btn btn-primary" @click="Save">
+          Save changes
+        </button>
+      </form>
+    </div>
 
-</form>
-</div>
-
-<!-- HOSTED EVENTS -->
+    <!-- HOSTED EVENTS -->
     <div class="my-events" style="margin: 6em auto">
       <span class="material-icons"> admin_panel_settings </span>
       <span>events I hosted:</span>
@@ -119,14 +137,7 @@
         </event-card>
       </div>
     </div>
-    
-    <span class="logout-link-wrapper" @click="logout">
-    <router-link id="logout" to="/" 
-      ><span id="login" class="material-icons"
-        >logout</span
-      >Log Out</router-link
-    >
-    </span>
+
   </div>
 </template>
 
@@ -161,83 +172,84 @@ export default {
     this.getCards();
     this.getData();
     this.getHosted();
-    
-
   },
   methods: {
-    
-    Edit(){
-      this.EnableEdit = true
+    Edit() {
+      this.EnableEdit = true;
     },
-    Save(){
-        console.log("trebamo ovaj gledati" , this.ajdi);
-      db.collection("userProfile").doc(this.ajdi).delete().then(() => {
-    console.log("Document successfully deleted!");
-    }).catch((error) => {
-    console.error("Error removing document: ", error);
-    });  
-      this.croppa.generateBlob(blobData => {
-        let imageName= "userProfile/" + this.$attrs.user.email + "/" + Date.now() + ".png";
+    Save() {
+      console.log("trebamo ovaj gledati", this.ajdi);
+      db.collection("userProfile")
+        .doc(this.ajdi)
+        .delete()
+        .then(() => {
+          console.log("Document successfully deleted!");
+        })
+        .catch((error) => {
+          console.error("Error removing document: ", error);
+        });
+      this.croppa.generateBlob((blobData) => {
+        let imageName =
+          "userProfile/" + this.$attrs.user.email + "/" + Date.now() + ".png";
         console.log(imageName);
 
         storage
-        .ref(imageName)
-        .put(blobData)
-        .then(result =>{
-          console.log(result)
+          .ref(imageName)
+          .put(blobData)
+          .then((result) => {
+            console.log(result);
 
-          result.ref.getDownloadURL().then(url => {
-            console.log("Javni url", url);
+            result.ref
+              .getDownloadURL()
+              .then((url) => {
+                console.log("Javni url", url);
 
-            
-            const userName = this.newUserName;
+                const userName = this.newUserName;
 
-            db.collection("userProfile")
-            .add({
-            url: url,
-            usrName: userName,
-            email: this.$attrs.user.email,
-            })
-            .then((doc) => {
-              console.log("Spremljeno", doc)
-              this.newUserName = "";
-              this.croppa= null;
+                db.collection("userProfile")
+                  .add({
+                    url: url,
+                    usrName: userName,
+                    email: this.$attrs.user.email,
+                  })
+                  .then((doc) => {
+                    console.log("Spremljeno", doc);
+                    this.newUserName = "";
+                    this.croppa = null;
 
-              this.getData();
-            })
-            .catch((e) => {
-              console.error(e);
-            });
-
-          }).catch(e =>{
-            console.error(e)
+                    this.getData();
+                  })
+                  .catch((e) => {
+                    console.error(e);
+                  });
+              })
+              .catch((e) => {
+                console.error(e);
+              });
+          })
+          .catch((e) => {
+            console.error(e);
           });
-
-        })
-        .catch(e =>{
-          console.error(e)
-        })
-      })
-      this.EnableEdit = false
-    },
-    getData(){
-      console.log("firebase dohvat")
-
-      db.collection("userProfile").get()
-      .then((query) => {
-        query.forEach((doc) => {
-
-          const data= doc.data();
-          console.log(data);
-          
-          this.ajdi=doc.id
-          this.covik=data.usrName
-          this.slika=data.url
-
-          console.log("-------------", this.ajdi);
-        });
-        
       });
+      this.EnableEdit = false;
+    },
+    getData() {
+      console.log("firebase dohvat");
+
+      db.collection("userProfile")
+        .get()
+        .then((query) => {
+          query.forEach((doc) => {
+            const data = doc.data();
+            console.log(data);
+
+            this.ajdi = doc.id;
+            this.covik = data.usrName;
+            this.slika = data.url;
+
+            console.log("-------------", this.ajdi);
+          });
+        });
     },
     getHosted() {
       db.collection("events")
@@ -350,13 +362,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#logout{
+#logout {
   color: #ee5a6f;
-  font-weight: 700
+  font-weight: 700;
 }
-#logout:hover {
+
+#logout-button:hover {
   box-shadow: 1px 1px 1px crimson;
 }
+.hosted-events-lane,
 .like-lane,
 .eye-lane {
   width: 90vw;
@@ -374,7 +388,7 @@ export default {
 .croppa-container {
   background-color: rgb(238, 238, 238);
   border: 2px solid grey;
-  border-radius: 20px;
+  border-radius: 50%;
   margin: auto;
 }
 .croppa-container:hover {
@@ -394,8 +408,9 @@ export default {
   min-height: 200px;
   margin-top: -200px;
 }
-.EditP:hover,.SaveChange:hover{
-cursor:pointer;
+.EditP:hover,
+.SaveChange:hover {
+  cursor: pointer;
 }
 .container {
   margin: 1em auto;

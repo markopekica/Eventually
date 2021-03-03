@@ -55,7 +55,7 @@ export default {
   min-width: fit-content;
   border-radius: 10px;
   box-shadow: 2px 0 0px 2px #111;
-  box-shadow: .25em 3px .4em lightgray;
+  box-shadow: 0.25em 3px 0.4em lightgray;
 }
 .card-img-top {
   width: 300px;
@@ -64,7 +64,8 @@ export default {
   border-radius: 10px 10px 0 0;
 }
 h3 {
- // font-size: 10%;
+  // font-size: 10%;
+  max-width: 250px;
   overflow: auto;
 }
 .rutlink {
@@ -86,5 +87,4 @@ h3 {
 .material-icons {
   margin-right: 0.25em;
 }
-
 </style>

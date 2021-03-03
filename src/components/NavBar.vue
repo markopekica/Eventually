@@ -7,7 +7,7 @@
       ><span id="login" class="material-icons">login</span></router-link
     >
     <router-link to="/userProfile" v-if="user_status"
-      ><span id="login" class="material-icons"
+      ><span id="userIcon" class="material-icons"
         >account_circle</span
       ></router-link
     >
@@ -56,7 +56,8 @@ export default {
 #home-logo {
   height: 28px;
 }
-#login {
-  color: skyblue;
+/* ovo ne smis mjenjat */
+#login, #userIcon {
+  color: #FFC0CB;
 }
 </style>

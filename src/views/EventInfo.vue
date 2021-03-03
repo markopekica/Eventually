@@ -112,19 +112,21 @@
           </span>
         </div>
 
-        <!-- /basic info (black box) -->
+        <!-- osnovni podaci: DATUM, LOKACIJA... -->
+        <!-- /basic info (box) -->
       </div>
       <!-- /main content -->
     </div>
     <hr />
 
     <div class="item icon-field description-div">
+      <!-- VISE INFORMACIJA text -->
       <div class="previse-divova">
         <span class="material-icons description-icon"> description </span>
-        <div>
+        <!-- <div>
           <span class="material-icons site"> language </span>
-          <!-- <div class="hide">i should be a link. to official site</div> -->
-        </div>
+          <div class="hide">i should be a link. to official site</div>
+        </div> -->
       </div>
       <div class="card-description">
         {{ $route.query.card.additionalInfo }}
@@ -503,9 +505,9 @@ h1 {
   padding: 0.2em 0;
   color: rgb(204, 204, 204);
   //background-color: #111;
-  box-shadow: 0em 0 0.3em 0.01em #111;
+  box-shadow: 0em 0 0.3em 0.01em gray;
   color: #111;
-  border-radius: 1.5em;
+  border-radius: 1em;
   /* border: 1px solid green; */
 }
 .text-near-icon {
@@ -553,7 +555,7 @@ hr {
   /* description dio; ispod crte, iznad komentara */
   display: flex;
   margin: 0.5em 1em 0.2em 1em;
-  justify-content: space-between;
+  justify-content: flex-start;
   * {
     margin-right: 1em;
   }
@@ -563,14 +565,16 @@ hr {
 }
 .card-description {
   margin: 0.5em 1em;
+  padding: .25em;
   text-align: left;
   white-space: pre-wrap;
+  /* box-shadow: 0px 0px 1px lightgrey; */
 }
-.event-website-link-div {
+/* .event-website-link-div {
   margin: 0.2em 0.5em;
   text-align: left;
   margin-top: 2em;
-}
+} */
 /* COMMENT SECTION */
 .comment-section-div {
   /* background-color: #111; */
@@ -661,7 +665,7 @@ hr {
     width: 800px;
   }
   .basic-info {
-    width: 470px;
+    width: 600px;
   }
 }
 @media only screen and (max-width: 600px) {
