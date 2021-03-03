@@ -16,15 +16,25 @@
     </div>
 <div class="page-content page-container" id="page-content" v-if="EnableEdit==false">
   <div class="col-sm-12">
-     <profile-picture
-      v-for="card in cards"
-      :key= "card"
-      :info= "card" /> 
-
-      <img class= "card-img-top" :src="info" />
-    <p class="m-b-10 f-w-600">Username: {{newUserName}}</p>
+     <div>
+            <img
+              :src="slika"
+              style="
+                box-shadow: 0 0 1px #111;
+                width: 140px;
+                height: 140px;
+                border-radius: 50%;
+                object-fit: cover;
+              "
+              alt="uuh"
+            />
+          </div>
+    <p class="m-b-10 f-w-600">Username: {{covik}}</p>
   </div>
-  <button type="submit" class="EditP" @click="Edit">Edit profile </button>
+  <!-- <button type="submit" class="EditP" @click="Edit">Edit profile </button> -->
+  <span class="material-icons" @click="Edit">
+    mode_edit
+  </span>
 </div>
 
 <div class="page-content page-container" id="page-content" v-if="EnableEdit==true">
@@ -44,7 +54,7 @@
           :show-loading="true"
           :loading-size="50"
           :prevent-white-space="true"
-          :image-border-radius="200"
+          
         >
           <div class="testdiv">
             <i class="large material-icons test">insert_photo</i>
@@ -66,32 +76,48 @@
 </form>
 </div>
 
-<div class="my-events" style="margin: 6em auto;">
+<!-- HOSTED EVENTS -->
+    <div class="my-events" style="margin: 6em auto">
+      <span class="material-icons"> admin_panel_settings </span>
+      <span>events I hosted:</span>
+      <div class="hosted-events-lane">
+        <event-card
+          v-for="eventCard in cardsHosted"
+          :key="eventCard.id"
+          :card_info="eventCard"
+        >
+        </event-card>
+      </div>
 
-<div class="like-lane">
-      <span id="heart-icon" class="material-icons" style="color: #e0115f;">
+      <!-- LIKED EVENTS -->
+      <span id="heart-icon" class="material-icons" style="color: #e0115f">
         favorite
       </span>
-      <event-card
-        v-for="eventCard in cardsHeart"
-        :key="eventCard.id"
-        :card_info="eventCard"
+      <div class="like-lane">
+        <event-card
+          v-for="eventCard in cardsHeart"
+          :key="eventCard.id"
+          :card_info="eventCard"
+        >
+        </event-card>
+      </div>
+
+      <!-- EYE EVENTS -->
+      <span
+        id="eye-icon"
+        class="material-icons"
+        style="color: skyblue; margin: auto"
       >
-      </event-card>
-    </div>
-    <span id="eye-icon" class="material-icons" style="color:skyblue; margin:auto;">
         visibility
       </span>
-    <div class="eye-lane">
-      
-      <event-card
-        v-for="eventCard in cardsEye"
-        :key="eventCard.id"
-        :card_info="eventCard"
-      >
-      </event-card>
-    </div>
-
+      <div class="eye-lane">
+        <event-card
+          v-for="eventCard in cardsEye"
+          :key="eventCard.id"
+          :card_info="eventCard"
+        >
+        </event-card>
+      </div>
     </div>
     
     <span class="logout-link-wrapper" @click="logout">
@@ -109,7 +135,6 @@ import { firebase, db, storage } from "@/firebase";
 import store from "@/store.js";
 import EventCard from "../components/EventCard.vue";
 export default {
-  props: ['info'],
   name: "UserProfile",
   components: {
     EventCard,
@@ -119,11 +144,15 @@ export default {
       croppa: null,
       store,
       cards: [],
+      cardsHosted: [],
       cardsHeart: [],
       cardsEye: [],
       usr: this.$attrs.user.email,
       newUserName: "",
       newImageUrl: "",
+      covik: "",
+      slika: "",
+      ajdi: "",
 
       EnableEdit: false,
     };
@@ -131,6 +160,7 @@ export default {
   mounted() {
     this.getCards();
     this.getData();
+    this.getHosted();
     
 
   },
@@ -140,7 +170,12 @@ export default {
       this.EnableEdit = true
     },
     Save(){
-      
+        console.log("trebamo ovaj gledati" , this.ajdi);
+      db.collection("userProfile").doc(this.ajdi).delete().then(() => {
+    console.log("Document successfully deleted!");
+    }).catch((error) => {
+    console.error("Error removing document: ", error);
+    });  
       this.croppa.generateBlob(blobData => {
         let imageName= "userProfile/" + this.$attrs.user.email + "/" + Date.now() + ".png";
         console.log(imageName);
@@ -191,20 +226,47 @@ export default {
       db.collection("userProfile").get()
       .then((query) => {
         query.forEach((doc) => {
-          console.log(doc.id);
-          console.log(doc.data());
 
           const data= doc.data();
+          console.log(data);
+          
+          this.ajdi=doc.id
+          this.covik=data.usrName
+          this.slika=data.url
 
-          this.cards.push({
-            id: doc.id,
-            name: data.usrName,
-            url: data.url,
+          console.log("-------------", this.ajdi);
+        });
+        
+      });
+    },
+    getHosted() {
+      db.collection("events")
+        .get()
+        .then((query) => {
+          this.cardsHosted = [];
 
-
+          query.forEach((doc) => {
+            const data = doc.data();
+            if (data.author === this.usr) {
+              this.cardsHosted.push({
+                id: doc.id,
+                time: data.posted_at,
+                eventImage: data.eventImage,
+                title: data.eventTitle,
+                author: data.author,
+                organization: data.org,
+                additionalInfo: data.additionalInfo,
+                category: data.category,
+                price: data.price,
+                startDate: data.startDate,
+                endDate: data.endDate,
+                startTime: data.startTime,
+                endTime: data.endTime,
+                location: data.location,
+              });
+            }
           });
         });
-      });
     },
     getCards() {
       db.collection("events")
@@ -292,14 +354,17 @@ export default {
   color: #ee5a6f;
   font-weight: 700
 }
+#logout:hover {
+  box-shadow: 1px 1px 1px crimson;
+}
 .like-lane,
 .eye-lane {
   width: 90vw;
-  margin: .2em auto 4em auto;
+  margin: 0.2em auto 4em auto;
   display: flex;
   overflow: auto;
   min-height: fit-content;
-  border: 1px dotted #111;
+  border-top: 1px solid gray;
 }
 .col-8 {
   display: flex;
