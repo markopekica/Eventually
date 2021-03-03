@@ -43,30 +43,24 @@
       <div class="container">
         <div class="row">
           <div class="col-4">
-            <span class="material-icons">masks<!-- elderly --></span>
+            <span class="material-icons">masks</span>
             <p>Marko Pekica</p>
-            <!-- <p>Student at Faculty of Informatics Pula<p> -->
             <div class="icons">
               <a href="#" class="fa fa-github"></a>
-              <a href="#" class="fa fa-linkedin"></a>
             </div>
           </div>
           <div class="col-4">
-            <span class="material-icons">masks<!-- support_agent --></span>
+            <span class="material-icons">masks</span>
             <p>Darin Kusačić</p>
-            <!-- <p>Student at Faculty of Informatics Pula<p> -->
             <div class="icons">
               <a href="#" class="fa fa-github"></a>
-              <a href="#" class="fa fa-linkedin"></a>
             </div>
           </div>
           <div class="col-4">
-            <span class="material-icons">masks<!-- child_care --></span>
+            <span class="material-icons">masks</span>
             <p>Karlo Prodan</p>
-            <!-- <p>Student at Faculty of Informatics Pula<p> -->
             <div class="icons">
-              <a href="#" class="fa fa-facebook"></a>
-              <a href="#" class="fa fa-twitter"></a>
+              <a href="#" class="fa fa-github"></a>
             </div>
           </div>
         </div>
@@ -101,7 +95,7 @@
   align-items: center;
   margin-top: 1em;
   padding: 0.5em;
-  border: 1px dotted #111;
+  border: 1px solid lightgray;
 }
 .fa {
   margin: 1em;

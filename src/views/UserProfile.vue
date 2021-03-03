@@ -15,8 +15,7 @@
         <div class="col-2">
           <span class="logout-link-wrapper" @click="logout">
             <router-link id="logout" to="/"
-              ><span class="material-icons">logout</span>Log
-              Out</router-link
+              ><span class="material-icons">logout</span>Log Out</router-link
             >
           </span>
         </div>
@@ -197,7 +196,6 @@ export default {
           });
           Promise.all(promises);
         });
-
       }
       this.croppa.generateBlob((blobData) => {
         let imageName =
@@ -367,7 +365,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 ::-webkit-input-placeholder {
   font-style: italic;
 }
@@ -460,7 +457,7 @@ export default {
   color: black;
 }
 .btn-primary:hover {
-  opacity:1;
+  opacity: 1;
   background-color: #111;
   color: skyblue;
 }

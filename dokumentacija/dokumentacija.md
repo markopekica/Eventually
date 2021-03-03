@@ -25,17 +25,40 @@ kako dokumenti inace imaju
 
 <br>
 
-Cilj projekta, u sklopu kolegija programsko inženjerstvo, bio je napraviti jasnu, preglednu, čistu i pristupačnu web aplikaciju, jednostavnog ali učinkovitog dizajna. Namjena aplikacije je djeljenje odnosno, objava događaja kao i jednostavan pronalazak istih prema vlasitim željama i ukusu.
+Cilj
 
-**Ciljano tržište** je sva populacija kojoj je dozvoljen posjet događaja (dakle dobna granica ovisiti će o pojedinom događaju), odnosno koji žele provesti neko vrijeme prisustvujući na nekom od organiziranih, javnih događaja; poput primjerice grupnih rekreativnih sportstkih aktivnosti, glazbenih nastupa i događaja, online događaja (edukativni, 'entertainment'), kinematografskog sadržaja... **Korisnici** aplikacije su stoga ljudi koji žele proširiti glas o nekom događaju ili ljudi koji žele posjetiti neki događaj.
+Cilj našega projekta , u sklopu kolegija Programsko inženjerstvo bio je dizajnirati i napraviti preglednu, efikasnu i za korištenje jednostavnu web aplikaciju. Namjena aplikacije je stvoriti domenu u kojoj korisnici mogu objavljivati i dijeliti nadolazeće događaje te također na brz način istražiti i pronaći događaje koji odgovaraju željama i ukusu korisnika.
+Ciljano tržište 
+Aplikacija je namijenjena za korisnike svih uzrasta kojima je omogućen pristup internetu, što se očituje u našem jednostavnom ali učinkovitom dizajnu. Korisnike dijelimo na one koji žele pregledati i otkriti nove događaje te promotore koji će kreirati događaje.  
 
-<br>
+Prednosti 
 
-Mnogo modernih stranica (/web aplikacija) je ultra nabrijano dizajnirano. Mnogo se dešava. Reklame skaču na sve strane. Stranice sa svrhom koju mi nastojimo ispuniti nisu puno drugačije. Naša stranica trebala bi biti jasna, čista, pregledna i nenapadna, **prednost** toga bilo bi veće usmjerenje pažnje na same događaje. _Prednost_ je i manja potrošnja kapaciteta mozga koju će korisnici upotrebljavati tijekom korištenja naše aplikacije (pažnja se neče rasipati na nepotreban sadržaj, jer ga neće ni biti).
+Među najpopularnijim načinima oglašavanja i promoviranja događaja danas je putem društvenih mreža ili nepreglednih stranica (gradova, institucija) što ima svoje nedostatke; potreba za kreacijom korisničkog računa, mukotrpan proces pronalaženja promotora ili željenog događaja , te prenatrpanost oglasima i ostalim nepotrebnim sadržajem zbog toga što oglašavanje nije primarna svrha tih stranica i aplikacija, već samo kap u moru mogućnosti i funkcija. Glavna prednost naše aplikacije je usmjerenost isključivo na događaje kroz preglednu prezentaciju i jednostavan proces objave događaja te odvojenost od društvenih mreža čime ćemo privući pažnju korisnika koji ne koriste društvene mreže. Nadalje, korisnici koji samo žele pregledati događaje ne moraju prolaziti kroz naporan i odbojan proces kreacije računa, no ukoliko naprave račun biti će u mogućnosti kreirati događaj, ostaviti komentar na postojeće događaje kao i ostaviti odgovor ukoliko su zainteresirani ili planiraju prisustvovati. Odgovaranjem na događaj kreiraju personaliziranu listu koju će moći pratiti na svom profilu. Smatramo kako će naša aplikacija stvoriti okruženje kojim ćemo pomoći i olakšati ne samo velikim organizatorima već i manjim entitetima čije se objave gube i ne dolaze to isticaja u labirintu algoritama i nepreglednih stranica.
 
-_Druga prednost_ je ta da aplikacija ima jednu glavnu svrhu. Bazirana je isključivo oko društvenih događaja; Za razliku od drugih aplikacija koje uz mogućnost objave/pretrage događaja pružaju mnoge druge usluge, primjerice facebook, odnosno aplikacija kojima svrha nije bazirana primarno oko društvenih događaja. To je prednost iz dva razloga. Jedan je taj da korisnik može koristiti aplikaciju samo sa jednom svrhom, drugi je da zbog veće specjalizacije možemo bolje prilagoditi usluge ciljanom tržištu.
+SWOT analiza
 
-    Mnogo ljudi ima korisničke profile na raznim durštvenim mrežama, poput facebook-a. Facebook primjerice ima integriranu mogućnost za objavu događaja. No Facebook nije u redu, pa savjetujemo da umjesto toga koristite našu aplikaciju.
+Strengths: 
+      unikatnost ponude 
+      jednostavno i brzo korištenje
+      jasan i efektivan pregled
+      pristupačnost usluge
+
+Opportunities: 
+      puno prostora za optimizaciju
+      plasiranje aplikacije na mobilne uređaje
+      Partnerstvo?
+
+
+Weaknesses: 
+      staromodniji dizajn
+      mogući problem storage-a
+      limitiran broj mogućnosti     
+
+Threats: 
+      nova konkurentna rješenja
+      neprihvaćanje od strane korisnika
+      overload sustava?
+
 
 <div style="page-break-after:always;"></div>
 

@@ -17,11 +17,16 @@
 
     <div class="addEventContent">
       <hr v-if="!loading" class="solid" />
-      <img v-if="loading" class = "loading" :src="require('@/assets/loading.gif')"/>
+      <img
+        v-if="loading"
+        class="loading"
+        :src="require('@/assets/loading.gif')"
+      />
       <form v-if="!loading" @submit.prevent="postEvent">
         <h2>Basic info</h2>
         <h6>
-          Name your event and tell event-goers why you think they should attend. <br />
+          Name your event and tell event-goers why you think they should attend.
+          <br />
           Add details that highlight what makes it unique.
         </h6>
         <br />
@@ -179,14 +184,11 @@
             placeholder="address, city"
           />
         </div>
-        <br>
+        <br />
       </form>
       <form v-if="!loading" @submit.prevent="postEvent">
         <button type="submit" class="btn btn-primary">Create</button>
       </form>
-
-      
-      
     </div>
   </div>
 </template>
@@ -234,61 +236,60 @@ export default {
     async postEvent() {
       try {
         this.loading = true;
-        let blobData = await this.getImage()
-        let imageName = "posts/" + this.$attrs.user.email + "/" + Date.now() + ".png";
-        console.log(imageName);
+        let blobData = await this.getImage();
+        let imageName =
+          "posts/" + this.$attrs.user.email + "/" + Date.now() + ".png";
         let result = await storage.ref(imageName).put(blobData);
 
         let url = await result.ref.getDownloadURL(); //Promise
 
-            console.log("Javni link: ", url);
+        console.log("Javni link: ", url);
 
-            const eventName = this.newEventName;
-            const eventOrg = this.newEventOrg;
-            const eventMoreInfo = this.newEventMoreInfo;
-            const eventCategory = this.newEventCategory;
-            const eventPrice = this.newEventPrice;
-            const eventStartDate = this.newEventStartDate;
-            const eventEndDate = this.newEventEndDate;
-            const eventStartTime = this.newEventStartTime;
-            const eventEndTime = this.newEventEndTime;
-            const eventLocation = this.newEventLocation;
+        const eventName = this.newEventName;
+        const eventOrg = this.newEventOrg;
+        const eventMoreInfo = this.newEventMoreInfo;
+        const eventCategory = this.newEventCategory;
+        const eventPrice = this.newEventPrice;
+        const eventStartDate = this.newEventStartDate;
+        const eventEndDate = this.newEventEndDate;
+        const eventStartTime = this.newEventStartTime;
+        const eventEndTime = this.newEventEndTime;
+        const eventLocation = this.newEventLocation;
 
-            let doc = await db.collection("events").add({
-              eventTitle: eventName,
-              author: this.$attrs.user.email,
-              posted_at: Date.now(),
-              eventImage: url,
-              org: eventOrg,
-              additionalInfo: eventMoreInfo,
-              category: eventCategory,
-              price: eventPrice,
-              startDate: eventStartDate,
-              endDate: eventEndDate,
-              startTime: eventStartTime,
-              endTime: eventEndTime,
-              location: eventLocation,
-            });
+        let doc = await db.collection("events").add({
+          eventTitle: eventName,
+          author: this.$attrs.user.email,
+          posted_at: Date.now(),
+          eventImage: url,
+          org: eventOrg,
+          additionalInfo: eventMoreInfo,
+          category: eventCategory,
+          price: eventPrice,
+          startDate: eventStartDate,
+          endDate: eventEndDate,
+          startTime: eventStartTime,
+          endTime: eventEndTime,
+          location: eventLocation,
+        });
 
-            console.log("Spremljeno", doc);
+        console.log("Spremljeno", doc);
 
-            this.newEventName = "";
-          //  this.croppa.remove();
-            this.newEventOrg = "";
-            this.newEventMoreInfo = "";
-            this.newEventCategory = "";
-            this.newEventPrice = "";
-            this.newEventStartDate = "";
-            this.newEventEndDate = "";
-            this.newEventStartTime = "";
-            this.newEventEndTime = "";
-            this.newEventLocation = ""; 
-      }
-      catch (e) {
+        this.newEventName = "";
+        //  this.croppa.remove();
+        this.newEventOrg = "";
+        this.newEventMoreInfo = "";
+        this.newEventCategory = "";
+        this.newEventPrice = "";
+        this.newEventStartDate = "";
+        this.newEventEndDate = "";
+        this.newEventStartTime = "";
+        this.newEventEndTime = "";
+        this.newEventLocation = "";
+      } catch (e) {
         console.error("GREŠKA", e);
       }
       this.loading = false;
-      this.$router.push("/")
+      this.$router.push("/");
     },
   },
 };
@@ -340,7 +341,6 @@ export default {
 }
 
 form {
-  //border: 1px solid;
   margin: auto;
   max-width: 500px;
   display: flex;
@@ -353,7 +353,6 @@ form {
 }
 
 .addEventContent {
-  //border: 1px solid blue;
   justify-content: center;
 }
 
@@ -395,7 +394,6 @@ textarea:hover {
 }
 
 .odvoji {
-  // border: 1px solid lime;
   display: flex;
   justify-content: space-around;
   margin-top: 20px;
@@ -419,7 +417,6 @@ textarea:hover {
 }
 
 .datumi {
-  // border: 1px solid yellowgreen;
   width: 100%;
   margin: auto;
   margin-top: 30px;
@@ -443,7 +440,6 @@ textarea:hover {
 }
 
 .sati {
-  //border: 1px solid skyblue;
   width: 100%;
   margin: auto;
   display: flex;
@@ -499,7 +495,7 @@ h6 {
 }
 
 .btn-primary:hover {
-  opacity:1;
+  opacity: 1;
   background-color: #111;
   color: skyblue;
 }

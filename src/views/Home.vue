@@ -188,18 +188,17 @@ export default {
         }, 4000);
         this.calendarOpen = true;
       }
-      /* console.log("Date from: ", this.dateFrom);
-      console.log("Date to: ", this.dateTo); */
+      
     },
     cancel() {
       this.calendarOpen = false;
       this.filtersOpen = false;
     },
     addEvent() {
-      if (this.$attrs.user_status == true) {
-        // jump to: AddEvent.vue
-      } else {
+      if (this.$attrs.user_status == false) {
         alert("LogIn to use this feature");
+      } else {
+        // jump to: AddEvent.vue
       }
     },
   },
@@ -227,7 +226,6 @@ export default {
   cursor: pointer;
 }
 .tool-icon:hover {
-  //box-shadow: 4px 4px 0px 0px skyblue;
   box-shadow: 0 0 0.5em 0.042em skyblue;
 }
 .calendar-div {
@@ -243,7 +241,6 @@ export default {
 }
 .date-from,
 .date-to {
- /* border: 1px solid red;  */
   width: 70%;
   display: flex;
   align-items: center;
@@ -254,7 +251,6 @@ export default {
   justify-self: center;
   border-radius: 8px;
   border: 2px solid #dadada;
-  /* border:1px solid gold; */
 }
 .calendar:hover {
   border-color: rgb(97, 97, 97);

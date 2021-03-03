@@ -124,7 +124,6 @@ form {
   border-radius: 16px;
   padding: 0.32em 1em;
   margin: 1em 0;
-  color: #2c3e50;
 }
 #register-button:hover {
   box-shadow: 1px 1px 1px skyblue;

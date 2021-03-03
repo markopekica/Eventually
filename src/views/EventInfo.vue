@@ -27,7 +27,6 @@
         </div>
         <div class="interactive">
           <div class="interactive-icons-div">
-            <!-- <span class="material-icons host-icon">account_circle</span> -->
             <div class="watch-like-icon-div">
               <div class="watch-div">
                 <span id="eye-icon" class="material-icons" @click="watch">
@@ -48,7 +47,6 @@
                 </span>
               </div>
             </div>
-            <!-- <span class="material-icons"> share </span> -->
           </div>
         </div>
         <!-- /top (picture, like icon) -->
@@ -111,7 +109,6 @@
             {{ $route.query.card.price }}
           </span>
         </div>
-
         <!-- osnovni podaci: DATUM, LOKACIJA... -->
         <!-- /basic info (box) -->
       </div>
@@ -123,122 +120,11 @@
       <!-- VISE INFORMACIJA text -->
       <div class="previse-divova">
         <span class="material-icons description-icon"> description </span>
-        <!-- <div>
-          <span class="material-icons site"> language </span>
-          <div class="hide">i should be a link. to official site</div>
-        </div> -->
       </div>
       <div class="card-description">
         {{ $route.query.card.additionalInfo }}
       </div>
     </div>
-
-    <!-- https://schier.co/blog/pure-html-share-buttons -->
-    <!-- <div class="share-links">
-      <br />
-      share this on:
-      <br />
-      <a
-        href="https://twitter.com/share?url=<URL>&text=<TEXT>via=<USERNAME>"
-        class="share-btn twitter"
-      >
-        Twitter
-      </a>
-      <a
-        href="https://www.facebook.com/sharer/sharer.php?u=<URL>"
-        class="share-btn facebook"
-      >
-        Facebook
-      </a>
-      <a
-        href="https://reddit.com/submit?url=<URL>&title=<TITLE>"
-        class="share-btn reddit"
-      >
-        Reddit
-      </a>
-      <a
-        href="https://www.linkedin.com/shareArticle?url=<URL>&title=<TITLE>&summary=<SUMMARY>&source=<SOURCE_URL>"
-        class="share-btn linkedin"
-      >
-        LinkedIn
-      </a>
-      <a href="mailto:?subject=<SUBJECT>&body=<BODY>" class="share-btn email">
-        Email
-      </a>
-    </div> -->
-
-    <!--
-
-    <div class="comment-section-div">
-      <form>
-        <div class="form-group">
-          <label for="exampleFormControlTextarea1">Have anything to add?</label>
-          <textarea
-            class="form-control"
-            id="exampleFormControlTextarea1"
-            rows="3"
-          ></textarea>
-        </div>
-        <div class="comment-icon-div">
-          <span class="material-icons add-main-thread"> comment </span>
-        </div>
-      </form>
-
-      
-      <div class="comment-thread">
-        <div class="comment-main-thread">
-          <div class="comment-owner-div">
-            <span class="material-icons host-icon">account_circle</span>
-            <span>userdasdsdsa dsa name</span>
-          </div>
-          <div class="comment-body">
-            <div class="comnet">
-              <span>comnet 1</span>
-            </div>
-            <div class="info">
-              <span>date</span>&emsp;
-              <span>time</span>
-            </div>
-          </div>
-        </div>
-        <div class="comment-response">
-          <div class="comment-owner-div">
-            <span class="material-icons host-icon">account_circle</span>
-            <span>user name</span>
-          </div>
-          <div class="comment-body">
-            <div class="comnet">
-              <span>comnet 1</span>
-            </div>
-            <div class="info">
-              <span>date</span>&emsp;
-              <span>time</span>
-            </div>
-          </div>
-        </div>
-        <span class="material-icons"> comment </span>
-      </div>
-      <div class="comment-thread">
-        <div class="comment-main-thread">
-          <div class="comment-owner-div">
-            <span class="material-icons host-icon">account_circle</span>
-            <span>user name</span>
-          </div>
-          <div class="comment-body">
-            <div class="comnet">
-              <span>comnet 1</span>
-            </div>
-            <div class="info">
-              <span>date</span>&emsp;
-              <span>time</span>
-            </div>
-          </div>
-        </div>
-        <span class="material-icons"> comment </span>
-      </div>
-       /commnet section 
-    </div>
-    -->
   </div>
 </template>
 
@@ -286,12 +172,10 @@ export default {
           .get()
           .then((query) => {
             query.forEach((doc) => {
-              //console.log(doc.data());
               this.numLiked += 1;
               if (doc.data().usr == this.usr) {
                 this.liked = true;
                 document.getElementById("heart-icon").style.color = "#e0115f";
-                //console.log(this.liked);
               }
             });
           });
@@ -565,7 +449,7 @@ hr {
 }
 .card-description {
   margin: 0.5em 1em;
-  padding: .25em;
+  padding: 0.25em;
   text-align: left;
   white-space: pre-wrap;
   /* box-shadow: 0px 0px 1px lightgrey; */

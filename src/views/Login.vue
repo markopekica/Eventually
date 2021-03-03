@@ -92,7 +92,6 @@ export default {
         })
         .catch((error) => {
           this.eror = error.message;
-          /* alert(this.eror) */
         });
     },
   },
@@ -119,7 +118,6 @@ form {
   border-radius: 16px;
   margin: 1em 0;
   padding: 0.32em 1em;
-  /* color: #2c3e50; */
 }
 #login-button:hover {
   box-shadow: 1px 1px 1px skyblue;
