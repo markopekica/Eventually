@@ -69,7 +69,7 @@ h3 {
   overflow: auto;
 }
 .rutlink {
-  border: 1px dotted skyblue;
+  border: 1px solid skyblue;
   background-color: white;
   border-radius: 16px;
   margin: 0.25em auto;

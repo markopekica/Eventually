@@ -32,22 +32,20 @@
           <img
             :src="slika"
             style="
-                box-shadow: 0 0 1px #111;
-                width: 220px;
-                height: 220px;
-                border-radius: 50%;
-                object-fit: cover;
-              "
+              box-shadow: 0 0 1px #111;
+              width: 220px;
+              height: 220px;
+              border-radius: 50%;
+              object-fit: cover;
+            "
             alt="uuh"
           />
         </div>
-        
+
         <p class="m-b-10 f-w-600">{{ covik }}</p>
       </div>
       <!-- <button type="submit" class="EditP" @click="Edit">Edit profile </button> -->
-      <span class="material-icons" @click="Edit">
-        mode_edit
-      </span>
+      <span class="material-icons" @click="Edit"> mode_edit </span>
     </div>
 
     <div
@@ -88,7 +86,7 @@
           />
         </div>
         <br />
-        <button type="submit" class="btn btn-primary" @click="Save">
+        <button type="button" class="btn btn-primary" @click="Save">
           Save changes
         </button>
       </form>
@@ -137,7 +135,6 @@
         </event-card>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -164,7 +161,7 @@ export default {
       covik: "",
       slika: "",
       ajdi: "",
-
+      mojaSlika: "",
       EnableEdit: false,
     };
   },
@@ -179,19 +176,33 @@ export default {
     },
     Save() {
       console.log("trebamo ovaj gledati", this.ajdi);
-      db.collection("userProfile")
-        .doc(this.ajdi)
-        .delete()
-        .then(() => {
-          console.log("Document successfully deleted!");
-        })
-        .catch((error) => {
-          console.error("Error removing document: ", error);
+      if (this.ajdi) {
+        db.collection("userProfile" + this.$attrs.user.email + "/")
+          .doc(this.ajdi)
+          .delete()
+          .then(() => {
+            console.log("Document successfully deleted!");
+          })
+          .catch((error) => {
+            console.error("Error removing document: ", error);
+          });
+
+        /* https://javascript.tutorialink.com/how-to-delete-all-files-in-a-firebase-storage-directory/ */
+        const storageRef = firebase
+          .storage()
+          .ref("userProfile/" + this.$attrs.user.email + "/");
+        storageRef.listAll().then((listResults) => {
+          const promises = listResults.items.map((item) => {
+            return item.delete();
+          });
+          Promise.all(promises);
         });
+
+      }
       this.croppa.generateBlob((blobData) => {
         let imageName =
           "userProfile/" + this.$attrs.user.email + "/" + Date.now() + ".png";
-        console.log(imageName);
+        this.mojaSlika = imageName;
 
         storage
           .ref(imageName)
@@ -206,7 +217,7 @@ export default {
 
                 const userName = this.newUserName;
 
-                db.collection("userProfile")
+                db.collection("userProfile" + this.$attrs.user.email + "/")
                   .add({
                     url: url,
                     usrName: userName,
@@ -234,20 +245,14 @@ export default {
       this.EnableEdit = false;
     },
     getData() {
-      console.log("firebase dohvat");
-
-      db.collection("userProfile")
+      db.collection("userProfile" + this.$attrs.user.email + "/")
         .get()
         .then((query) => {
           query.forEach((doc) => {
             const data = doc.data();
-            console.log(data);
-
             this.ajdi = doc.id;
             this.covik = data.usrName;
             this.slika = data.url;
-
-            console.log("-------------", this.ajdi);
           });
         });
     },
