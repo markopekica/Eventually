@@ -1,9 +1,72 @@
 <template>
   <div class="user-profile-page">
-    <div style="margin: 1em auto; color: hotpink">
-      <p>welcome {{ usr }}</p>
+    <div class="container">
+      <div class="row">
+        <div class="col-2">
+          <router-link to="/"
+            ><span class="material-icons" style="color: black"
+              >arrow_back_ios</span
+            ></router-link
+          >
+        </div>
+        <div class="col-8">
+          <h1>My Profile</h1>
+        </div>
+      </div>
     </div>
-    <div class="my-events" style="margin: 6em auto;">
+<div class="page-content page-container" id="page-content" v-if="EnableEdit==false">
+  <div class="col-sm-12">
+     <profile-picture
+      v-for="card in cards"
+      :key= "card"
+      :info= "card" /> 
+
+      <img class= "card-img-top" :src="info" />
+    <p class="m-b-10 f-w-600">Username: {{newUserName}}</p>
+  </div>
+  <button type="submit" class="EditP" @click="Edit">Edit profile </button>
+</div>
+
+<div class="page-content page-container" id="page-content" v-if="EnableEdit==true">
+<form @submit.prevent="Save"> 
+  <croppa
+          v-model="croppa"
+          :width="370"
+          :height="240"
+          placeholder="Drag & drop or click to add a new profile image."
+          placeholder-color="#111"
+          :placeholder-font-size="15"
+          canvas-color="transparent"
+          :accept="'image/*'"
+          :show-remove-button="true"
+          remove-button-color="red"
+          :remove-button-size="35"
+          :show-loading="true"
+          :loading-size="50"
+          :prevent-white-space="true"
+          :image-border-radius="200"
+        >
+          <div class="testdiv">
+            <i class="large material-icons test">insert_photo</i>
+          </div>
+        </croppa>
+        <br />
+        <div class="form-group">
+          <label for="newUserName">Enter your new user name: </label>
+          <input
+            v-model="newUserName"
+            type="text"
+            class="form-control"
+            placeholder="User name"
+          />
+        </div>
+        <br />
+        <button type="submit" class="btn btn-primary" @click="Save">Save changes</button>
+
+</form>
+</div>
+
+<div class="my-events" style="margin: 6em auto;">
 
 <div class="like-lane">
       <span id="heart-icon" class="material-icons" style="color: #e0115f;">
@@ -32,39 +95,117 @@
     </div>
     
     <span class="logout-link-wrapper" @click="logout">
-      <router-link
-        id="logout-button"
-        class="rutlink"
-        tag="button"
-        :to="{ path: '/' }"
-      >
-        Log Out
-      </router-link>
+    <router-link id="logout" to="/" 
+      ><span id="login" class="material-icons"
+        >logout</span
+      >Log Out</router-link
+    >
     </span>
   </div>
 </template>
 
 <script>
-import { firebase, db } from "@/firebase";
+import { firebase, db, storage } from "@/firebase";
 import store from "@/store.js";
 import EventCard from "../components/EventCard.vue";
 export default {
+  props: ['info'],
   name: "UserProfile",
   components: {
     EventCard,
   },
   data() {
     return {
+      croppa: null,
       store,
+      cards: [],
       cardsHeart: [],
       cardsEye: [],
       usr: this.$attrs.user.email,
+      newUserName: "",
+      newImageUrl: "",
+
+      EnableEdit: false,
     };
   },
   mounted() {
     this.getCards();
+    this.getData();
+    
+
   },
   methods: {
+    
+    Edit(){
+      this.EnableEdit = true
+    },
+    Save(){
+      
+      this.croppa.generateBlob(blobData => {
+        let imageName= "userProfile/" + this.$attrs.user.email + "/" + Date.now() + ".png";
+        console.log(imageName);
+
+        storage
+        .ref(imageName)
+        .put(blobData)
+        .then(result =>{
+          console.log(result)
+
+          result.ref.getDownloadURL().then(url => {
+            console.log("Javni url", url);
+
+            
+            const userName = this.newUserName;
+
+            db.collection("userProfile")
+            .add({
+            url: url,
+            usrName: userName,
+            email: this.$attrs.user.email,
+            })
+            .then((doc) => {
+              console.log("Spremljeno", doc)
+              this.newUserName = "";
+              this.croppa= null;
+
+              this.getData();
+            })
+            .catch((e) => {
+              console.error(e);
+            });
+
+          }).catch(e =>{
+            console.error(e)
+          });
+
+        })
+        .catch(e =>{
+          console.error(e)
+        })
+      })
+      this.EnableEdit = false
+    },
+    getData(){
+      console.log("firebase dohvat")
+
+      db.collection("userProfile").get()
+      .then((query) => {
+        query.forEach((doc) => {
+          console.log(doc.id);
+          console.log(doc.data());
+
+          const data= doc.data();
+
+          this.cards.push({
+            id: doc.id,
+            name: data.usrName,
+            url: data.url,
+
+
+          });
+        });
+      });
+    },
     getCards() {
       db.collection("events")
         .get()
@@ -147,13 +288,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#logout-button {
-  background-color: snow;
-  border: 1px solid darkorange;
-  padding: 0.5em 1em;
-  margin: 1em 0;
-  color: #2c3e50;
-  border-radius: 16px;
+#logout{
+  color: #ee5a6f;
+  font-weight: 700
 }
 .like-lane,
 .eye-lane {
@@ -163,5 +300,58 @@ export default {
   overflow: auto;
   min-height: fit-content;
   border: 1px dotted #111;
+}
+.col-8 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.croppa-container {
+  background-color: rgb(238, 238, 238);
+  border: 2px solid grey;
+  border-radius: 20px;
+  margin: auto;
+}
+.croppa-container:hover {
+  opacity: 1;
+  background-color: white;
+  border-color: skyblue;
+  box-shadow: 0 0 20px #9ecaed;
+}
+.test {
+  margin: auto;
+  font-size: 60px;
+  color: rgb(32, 32, 32);
+  margin-bottom: 50px;
+}
+.testdiv {
+  display: flex;
+  min-height: 200px;
+  margin-top: -200px;
+}
+.EditP:hover,.SaveChange:hover{
+cursor:pointer;
+}
+.container {
+  margin: 1em auto;
+}
+.col-8 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.form-group {
+  margin-top: 10px;
+  display: inline-block;
+}
+.btn-primary {
+  border: 1px solid black;
+  background-color: skyblue;
+  color: black;
+}
+.EditP {
+  border: 1px solid black;
+  background-color: skyblue;
+  color: black;
 }
 </style>
