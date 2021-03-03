@@ -499,7 +499,9 @@ h6 {
 }
 
 .btn-primary:hover {
-  background-color: skyblue;
+  opacity:1;
+  background-color: #111;
+  color: skyblue;
 }
 
 select {

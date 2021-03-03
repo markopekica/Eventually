@@ -15,7 +15,7 @@
         <div class="col-2">
           <span class="logout-link-wrapper" @click="logout">
             <router-link id="logout" to="/"
-              ><span id="login" class="material-icons">logout</span>Log
+              ><span class="material-icons">logout</span>Log
               Out</router-link
             >
           </span>
@@ -42,10 +42,10 @@
           />
         </div>
 
-        <p class="m-b-10 f-w-600">{{ covik }}</p>
+        <p class="usernamen">{{ covik }}</p>
       </div>
       <!-- <button type="submit" class="EditP" @click="Edit">Edit profile </button> -->
-      <span class="material-icons" @click="Edit"> mode_edit </span>
+      <span id="olovka" class="material-icons" @click="Edit"> mode_edit </span>
     </div>
 
     <div
@@ -77,12 +77,12 @@
         </croppa>
         <br />
         <div class="form-group">
-          <label for="newUserName">Enter your new user name: </label>
+          <label for="newUserName">Enter your new username: </label>
           <input
             v-model="newUserName"
             type="text"
             class="form-control"
-            placeholder="User name"
+            placeholder="Username"
           />
         </div>
         <br />
@@ -95,7 +95,7 @@
     <!-- HOSTED EVENTS -->
     <div class="my-events" style="margin: 6em auto">
       <span class="material-icons"> admin_panel_settings </span>
-      <span>events I hosted:</span>
+      <span>Events I hosted:</span>
       <div class="hosted-events-lane">
         <event-card
           v-for="eventCard in cardsHosted"
@@ -367,9 +367,27 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+::-webkit-input-placeholder {
+  font-style: italic;
+}
+
+#olovka {
+  color: skyblue;
+}
+
+#olovka:hover {
+  cursor: pointer;
+}
+
+.usernamen {
+  font-size: 160%;
+}
+
 #logout {
   color: #ee5a6f;
   font-weight: 700;
+  display: flex;
 }
 
 #logout-button:hover {
@@ -413,7 +431,14 @@ export default {
   min-height: 200px;
   margin-top: -200px;
 }
-.EditP:hover,
+
+.form-control {
+  border-radius: 10px;
+}
+.form-control:hover {
+  border-color: rgb(97, 97, 97);
+}
+
 .SaveChange:hover {
   cursor: pointer;
 }
@@ -433,6 +458,11 @@ export default {
   border: 1px solid black;
   background-color: skyblue;
   color: black;
+}
+.btn-primary:hover {
+  opacity:1;
+  background-color: #111;
+  color: skyblue;
 }
 .EditP {
   border: 1px solid black;
