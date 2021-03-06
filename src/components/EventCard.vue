@@ -64,6 +64,7 @@ h3 {
 }
 .rutlink {
   border: 1px solid skyblue;
+//  background-color: rgb(250, 250, 250);
   background-color: white;
   border-radius: 16px;
   margin: 0.25em auto;
