@@ -371,10 +371,17 @@ export default {
 
 #olovka {
   color: skyblue;
+  border: 2px solid;
+  border-radius: 10px;
+  padding: 2px;
 }
 
 #olovka:hover {
   cursor: pointer;
+  opacity: 1;
+  background-color: #111;
+  color: skyblue;
+  border: 2px solid #111;
 }
 
 .usernamen {

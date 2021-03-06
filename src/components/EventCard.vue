@@ -1,13 +1,5 @@
 <template>
-  <div class="card" style="width: 18rem">
-    <!-- 
-    ovo sam uklonio iz gornjeg diva
-      v-if="this.card_info.category == this.lane_info.title"
-    kartica se sad filtrira po redu unutar lane komponente
-    cini mi se da je to bolje
-    sad mogu koristit karticu kao komponentu i na user profilu
-    -->
-    <!-- <div v-if="this.card_info.startDate > this.store.dateFrom"> -->
+  <div class="card">
     <img :src="card_info.eventImage" class="card-img-top" alt="pic" />
     <div class="card-body">
       <h3 class="card-title">{{ this.card_info.title }}</h3>
@@ -38,7 +30,6 @@ export default {
   name: "EventCard",
   props: {
     card_info: Object,
-    //lane_info: Object,
   },
   data() {
     return {
@@ -50,6 +41,7 @@ export default {
 
 <style scoped lang="scss">
 .card {
+  width: 350px;
   margin: 1em 2em;
   display: inline-block;
   min-width: fit-content;
@@ -58,15 +50,17 @@ export default {
   box-shadow: 0.25em 3px 0.4em lightgray;
 }
 .card-img-top {
-  width: 300px;
+  width: 360px;
   height: 200px;
-
   border-radius: 10px 10px 0 0;
 }
+.card-body {
+  width: 360px;
+}
 h3 {
-  // font-size: 10%;
-  max-width: 250px;
+  max-width: 360px;
   overflow: auto;
+  height: 68px;
 }
 .rutlink {
   border: 1px solid skyblue;

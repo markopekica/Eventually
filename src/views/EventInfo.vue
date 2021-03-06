@@ -119,9 +119,11 @@
     <div class="item icon-field description-div">
       <!-- VISE INFORMACIJA text -->
       <div class="previse-divova">
-        <span class="material-icons description-icon"> description </span>
+        <span class="material-icons description-icon" @click="showDescription">
+          description
+        </span>
       </div>
-      <div class="card-description">
+      <div class="card-description" v-if="descriptionOpen">
         {{ $route.query.card.additionalInfo }}
       </div>
     </div>
@@ -145,6 +147,7 @@ export default {
         numLiked: 0,
         watched: false,
         numWatched: 0,
+        descriptionOpen: false,
       };
     } else {
       // inace baca err u konzolu: can't read email of undefined
@@ -164,6 +167,11 @@ export default {
     this.checkIfWatched();
   },
   methods: {
+    showDescription() {
+      this.descriptionOpen == false
+        ? (this.descriptionOpen = true)
+        : (this.descriptionOpen = false);
+    },
     checkIfLiked() {
       if (this.user_status) {
         db.collection("events")
@@ -329,7 +337,6 @@ h1 {
 .item {
   display: flex;
   margin-bottom: 1em;
-  /* border:1px solid red; */
 }
 .top-main {
   /* pic with 3 interactive icons below */
@@ -358,7 +365,6 @@ h1 {
 }
 .watch-like-icon-div {
   display: flex;
-  /* border: 1px solid red; */
   margin: auto;
   * {
     margin: 0 0.5em;
@@ -392,7 +398,6 @@ h1 {
   box-shadow: 0em 0 0.3em 0.01em gray;
   color: #111;
   border-radius: 1em;
-  /* border: 1px solid green; */
 }
 .text-near-icon {
   margin-left: 0.75em;
@@ -417,12 +422,12 @@ h1 {
   display: flex;
   flex-direction: column;
   padding-right: 1em;
-  width: 42%;
+  width: 45%;
 }
 .from,
 .to {
   font-size: 70%;
-  margin-left: 0.7em;
+  margin-left: 1em;
   font-weight: bold;
 }
 hr {
@@ -439,7 +444,7 @@ hr {
   /* description dio; ispod crte, iznad komentara */
   display: flex;
   margin: 0.5em 1em 0.2em 1em;
-  justify-content: flex-start;
+  justify-content: center;
   * {
     margin-right: 1em;
   }
@@ -447,100 +452,25 @@ hr {
     color: skyblue;
   }
 }
+.description-icon {
+  color: skyblue;
+  border: 2px solid;
+  border-radius: 10px;
+  padding: 2px;
+}
+.description-icon:hover {
+  cursor: pointer;
+  opacity: 1;
+  background-color: #111;
+  border: 2px solid #111;
+}
 .card-description {
   margin: 0.5em 1em;
   padding: 0.25em;
   text-align: left;
   white-space: pre-wrap;
-  /* box-shadow: 0px 0px 1px lightgrey; */
-}
-/* .event-website-link-div {
-  margin: 0.2em 0.5em;
-  text-align: left;
-  margin-top: 2em;
-} */
-/* COMMENT SECTION */
-.comment-section-div {
-  /* background-color: #111; */
-  border-top: 1px solid #111;
-  border-bottom: 1px solid #111;
-  border-radius: 4px;
-  max-width: 80%;
-  margin: 4em auto 2em auto;
-  min-height: 6em;
-  padding-top: 1em;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 1em;
-  /* background-color: rgb(255, 245, 225); */
-}
-#exampleFormControlTextarea1 {
-  width: 90%;
-  margin: auto;
-}
-.comment-icon-div {
-  margin-bottom: 1em;
-  display: flex;
-  justify-content: center;
-  width: 90%;
-  margin: 0em auto 1em auto;
-  color: skyblue;
-}
-.add-main-thread {
-  opacity: 0.7;
-}
-.add-main-thread:hover {
-  cursor: pointer;
-  opacity: 1;
-}
-/* .comment-thread {
-  margin: 1.5em auto;
-  width: 90%;
-}
-.comment-main-thread,
-.comment-response {
-  display: flex;
 }
 
-.comment-main-thread {
-  margin: 0 0 0.5em 0em;
-}
-.comment-response {
-  width: 90%;
-  margin-left: 10%;
-}
-.comment-owner-div {
-  border-right: 1px dotted #111;
-  background-color: #111;
-  color: rgb(204, 204, 204);
-  display: flex;
-  flex-direction: column;
-  padding: 0.5em;
-  max-width: 100px;
-  word-break: break-word;
-  * {
-    margin-right: 0.2em;
-  }
-}
-.comment-body {
-  .comnet {
-    padding: 1em;
-    height: 70%;
-  }
-  .info {
-    border-top: 1px solid #111;
-    text-align: left;
-    padding-left: 0.5em;
-    font-size: 80%;
-    font-weight: bold;
-  }
-}
-.comment-main-thread,
-.comment-response {
-  border: 1px solid rgb(204, 204, 204);
-  border-radius: 5px;
-} */
 @media only screen and (min-width: 1080px) {
   .main-content,
   .description-div,
@@ -571,52 +501,4 @@ hr {
     max-width: 90%;
   }
 }
-
-/** Social Button CSS **/
-
-/* .share-btn {
-  display: inline-block;
-  color: #ffffff;
-  border: none;
-  padding: 0.1em 0.6em;
-  outline: none;
-  text-align: center;
-  font-size: 0.9em;
-  margin: 0 0.2em;
-}
-
-.share-btn:focus,
-.share-btn:hover {
-  text-decoration: none;
-  opacity: 0.8;
-}
-
-.share-btn:active {
-  color: #e2e2e2;
-}
-
-.share-btn.twitter {
-  background: #55acee;
-}
-.share-btn.google-plus {
-  background: #dd4b39;
-}
-.share-btn.facebook {
-  background: #3b5998;
-}
-.share-btn.stumbleupon {
-  background: #eb4823;
-}
-.share-btn.reddit {
-  background: #ff5700;
-}
-.share-btn.hackernews {
-  background: #ff6600;
-}
-.share-btn.linkedin {
-  background: #4875b4;
-}
-.share-btn.email {
-  background: #444444;
-} */
 </style>

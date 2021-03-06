@@ -118,12 +118,22 @@ form {
   padding: 1em;
   margin: auto;
 }
+
+.form-control {
+  border-radius: 10px;
+}
+.form-control:hover {
+  border-color: rgb(97, 97, 97);
+}
+
 #register-button {
   border: 1px solid skyblue;
   background-color: white;
+  color: black;
   border-radius: 16px;
   padding: 0.32em 1em;
   margin: 1em 0;
+  outline: none;
 }
 #register-button:hover {
   box-shadow: 1px 1px 1px skyblue;

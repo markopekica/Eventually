@@ -11,8 +11,7 @@ export default{
       { id: "4", title: "Food/Drinks" },
       { id: "5", title: "Sports/Outdoors" },
       { id: "6", title: "Initiatives/Campaigns" },
-      { id: "7", title: "Educational" },
-      { id: "8", title: "Games" },
-      { id: "9", title: "Random" },
+      { id: "7", title: "Games" },
+      { id: "8", title: "Other" },
     ],
 }

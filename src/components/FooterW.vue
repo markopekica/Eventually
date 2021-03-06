@@ -3,13 +3,13 @@
       <div class="container">
         <div class="row">
           <div class="col-sm">
-            <router-link to="/about" style="color:#2c3e50;">About</router-link>
+            <router-link to="/about" class="about">About</router-link>
           </div>
           <div class="col-sm">
             <img src="../assets/logo.png" id="home-logo" alt="">
           </div>
           <div class="col-sm">
-            <span v-bind:title="year">Eventually &copy; {{ year }}</span>
+            <span v-bind:title="year" style="color:lightgray;">Eventually &copy; {{ year }}</span>
           </div>
         </div>
       </div>
@@ -40,5 +40,9 @@ export default {
 }
 #home-logo{
   height: 28px;
+}
+.about {
+  color: lightgray;
+  text-decoration: none;
 }
 </style>

@@ -108,12 +108,12 @@
       <!-- pomoc; kasnije cu obrisat -->
       <div class="applied-filters" v-if="dateTo != '' || dateFrom != ''">
         <div style="border-radius: 2px; margin: 0.5em">
-          <p id="filter-instruction"><strong>applied filters:</strong></p>
+          <p id="filter-instruction"><strong>Applied filters:</strong></p>
           <p id="hidden-info">To restart filters reload the page</p>
         </div>
         <div class="filter">
-          <div v-if="dateFrom != ''">date from: {{ dateFrom }}</div>
-          <div v-if="dateTo != ''">date to: {{ dateTo }}</div>
+          <div v-if="dateFrom != ''">Date from: {{ dateFrom }}</div>
+          <div v-if="dateTo != ''">Date to: {{ dateTo }}</div>
         </div>
       </div>
     </div>
@@ -153,12 +153,6 @@ export default {
       this.filtersOpen == false
         ? (this.filtersOpen = true, this.calendarOpen = false)
         : (this.filtersOpen = false);
-      /* if (this.filtersOpen == false) {
-        this.filtersOpen = true
-        if (this.calendarOpen == true) {this.calendarOpen = false}
-      } else {
-        this.filtersOpen = false
-      } */
     },
     applyFilters() {
       this.filtersOpen = false;

@@ -32,8 +32,8 @@
         <br />
         <croppa
           v-model="croppa"
-          :width="500"
-          :height="280"
+          :width="600"
+          :height="300"
           placeholder="Drag & drop or click to add main event image."
           placeholder-color="#111"
           :placeholder-font-size="20"
@@ -74,7 +74,7 @@
         <br />
         <textarea
           v-model="newEventMoreInfo"
-          rows="10"
+          rows="12"
           cols="59"
           placeholder="Add additional info..."
         ></textarea>
@@ -94,7 +94,7 @@
             <option value="Initiatives/Campaigns">Initiatives/Campaigns</option>
             <option value="Educational">Educational</option>
             <option value="Games">Games</option>
-            <option value="Random">Random</option>
+            <option value="Other">Other</option>
           </select>
 
           <!-- Odabir cijene -->
@@ -342,7 +342,7 @@ export default {
 
 form {
   margin: auto;
-  max-width: 500px;
+  max-width: 600px;
   display: flex;
   flex-direction: column;
   text-align: left;
@@ -397,7 +397,7 @@ textarea:hover {
   display: flex;
   justify-content: space-around;
   margin-top: 20px;
-  padding-left: 40px;
+  padding-left: 60px;
   input {
     margin: auto;
     padding-left: 20px;
@@ -453,7 +453,7 @@ textarea:hover {
     border: 2px solid #dadada;
     border-radius: 10px;
     margin: auto;
-    padding-left: 68px;
+    padding-left: 65px;
     padding-right: 10px;
     outline: none;
   }
