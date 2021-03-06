@@ -147,7 +147,6 @@ export default {
         numLiked: 0,
         watched: false,
         numWatched: 0,
-        descriptionOpen: false,
       };
     } else {
       // inace baca err u konzolu: can't read email of undefined
@@ -159,6 +158,7 @@ export default {
         numLiked: 0,
         watched: false,
         numWatched: 0,
+        descriptionOpen: false,
       };
     }
   },
