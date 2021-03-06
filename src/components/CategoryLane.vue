@@ -128,7 +128,7 @@ h2 {
 }
 #lane {
   overflow: auto;
-  white-space: nowrap;
+ // white-space: nowrap;
   padding: 0.75em 0;
   display: flex;
   /* background-color: rgb(238, 238, 238); */

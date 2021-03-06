@@ -119,9 +119,9 @@
     <div class="item icon-field description-div">
       <!-- VISE INFORMACIJA text -->
       <div class="previse-divova">
-        <span class="material-icons description-icon"> description </span>
+        <span class="material-icons description-icon" @click="showDescription"> description </span>
       </div>
-      <div class="card-description">
+      <div class="card-description" v-if="descriptionOpen">
         {{ $route.query.card.additionalInfo }}
       </div>
     </div>
@@ -145,6 +145,7 @@ export default {
         numLiked: 0,
         watched: false,
         numWatched: 0,
+        descriptionOpen: false,
       };
     } else {
       // inace baca err u konzolu: can't read email of undefined
@@ -164,6 +165,11 @@ export default {
     this.checkIfWatched();
   },
   methods: {
+    showDescription() {
+      this.descriptionOpen == false
+        ? (this.descriptionOpen = true)
+        : (this.descriptionOpen = false);
+    },
     checkIfLiked() {
       if (this.user_status) {
         db.collection("events")
@@ -417,12 +423,12 @@ h1 {
   display: flex;
   flex-direction: column;
   padding-right: 1em;
-  width: 42%;
+  width: 45%;
 }
 .from,
 .to {
   font-size: 70%;
-  margin-left: 0.7em;
+  margin-left: 1em;
   font-weight: bold;
 }
 hr {
@@ -439,7 +445,7 @@ hr {
   /* description dio; ispod crte, iznad komentara */
   display: flex;
   margin: 0.5em 1em 0.2em 1em;
-  justify-content: flex-start;
+  justify-content: center;
   * {
     margin-right: 1em;
   }
@@ -447,6 +453,19 @@ hr {
     color: skyblue;
   }
 }
+.description-icon {
+  color: skyblue;
+  border: 2px solid;
+  border-radius: 10px;
+  padding: 2px;
+}
+.description-icon:hover {
+  cursor: pointer;
+  opacity: 1;
+  background-color: #111;
+  border: 2px solid #111;
+}
+
 .card-description {
   margin: 0.5em 1em;
   padding: 0.25em;
@@ -619,4 +638,5 @@ hr {
 .share-btn.email {
   background: #444444;
 } */
+
 </style>

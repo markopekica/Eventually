@@ -1,5 +1,5 @@
 <template>
-  <div class="card" style="width: 18rem">
+  <div class="card">
     <!-- 
     ovo sam uklonio iz gornjeg diva
       v-if="this.card_info.category == this.lane_info.title"
@@ -50,6 +50,8 @@ export default {
 
 <style scoped lang="scss">
 .card {
+// background-color: rgb(250, 250, 250);
+  width: 350px;
   margin: 1em 2em;
   display: inline-block;
   min-width: fit-content;
@@ -58,18 +60,21 @@ export default {
   box-shadow: 0.25em 3px 0.4em lightgray;
 }
 .card-img-top {
-  width: 300px;
+  width: 360px;
   height: 200px;
-
   border-radius: 10px 10px 0 0;
 }
+.card-body {
+  width: 360px;
+}
 h3 {
-  // font-size: 10%;
-  max-width: 250px;
+  max-width: 360px;
   overflow: auto;
+  height: 68px;
 }
 .rutlink {
   border: 1px solid skyblue;
+//  background-color: rgb(250, 250, 250);
   background-color: white;
   border-radius: 16px;
   margin: 0.25em auto;
