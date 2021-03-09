@@ -245,6 +245,7 @@ export default {
   justify-self: center;
   border-radius: 8px;
   border: 2px solid #dadada;
+  outline: none;
 }
 .calendar:hover {
   border-color: rgb(97, 97, 97);
@@ -279,6 +280,7 @@ export default {
   justify-self: center;
   border-radius: 8px;
   border: 2px solid #dadada;
+  outline: none;
 }
 .filterBy_input:hover {
     border-color: rgb(97, 97, 97);
