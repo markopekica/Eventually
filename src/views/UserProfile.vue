@@ -21,6 +21,11 @@
         </div>
       </div>
     </div>
+    <img
+      v-if="loading"
+      class="loading"
+      :src="require('@/assets/loading.gif')"
+    />
     <div
       class="page-content page-container"
       id="page-content"
@@ -29,6 +34,7 @@
       <div class="col-sm-12">
         <div>
           <img
+            v-if="!loading"
             :src="slika"
             style="
               box-shadow: 0 0 1px #111;
@@ -41,10 +47,12 @@
           />
         </div>
 
-        <p class="usernamen">{{ covik }}</p>
+        <p v-if="!loading" class="usernamen">{{ covik }}</p>
       </div>
       <!-- <button type="submit" class="EditP" @click="Edit">Edit profile </button> -->
-      <span id="olovka" class="material-icons" @click="Edit"> mode_edit </span>
+      <span v-if="!loading" id="olovka" class="material-icons" @click="Edit">
+        mode_edit
+      </span>
     </div>
 
     <div
@@ -52,7 +60,7 @@
       id="page-content"
       v-if="EnableEdit == true"
     >
-      <form @submit.prevent="Save">
+      <form v-if="!loading" @submit.prevent="Save">
         <croppa
           v-model="croppa"
           :width="280"
@@ -75,7 +83,7 @@
           </div>
         </croppa>
         <br />
-        <div class="form-group">
+        <div v-if="!loading" class="form-group">
           <label for="newUserName">Enter your new username: </label>
           <input
             v-model="newUserName"
@@ -85,7 +93,7 @@
           />
         </div>
         <br />
-        <button type="button" class="btn btn-primary" @click="Save">
+        <button v-if="!loading" type="button" class="btn btn-primary" @click="Save">
           Save changes
         </button>
       </form>
@@ -148,6 +156,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       croppa: null,
       store,
       cards: [],
@@ -173,16 +182,16 @@ export default {
     Edit() {
       this.EnableEdit = true;
     },
-    getImage(){
+    getImage() {
       // Promise based
-        return new Promise((resolveFn) => {
-          this.croppa.generateBlob((data) => {
-              resolveFn(data)
-          });
+      return new Promise((resolveFn) => {
+        this.croppa.generateBlob((data) => {
+          resolveFn(data);
         });
+      });
     },
     async Save() {
-      console.log("trebamo ovaj gledati", this.ajdi);
+      
       if (this.ajdi) {
         db.collection("userProfile" + this.$attrs.user.email + "/")
           .doc(this.ajdi)
@@ -206,32 +215,32 @@ export default {
         });
       }
       //this.croppa.generateBlob((blobData) => {
-        try{
-        let blobData= await this.getImage()
+      try {
+        this.loading = true;
+        let blobData = await this.getImage();
         let imageName =
           "userProfile/" + this.$attrs.user.email + "/" + Date.now() + ".png";
         this.mojaSlika = imageName;
-        let result= await storage.ref(imageName).put(blobData)
-        let url= await result.ref.getDownloadURL()
-          console.log("Javni url", url);
-            const userName = this.newUserName;
-        let doc= await db.collection("userProfile" + this.$attrs.user.email + "/").add({
-              url: url,
-              usrName: userName,
-              email: this.$attrs.user.email,
-              });
-                console.log("Spremljeno", doc);
-                this.newUserName = "";
-                this.croppa = null;
+        let result = await storage.ref(imageName).put(blobData);
+        let url = await result.ref.getDownloadURL();
+        console.log("Javni url", url);
+        const userName = this.newUserName;
+        let doc = await db
+          .collection("userProfile" + this.$attrs.user.email + "/")
+          .add({
+            url: url,
+            usrName: userName,
+            email: this.$attrs.user.email,
+          });
+        console.log("Spremljeno", doc);
+        this.newUserName = "";
+        //this.croppa = null;
 
-                this.getData();
-        }
-        catch (e){
-          console.error("Greška", e);
-        }
-                  
-
-
+        this.getData();
+      } catch (e) {
+        console.error("Greška", e);
+      }
+      this.loading = false;
       this.EnableEdit = false;
     },
     getData() {
@@ -361,12 +370,22 @@ export default {
   font-style: italic;
 }
 
+.loading {
+  width: 400px;
+}
+
 #olovka {
   color: skyblue;
+  border: 2px solid;
+  border-radius: 10px;
+  padding: 2px;
 }
 
 #olovka:hover {
   cursor: pointer;
+  opacity: 1;
+  background-color: #111;
+  border: 2px solid #111;
 }
 
 .usernamen {
