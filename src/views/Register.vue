@@ -95,8 +95,9 @@ export default {
             console.log("The following error occured: ", error.message);
             this.eror = error.message;
           });
-      } else {
-        this.eror = "Passwords are not matching";
+      }
+      else {
+        this.eror = "Passwords are not matching.";
       }
     },
   },

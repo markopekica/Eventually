@@ -61,6 +61,7 @@
 import { firebase } from "@/firebase";
 export default {
   name: "LogIn",
+
   data() {
     return {
       email: "",
@@ -76,14 +77,13 @@ export default {
     checkData() {
       // refresh values after every click; to hide previous message
       this.eror = "";
-      this.success = "";
       firebase
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then((user) => {
           if (user) {
             this.usr = "true";
-            this.$router.push(
+            this.$router.replace(
               "/"
             ); /* https://reactgo.com/vue-redirect-to-external-url/ */
           } else {

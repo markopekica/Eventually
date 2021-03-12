@@ -285,7 +285,8 @@ export default {
         this.newEventStartTime = "";
         this.newEventEndTime = "";
         this.newEventLocation = "";
-      } catch (e) {
+      } 
+      catch (e) {
         console.error("GREŠKA", e);
       }
       this.loading = false;

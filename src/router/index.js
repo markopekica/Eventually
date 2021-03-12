@@ -18,7 +18,7 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Login.vue"),
+      import("../views/Login.vue"),
     meta: {
       blockUser: true,
     },
@@ -67,7 +67,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   const noUser = store.currentUser === null;
-
+  //"ako nemam usera, a stranica na koju želim ići treba usera:"
   if (noUser && to.meta.needsUser) {
     next("login");
     //console.error("NE MOŽE");

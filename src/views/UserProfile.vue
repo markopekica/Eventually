@@ -26,7 +26,12 @@
       id="page-content"
       v-if="EnableEdit == false"
     >
-      <div class="col-sm-12">
+      <img
+        v-if="loading"
+        class="loading"
+        :src="require('@/assets/loading.gif')"
+      />
+      <div class="col-sm-12" v-if="!loading">
         <div>
           <img
             :src="slika"
@@ -41,10 +46,12 @@
           />
         </div>
 
-        <p class="usernamen">{{ covik }}</p>
+        <p class="usernamen" v-if="!loading">{{ covik }}</p>
       </div>
       <!-- <button type="submit" class="EditP" @click="Edit">Edit profile </button> -->
-      <span id="olovka" class="material-icons" @click="Edit"> mode_edit </span>
+      <span v-if="!loading" id="olovka" class="material-icons" @click="Edit">
+        mode_edit
+      </span>
     </div>
 
     <div
@@ -52,7 +59,7 @@
       id="page-content"
       v-if="EnableEdit == true"
     >
-      <form @submit.prevent="Save">
+      <form v-if="!loading" @submit.prevent="Save">
         <croppa
           v-model="croppa"
           :width="280"
@@ -148,6 +155,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       croppa: null,
       store,
       cards: [],
@@ -174,6 +182,7 @@ export default {
       this.EnableEdit = true;
     },
     Save() {
+      this.loading = true;
       console.log("trebamo ovaj gledati", this.ajdi);
       if (this.ajdi) {
         db.collection("userProfile" + this.$attrs.user.email + "/")
@@ -224,9 +233,10 @@ export default {
                   .then((doc) => {
                     console.log("Spremljeno", doc);
                     this.newUserName = "";
-                    this.croppa = null;
+                    //  this.croppa = null;
 
                     this.getData();
+                    this.loading = false;
                   })
                   .catch((e) => {
                     console.error(e);
@@ -367,6 +377,10 @@ export default {
 <style lang="scss" scoped>
 ::-webkit-input-placeholder {
   font-style: italic;
+}
+
+.loading {
+  width: 400px;
 }
 
 #olovka {

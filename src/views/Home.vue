@@ -144,7 +144,7 @@ export default {
       filterByName: "",
       filterByLocation: "",
       /* default date-from is today: https://renatello.com/vue-js-input-date/ */
-      date: new Date().toISOString().substr(0, 10),
+      date: new Date().toISOString().substr(0, 10),  //danasnji datum
       err: "",
     };
   },
@@ -176,13 +176,12 @@ export default {
       if (this.dateTo < this.dateFrom && this.dateTo !== "") {
         this.dateTo = "";
         /* alert("Please pick a valid date to:)"); */
-        this.err = "Date to has to be larger than date from.";
+        this.err = "Starting date has to be of greater value than that of the ending one";
         setTimeout(() => {
           this.err = "";
         }, 4000);
         this.calendarOpen = true;
       }
-      
     },
     cancel() {
       this.calendarOpen = false;
@@ -190,10 +189,8 @@ export default {
     },
     addEvent() {
       if (this.$attrs.user_status == false) {
-        alert("LogIn to use this feature");
-      } else {
-        // jump to: AddEvent.vue
-      }
+        alert("You have to be signed in to use this feature.");
+      } 
     },
   },
 };
