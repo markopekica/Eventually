@@ -26,12 +26,7 @@
       id="page-content"
       v-if="EnableEdit == false"
     >
-      <img
-        v-if="loading"
-        class="loading"
-        :src="require('@/assets/loading.gif')"
-      />
-      <div class="col-sm-12" v-if="!loading">
+      <div class="col-sm-12">
         <div>
           <img
             :src="slika"
@@ -46,12 +41,10 @@
           />
         </div>
 
-        <p class="usernamen" v-if="!loading">{{ covik }}</p>
+        <p class="usernamen">{{ covik }}</p>
       </div>
       <!-- <button type="submit" class="EditP" @click="Edit">Edit profile </button> -->
-      <span v-if="!loading" id="olovka" class="material-icons" @click="Edit">
-        mode_edit
-      </span>
+      <span id="olovka" class="material-icons" @click="Edit"> mode_edit </span>
     </div>
 
     <div
@@ -59,7 +52,7 @@
       id="page-content"
       v-if="EnableEdit == true"
     >
-      <form v-if="!loading" @submit.prevent="Save">
+      <form @submit.prevent="Save">
         <croppa
           v-model="croppa"
           :width="280"
@@ -155,7 +148,6 @@ export default {
   },
   data() {
     return {
-      loading: false,
       croppa: null,
       store,
       cards: [],
@@ -181,8 +173,15 @@ export default {
     Edit() {
       this.EnableEdit = true;
     },
-    Save() {
-      this.loading = true;
+    getImage(){
+      // Promise based
+        return new Promise((resolveFn) => {
+          this.croppa.generateBlob((data) => {
+              resolveFn(data)
+          });
+        });
+    },
+    async Save() {
       console.log("trebamo ovaj gledati", this.ajdi);
       if (this.ajdi) {
         db.collection("userProfile" + this.$attrs.user.email + "/")
@@ -206,50 +205,33 @@ export default {
           Promise.all(promises);
         });
       }
-      this.croppa.generateBlob((blobData) => {
+      //this.croppa.generateBlob((blobData) => {
+        try{
+        let blobData= await this.getImage()
         let imageName =
           "userProfile/" + this.$attrs.user.email + "/" + Date.now() + ".png";
         this.mojaSlika = imageName;
-
-        storage
-          .ref(imageName)
-          .put(blobData)
-          .then((result) => {
-            console.log(result);
-
-            result.ref
-              .getDownloadURL()
-              .then((url) => {
-                console.log("Javni url", url);
-
-                const userName = this.newUserName;
-
-                db.collection("userProfile" + this.$attrs.user.email + "/")
-                  .add({
-                    url: url,
-                    usrName: userName,
-                    email: this.$attrs.user.email,
-                  })
-                  .then((doc) => {
-                    console.log("Spremljeno", doc);
-                    this.newUserName = "";
-                    //  this.croppa = null;
-
-                    this.getData();
-                    this.loading = false;
-                  })
-                  .catch((e) => {
-                    console.error(e);
-                  });
-              })
-              .catch((e) => {
-                console.error(e);
+        let result= await storage.ref(imageName).put(blobData)
+        let url= await result.ref.getDownloadURL()
+          console.log("Javni url", url);
+            const userName = this.newUserName;
+        let doc= await db.collection("userProfile" + this.$attrs.user.email + "/").add({
+              url: url,
+              usrName: userName,
+              email: this.$attrs.user.email,
               });
-          })
-          .catch((e) => {
-            console.error(e);
-          });
-      });
+                console.log("Spremljeno", doc);
+                this.newUserName = "";
+                this.croppa = null;
+
+                this.getData();
+        }
+        catch (e){
+          console.error("Greška", e);
+        }
+                  
+
+
       this.EnableEdit = false;
     },
     getData() {
@@ -379,23 +361,12 @@ export default {
   font-style: italic;
 }
 
-.loading {
-  width: 400px;
-}
-
 #olovka {
   color: skyblue;
-  border: 2px solid;
-  border-radius: 10px;
-  padding: 2px;
 }
 
 #olovka:hover {
   cursor: pointer;
-  opacity: 1;
-  background-color: #111;
-  color: skyblue;
-  border: 2px solid #111;
 }
 
 .usernamen {
